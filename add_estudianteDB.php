@@ -8,6 +8,7 @@
 		<form action="guardar_estudianteDB.php" method="POST">
 			<table>
 				<tr>
+					<td>HOLA COMO ESTAS</td>
 					<td>Nombre</td>
 					<td><input type="text" name="nom_alumno" /></td>
 				</tr>
