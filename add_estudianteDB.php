@@ -6,7 +6,6 @@
 	</head>
 	<body>
 		<form action="guardar_estudianteDB.php" method="POST">
-			<p>hola</p>
 			<table>
 				<tr>
 					<td>Nombre</td>
