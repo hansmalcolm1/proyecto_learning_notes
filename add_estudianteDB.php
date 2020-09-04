@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 	<html>
 	<head>
-		<meta charset="UTF-8">
+		<meta charset="UTF-8" />
 	</head>
 	<body>
 		<form action="guardar_estudianteDB.php" method="POST">
