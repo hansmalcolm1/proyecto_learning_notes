@@ -9,6 +9,10 @@ class Persona {
 	private $fecha_nacimiento;
 	private $direccion;
 	private $telefono_fijo;
+	private $id_docente;
+	private $nom_docente;
+	private $telefono;
+	private $correo;
 	public function __construct(){
 
 	}

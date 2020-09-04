@@ -12,10 +12,15 @@ $personas = $result->fetchAll(PDO::FETCH_CLASS, "Persona");
 <head>
 	<style>
 		table,th,td {border:black 1px solid;}
+		div {text-align:center;}
+		table{margin-left:auto;
+			margin-right:auto;}
 	</style>
 	<meta charset="UTF-8">
 </head>
 <body>
+	<div>
+	<button><a href="index.php">Volver</a></button>
 	<button><a href="add_estudianteDB.php">Agregar estudiante</a></button>
 	<table>
 		<tr>
@@ -47,5 +52,6 @@ $personas = $result->fetchAll(PDO::FETCH_CLASS, "Persona");
 		}
 		?>
 	</table>
+	</div>
 </body>
 </html>
