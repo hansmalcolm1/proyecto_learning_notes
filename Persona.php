@@ -13,6 +13,9 @@ class Persona {
 	private $nom_docente;
 	private $telefono;
 	private $correo;
+	private $idcurso;
+	private $nom_curso;
+	private $docente_id_docente;
 	public function __construct(){
 
 	}
