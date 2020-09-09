@@ -16,6 +16,10 @@ class Persona {
 	private $idcurso;
 	private $nom_curso;
 	private $docente_id_docente;
+	private $id;
+	private $nombre;
+	private $parentesco;
+	private $estudiante_id_alumno;
 	public function __construct(){
 
 	}
