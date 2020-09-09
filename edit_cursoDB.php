@@ -25,7 +25,7 @@ if(isset($_GET["idcurso"]) && strlen($_GET["idcurso"])){
 				<table>
 					<tr>
 						<td>Id curso</td>
-						<td><input type="text" name="idcurso" value="<?=$p->idcurso;?>" readonly/></td>
+						<td><input type="number" name="idcurso" value="<?=$p->idcurso;?>" readonly/></td>
 					</tr>
 					<tr>
 						<td>Nombre</td>

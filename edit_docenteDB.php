@@ -19,7 +19,7 @@ if(isset($_GET["id_docente"]) && strlen($_GET["id_docente"])){
 				<table>
 					<tr>
 						<td>Id docente</td>
-						<td><input type="text" name="id_docente" value="<?=$p->id_docente;?>"/></td>
+						<td><input type="number" name="id_docente" value="<?=$p->id_docente;?>" readonly/></td>
 					</tr>
 					<tr>
 						<td>Nombre</td>

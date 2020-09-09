@@ -20,6 +20,9 @@ class Persona {
 	private $nombre;
 	private $parentesco;
 	private $estudiante_id_alumno;
+	private $idmateria;
+	private $nom_materia;
+	private $curso_idcurso;
 	public function __construct(){
 
 	}
