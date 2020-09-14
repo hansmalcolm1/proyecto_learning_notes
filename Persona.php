@@ -33,6 +33,11 @@ class Persona {
 	private $fecha_entrega;
 	private $materia_idmateria1;
 	private $periodo;
+	private $idMatricula;
+	private $Condicion;
+	private $ano_lectivo;
+	private $calendario;
+	private $estado;
 	public function __construct(){
 
 	}
