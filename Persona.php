@@ -27,6 +27,12 @@ class Persona {
 	private $actividad;
 	private $responsable;
 	private $fecha_actividad;
+	private $idtarea;
+	private $descripcion_tarea;
+	private $titulo_tarea;
+	private $fecha_entrega;
+	private $materia_idmateria1;
+	private $periodo;
 	public function __construct(){
 
 	}

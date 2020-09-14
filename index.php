@@ -10,5 +10,6 @@
 	<button><a href="ListarAcudientesDB.php">Acudientes</a></button><br>
 	<button><a href="ListarMateriasDB.php">Materias</a></button><br>
 	<button><a href="ListarCronogramasDB.php">Cronogramas</a></button><br>
+	<button><a href="ListarTareasDB.php">Tareas</a></button><br>
 </body>
 </html>
