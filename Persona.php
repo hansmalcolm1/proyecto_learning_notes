@@ -23,6 +23,10 @@ class Persona {
 	private $idmateria;
 	private $nom_materia;
 	private $curso_idcurso;
+	private $idcronograma;
+	private $actividad;
+	private $responsable;
+	private $fecha_actividad;
 	public function __construct(){
 
 	}
