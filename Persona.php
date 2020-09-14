@@ -38,6 +38,10 @@ class Persona {
 	private $ano_lectivo;
 	private $calendario;
 	private $estado;
+	private $id_observa;
+	private $observacion;
+	private $Fecha_observa;
+	private $registro_matricula_id;
 	public function __construct(){
 
 	}

@@ -12,5 +12,6 @@
 	<button><a href="ListarCronogramasDB.php">Cronogramas</a></button><br>
 	<button><a href="ListarTareasDB.php">Tareas</a></button><br>
 	<button><a href="ListarMatriculasDB.php">Matrículas</a></button><br>
+	<button><a href="ListarObservacionesDB.php">Observaciones</a></button><br>
 </body>
 </html>
