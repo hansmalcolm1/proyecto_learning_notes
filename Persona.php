@@ -58,6 +58,8 @@ class Persona {
 	private $id_est_tarea;
 	private $tarea_idtarea;
 	private $nota;
+	private $id_est_evalua;
+	private $evaluacion_idevaluacion;
 	public function __construct(){
 
 	}
