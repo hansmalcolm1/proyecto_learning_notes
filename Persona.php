@@ -42,6 +42,8 @@ class Persona {
 	private $observacion;
 	private $Fecha_observa;
 	private $registro_matricula_id;
+	private $Matricula_idMatricula;
+	private $promedio;
 	public function __construct(){
 
 	}
