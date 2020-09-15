@@ -48,6 +48,13 @@ class Persona {
 	private $descripcion_evaluacion;
 	private $titulo_evaluacion;
 	private $fecha_evaluacion;
+	private $idcalificacion;
+	private $nota_periodo_1;
+	private $nota2;
+	private $nota3;
+	private $nota4;
+	private $def_periodo;
+	private $materia_idmateria;
 	public function __construct(){
 
 	}

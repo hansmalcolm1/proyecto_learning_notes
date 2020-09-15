@@ -74,7 +74,7 @@ if(isset($_GET["idevaluacion"]) && strlen($_GET["idevaluacion"])){
 
 }
 else{
-	echo "<script>alert('El id alumno no es valido');
-	window.location.href='ListarEstudiantesDB.php'</script>";
+	echo "<script>alert('El id evaluación no es valido');
+	window.location.href='ListarEvaluacionesDB.php'</script>";
 }
 ?>
