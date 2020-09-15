@@ -55,6 +55,9 @@ class Persona {
 	private $nota4;
 	private $def_periodo;
 	private $materia_idmateria;
+	private $id_est_tarea;
+	private $tarea_idtarea;
+	private $nota;
 	public function __construct(){
 
 	}
