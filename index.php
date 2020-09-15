@@ -10,7 +10,7 @@
 	<button><a href="ListarDefinitivasPeriodosMateriasDB.php">Definitivas periodos materias</a></button><br>
 	<button><a href="ListarDocentesDB.php">Docentes</a></button><br>
 	<button><a href="ListarEstudiantesDB.php">Estudiantes</a></button><br>
-	<button><a href="ListarEstudiantesHasEvaluacionDB.php">Estudiante tiene evaluación</a></button>
+	<button><a href="ListarEstudiantesHasEvaluacionDB.php">Estudiante tiene evaluación</a></button><br>
 	<button><a href="ListarEstudiantesHasTareaDB.php">Estudiante tiene tarea</a></button><br>
 	<button><a href="ListarEvaluacionesDB.php">Evaluaciones</a></button><br>
 	<button><a href="ListarMateriasDB.php">Materias</a></button><br>
