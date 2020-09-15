@@ -44,6 +44,10 @@ class Persona {
 	private $registro_matricula_id;
 	private $Matricula_idMatricula;
 	private $promedio;
+	private $idevaluacion;
+	private $descripcion_evaluacion;
+	private $titulo_evaluacion;
+	private $fecha_evaluacion;
 	public function __construct(){
 
 	}

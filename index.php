@@ -14,5 +14,6 @@
 	<button><a href="ListarMatriculasDB.php">Matrículas</a></button><br>
 	<button><a href="ListarObservacionesDB.php">Observaciones</a></button><br>
 	<button><a href="ListarRegistrosMatriculasDB.php">Registros matrículas</a></button><br>
+	<button><a href="ListarEvaluacionesDB.php">Evaluaciones</a></button><br>
 </body>
 </html>
