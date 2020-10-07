@@ -21,7 +21,6 @@ $personas = $result->fetchAll(PDO::FETCH_CLASS, "Persona");
 <body>
 	<div>
 	<button><a href="inicio.php">Volver</a></button>
-	<button><a href="add_registro_matriculaDB.php">Agregar registro matrícula</a></button>
 	<table>
 		<tr>
 			<th>Id registro matrícula</th>
@@ -29,7 +28,6 @@ $personas = $result->fetchAll(PDO::FETCH_CLASS, "Persona");
 			<th>Id alumno</th>
 			<th>Id curso</th>
 			<th>Promedio</th>
-			<th>Opciones</th>
 		</tr>
 		<?php
 		foreach($personas as $p){
@@ -40,7 +38,6 @@ $personas = $result->fetchAll(PDO::FETCH_CLASS, "Persona");
 				<td><?=$p->estudiante_id_alumno;?></td>
 				<td><?=$p->curso_idcurso;?></td>
 				<td><?=$p->promedio;?></td>
-				<td><button><a href="edit_registro_matriculaDB.php?id=<?=$p->id;?>&Matricula_idMatricula=<?=$p->Matricula_idMatricula;?>&estudiante_id_alumno=<?=$p->estudiante_id_alumno;?>&curso_idcurso=<?=$p->curso_idcurso;?>">Editar registro matrícula</a></button><br><button><a href="eliminar_registro_matriculaDB.php?id=<?=$p->id;?>">Eliminar</a></button></td>
 			</tr>
 			<?php
 		}

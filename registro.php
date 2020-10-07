@@ -29,29 +29,23 @@
 		$password = $_POST['password'];
 		$password2 = hash('sha256', $password);
 		$db = new Database();
-		$query = $db->connect()->prepare('SELECT * FROM usuarios WHERE usuario = :usuario AND password = :password');
+		$query = $db->connect()->prepare('INSERT INTO usuarios (usuario, password, rol_id) values (:usuario, :password, 2)');
 		$query->execute(['usuario' => $username, 'password' => $password2]);
 
-		$row = $query->fetch(PDO::FETCH_NUM);
 		
-		if($row == true){
-			$rol = $row[3];
-			$_SESSION['rol'] = $rol;
+		$rol = 2;
 			
-			switch ($_SESSION['rol']) {
-				case 1:
-					header('Location: inicioAdmin.php');
-					break;
+		switch ($rol) {
+			case 1:
+				header('Location: inicioAdmin.php');
+				break;
 
-				case 2:
-					header('location: inicio.php');
-					break;
+			case 2:
+				header('location: inicio.php');
+				break;
 				
-				default:
+			default:
 					
-			}
-		}else{
-			echo "El usuario o contraseña son incorrectos";
 		}
 	}
 ?>
@@ -66,8 +60,7 @@
 	<form action="#" method="POST">
 		Username: <br><input type="text" name="username"><br>
 		Password: <br><input type="password" name="password"><br>
-		<input type="submit" value="Iniciar sesión">
+		<input type="submit" value="Registrarse">
 	</form>
-	<button><a href="registro.php">Registrarse</a></button>
 </body>
 </html>

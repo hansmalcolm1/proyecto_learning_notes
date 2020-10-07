@@ -2,7 +2,7 @@
 require "conexion.php";
 require "Persona.php";
 
-$sql = "select * from docente";
+$sql = "select * from acudientes";
 $result = $con->prepare($sql);
 $result->execute();
 $personas = $result->fetchAll(PDO::FETCH_CLASS, "Persona");
@@ -21,26 +21,27 @@ $personas = $result->fetchAll(PDO::FETCH_CLASS, "Persona");
 <body>
 	<div>
 	<button><a href="inicio.php">Volver</a></button>
-	<button><a href="add_docenteDB.php">Agregar docente</a></button>
 	<table>
 		<tr>
-			<th>Id docente</th>
-			<th>Nombre del docente</th>
+			<th>Id acudiente</th>
+			<th>Documento</th>
+			<th>Nombre del acudiente</th>
+			<th>Parentesco</th>
 			<th>Dirección</th>
 			<th>Teléfono</th>
-			<th>Correo</th>
-			<th>Opciones</th>
+			<th>Id alumno</th>
 		</tr>
 		<?php
 		foreach($personas as $p){
 			?>
 			<tr>
-				<td><?=$p->id_docente;?></td>
-				<td><?=$p->nom_docente;?></td>
+				<td><?=$p->id;?></td>
+				<td><?=$p->documento;?></td>
+				<td><?=$p->nombre;?></td>
+				<td><?=$p->parentesco;?></td>
 				<td><?=$p->direccion;?></td>
 				<td><?=$p->telefono;?></td>
-				<td><?=$p->correo;?></td>
-				<td><button><a href="edit_docenteDB.php?id_docente=<?=$p->id_docente;?>">Editar docente</a></button><br><button><a href="eliminar_docenteDB.php?id_docente=<?=$p->id_docente;?>">Eliminar</a></button></td>
+				<td><?=$p->estudiante_id_alumno;?></td>
 			</tr>
 			<?php
 		}

@@ -21,7 +21,6 @@ $personas = $result->fetchAll(PDO::FETCH_CLASS, "Persona");
 <body>
 	<div>
 	<button><a href="inicio.php">Volver</a></button>
-	<button><a href="add_tareaDB.php">Agregar tarea</a></button>
 	<table>
 		<tr>
 			<th>Id tarea</th>
@@ -30,7 +29,6 @@ $personas = $result->fetchAll(PDO::FETCH_CLASS, "Persona");
 			<th>Fecha de entrega</th>
 			<th>Id materia</th>
 			<th>Periodo</th>
-			<th>Opciones</th>
 		</tr>
 		<?php
 		foreach($personas as $p){
@@ -42,7 +40,6 @@ $personas = $result->fetchAll(PDO::FETCH_CLASS, "Persona");
 				<td><?=$p->fecha_entrega;?></td>
 				<td><?=$p->materia_idmateria1;?></td>
 				<td><?=$p->periodo;?></td>
-				<td><button><a href="edit_tareaDB.php?idtarea=<?=$p->idtarea;?>&materia_idmateria1=<?=$p->materia_idmateria1;?>">Editar tarea</a></button><br><button><a href="eliminar_tareaDB.php?idtarea=<?=$p->idtarea;?>">Eliminar</a></button></td>
 			</tr>
 			<?php
 		}

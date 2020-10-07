@@ -21,7 +21,6 @@ $personas = $result->fetchAll(PDO::FETCH_CLASS, "Persona");
 <body>
 	<div>
 	<button><a href="inicio.php">Volver</a></button>
-	<button><a href="add_estudiante_has_tareaDB.php">Agregar estudiante tiene tarea</a></button>
 	<table>
 		<tr>
 			<th>Id estudiante tiene tarea</th>
@@ -29,7 +28,6 @@ $personas = $result->fetchAll(PDO::FETCH_CLASS, "Persona");
 			<th>Id tarea</th>
 			<th>Nota</th>
 			<th>Obsevación</th>
-			<th>Opciones</th>
 		</tr>
 		<?php
 		foreach($personas as $p){
@@ -40,7 +38,6 @@ $personas = $result->fetchAll(PDO::FETCH_CLASS, "Persona");
 				<td><?=$p->tarea_idtarea;?></td>
 				<td><?=$p->nota;?></td>
 				<td><?=$p->observacion;?></td>
-				<td><button><a href="edit_estudiante_has_tareaDB.php?id_est_tarea=<?=$p->id_est_tarea;?>&estudiante_id_alumno=<?=$p->estudiante_id_alumno;?>&tarea_idtarea=<?=$p->tarea_idtarea;?>">Editar estudiante tiene tarea</a></button><br><button><a href="eliminar_estudiante_has_tareaDB.php?id_est_tarea=<?=$p->id_est_tarea;?>">Eliminar</a></button></td>
 			</tr>
 			<?php
 		}

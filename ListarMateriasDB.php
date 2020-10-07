@@ -20,7 +20,7 @@ $personas = $result->fetchAll(PDO::FETCH_CLASS, "Persona");
 </head>
 <body>
 	<div>
-	<button><a href="index.php">Volver</a></button>
+	<button><a href="inicio.php">Volver</a></button>
 	<button><a href="add_materiaDB.php">Agregar materia</a></button>
 	<table>
 		<tr>

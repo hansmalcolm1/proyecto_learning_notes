@@ -21,14 +21,12 @@ $personas = $result->fetchAll(PDO::FETCH_CLASS, "Persona");
 <body>
 	<div>
 	<button><a href="inicio.php">Volver</a></button>
-	<button><a href="add_observacionDB.php">Agregar observación</a></button>
 	<table>
 		<tr>
 			<th>Id observación</th>
 			<th>Observación</th>
 			<th>Fecha de la observación</th>
 			<th>Id matrícula</th>
-			<th>Opciones</th>
 		</tr>
 		<?php
 		foreach($personas as $p){
@@ -38,7 +36,6 @@ $personas = $result->fetchAll(PDO::FETCH_CLASS, "Persona");
 				<td><?=$p->observacion;?></td>
 				<td><?=$p->Fecha_observa;?></td>
 				<td><?=$p->registro_matricula_id;?></td>
-				<td><button><a href="edit_observacionDB.php?id_observa=<?=$p->id_observa;?>&registro_matricula_id=<?=$p->registro_matricula_id;?>">Editar obsevación</a></button><br><button><a href="eliminar_observacionDB.php?id_observa=<?=$p->id_observa;?>">Eliminar</a></button></td>
 			</tr>
 			<?php
 		}

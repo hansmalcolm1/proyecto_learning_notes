@@ -2,7 +2,7 @@
 require "conexion.php";
 require "Persona.php";
 
-$sql = "select * from curso";
+$sql = "select * from definitivas_periodo_materia";
 $result = $con->prepare($sql);
 $result->execute();
 $personas = $result->fetchAll(PDO::FETCH_CLASS, "Persona");
@@ -21,22 +21,29 @@ $personas = $result->fetchAll(PDO::FETCH_CLASS, "Persona");
 <body>
 	<div>
 	<button><a href="inicio.php">Volver</a></button>
-	<button><a href="add_cursoDB.php">Agregar curso</a></button>
 	<table>
 		<tr>
-			<th>Id curso</th>
-			<th>Nombre del curso</th>
-			<th>Id docente</th>
-			<th>Opciones</th>
+			<th>Id calificación</th>
+			<th>Nota periodo 1</th>
+			<th>Nota 2</th>
+			<th>Nota 3</th>
+			<th>Nota 4</th>
+			<th>Definitiva del periodo</th>
+			<th>Id materia</th>
+			<th>Id alumno</th>
 		</tr>
 		<?php
 		foreach($personas as $p){
 			?>
 			<tr>
-				<td><?=$p->idcurso;?></td>
-				<td><?=$p->nom_curso;?></td>
-				<td><?=$p->docente_id_docente;?></td>
-				<td><button><a href="edit_cursoDB.php?idcurso=<?=$p->idcurso;?>&docente_id_docente=<?=$p->docente_id_docente;?>">Editar curso</a></button><br><button><a href="eliminar_cursoDB.php?idcurso=<?=$p->idcurso;?>">Eliminar</a></button></td>
+				<td><?=$p->idcalificacion;?></td>
+				<td><?=$p->nota_periodo_1;?></td>
+				<td><?=$p->nota2;?></td>
+				<td><?=$p->nota3;?></td>
+				<td><?=$p->nota4;?></td>
+				<td><?=$p->def_periodo;?></td>
+				<td><?=$p->materia_idmateria;?></td>
+				<td><?=$p->estudiante_id_alumno;?></td>
 			</tr>
 			<?php
 		}
