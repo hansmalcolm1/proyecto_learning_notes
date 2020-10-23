@@ -17,12 +17,22 @@ $personas2 = $result2->fetchAll(PDO::FETCH_CLASS, "Persona");
 	<html>
 	<head>
 		<meta charset="UTF-8" />
+
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
 	</head>
 	<body>
+	<br><br>
 		<form action="guardar_definitivas_periodo_materiaDB.php" method="POST">
+
+		<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <div class="card">
 			<table>
 				<tr>
-					<td>Nota periodo 1</td>
+					<td>Nota período 1</td>
 					<td><input type="number" step="any" name="nota_periodo_1" /></td>
 				</tr>
 				<tr>
@@ -38,7 +48,7 @@ $personas2 = $result2->fetchAll(PDO::FETCH_CLASS, "Persona");
 					<td><input type="number" step="any" name="nota4" /></td>
 				</tr>
 				<tr>
-					<td>Definitiva del periodo</td>
+					<td>Definitiva del período</td>
 					<td><input type="number" step="any" name="def_periodo" /></td>
 				</tr>
 				<tr>
