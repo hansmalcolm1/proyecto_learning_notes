@@ -11,6 +11,8 @@
 	}
 
 	if(isset($_SESSION['rol'])){
+		$_SESSION['username'] = $username;
+		$_SESSION['rol'] = $rol;
 		switch($_SESSION['rol']){
 			case 1:
 				header('location: inicioAdmin.php');
@@ -34,7 +36,8 @@
 
 		
 		$rol = 2;
-			
+		$_SESSION['username'] = $username;
+		$_SESSION['rol'] = $rol;
 		switch ($rol) {
 			case 1:
 				header('Location: inicioAdmin.php');
