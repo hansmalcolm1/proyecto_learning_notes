@@ -1,5 +1,8 @@
 <?php
 include("conexion.php");
+$sesion=$_GET['sesion'];
+$rol=$_GET['rol'];
+if(!($sesion==null) && !($sesion==null)){
 if(isset($_POST["descripcion_tarea"]) && strlen($_POST["descripcion_tarea"])>0 &&
 isset($_POST["titulo_tarea"]) && strlen($_POST["titulo_tarea"])>0 &&
 isset($_POST["fecha_entrega"]) && strlen($_POST["fecha_entrega"])>0 &&
@@ -25,5 +28,11 @@ isset($_POST["periodo"]) && strlen($_POST["periodo"])>0){
 else{
 	echo "<script>alert('La descripción de la tarea, el título de la tarea, la fecha de entrega, la materia y el periodo son requeridos');
 	window.location.href='ListarTareasDB.php'</script>";
+}
+}
+else{
+	echo "<script>alert('No tiene permisos');
+	window.location.href='index.php'</script>";
+
 }
 ?>

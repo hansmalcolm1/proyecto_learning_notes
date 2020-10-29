@@ -1,6 +1,9 @@
 <?php
 require "conexion.php";
 require "Persona.php";
+$sesion=$_GET['sesion'];
+$rol=$_GET['rol'];
+if(!($sesion==null) && !($sesion==null)){
 if(isset($_GET["idcalificacion"]) && strlen($_GET["idcalificacion"])){
 	$idcalificacion=$_GET["idcalificacion"];
 	$materia_idmateria=$_GET["materia_idmateria"];
@@ -108,5 +111,10 @@ if(isset($_GET["idcalificacion"]) && strlen($_GET["idcalificacion"])){
 else{
 	echo "<script>alert('El id calificación no es valido');
 	window.location.href='ListarDefinitivasPeriodosMateriasDB.php'</script>";
+}
+}
+else{
+	echo "<script>alert('No tiene permisos');
+	window.location.href='index.php'</script>";
 }
 ?>

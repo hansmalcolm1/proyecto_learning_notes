@@ -1,11 +1,14 @@
 <?php
 require "conexion.php";
 require "Persona.php";
-
+session_start();
 $sql = "select * from matricula";
 $result = $con->prepare($sql);
 $result->execute();
 $personas = $result->fetchAll(PDO::FETCH_CLASS, "Persona");
+$sesion=$_GET['sesion'];
+$rol=$_GET['rol'];
+if(!($sesion==null) && !($sesion==null)){
 ?>
 <DOCTYPE html>
 <html>
@@ -20,8 +23,8 @@ $personas = $result->fetchAll(PDO::FETCH_CLASS, "Persona");
 </head>
 <body>
 	<div>
-	<button><a href="inicioAdmin.php">Volver</a></button>
-	<button><a href="add_matriculaDB.php">Agregar matrícula</a></button>
+	<button><a href="inicioAdmin.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Volver</a></button>
+	<button><a href="add_matriculaDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Agregar matrícula</a></button>
 	<table>
 		<tr>
 			<th>Id matrícula</th>
@@ -40,7 +43,7 @@ $personas = $result->fetchAll(PDO::FETCH_CLASS, "Persona");
 				<td><?=$p->ano_lectivo;?></td>
 				<td><?=$p->calendario;?></td>
 				<td><?=$p->estado;?></td>
-				<td><button><a href="edit_matriculaDB.php?idMatricula=<?=$p->idMatricula;?>">Editar matrícula</a></button><br><button><a href="eliminar_matriculaDB.php?idMatricula=<?=$p->idMatricula;?>">Eliminar</a></button></td>
+				<td><button><a href="edit_matriculaDB.php?idMatricula=<?=$p->idMatricula;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Editar matrícula</a></button><br><button><a href="eliminar_matriculaDB.php?idMatricula=<?=$p->idMatricula;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Eliminar</a></button></td>
 			</tr>
 			<?php
 		}
@@ -49,3 +52,13 @@ $personas = $result->fetchAll(PDO::FETCH_CLASS, "Persona");
 	</div>
 </body>
 </html>
+<?php
+}
+else{
+	session_unset();
+
+	session_destroy();
+	echo "<script>alert('No tiene permisos');
+	window.location.href='index.php'</script>";
+}
+?>

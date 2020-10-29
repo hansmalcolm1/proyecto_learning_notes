@@ -6,7 +6,9 @@ $sql = "select * from registro_matricula, matricula where Matricula_idMatricula=
 $result = $con->prepare($sql);
 $result->execute();
 $personas = $result->fetchAll(PDO::FETCH_CLASS, "Persona");
-
+$sesion=$_GET['sesion'];
+$rol=$_GET['rol'];
+if(!($sesion==null) && !($sesion==null)){
 ?>
 <!DOCTYPE html>
 	<html>
@@ -52,3 +54,10 @@ $personas = $result->fetchAll(PDO::FETCH_CLASS, "Persona");
 		</form>
 	</body>
 	</html>
+<?php
+}
+else{
+	echo "<script>alert('No tiene permisos');
+	window.location.href='index.php'</script>";
+}
+?>

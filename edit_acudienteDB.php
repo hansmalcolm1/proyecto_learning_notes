@@ -1,6 +1,9 @@
 <?php
 require "conexion.php";
 require "Persona.php";
+$sesion=$_GET['sesion'];
+$rol=$_GET['rol'];
+if(!($sesion==null) && !($sesion==null)){
 if(isset($_GET["id"]) && strlen($_GET["id"])){
 	$id=$_GET["id"];
 	$estudiante_id_alumno=$_GET["estudiante_id_alumno"];
@@ -86,5 +89,10 @@ if(isset($_GET["id"]) && strlen($_GET["id"])){
 else{
 	echo "<script>alert('El id acudiente no es valido');
 	window.location.href='ListarAcudientesDB.php'</script>";
+}
+}
+else{
+	echo "<script>alert('No tiene permisos');
+	window.location.href='index.php'</script>";
 }
 ?>

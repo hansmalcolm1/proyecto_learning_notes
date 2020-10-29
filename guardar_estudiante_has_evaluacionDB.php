@@ -1,5 +1,8 @@
 <?php
 include("conexion.php");
+$sesion=$_GET['sesion'];
+$rol=$_GET['rol'];
+if(!($sesion==null) && !($sesion==null)){
 if(isset($_POST["estudiante_id_alumno"]) && strlen($_POST["estudiante_id_alumno"])>0 &&
 isset($_POST["evaluacion_idevaluacion"]) && strlen($_POST["evaluacion_idevaluacion"])>0 &&
 isset($_POST["nota"]) && strlen($_POST["nota"])>0 &&
@@ -22,5 +25,11 @@ isset($_POST["observacion"]) && strlen($_POST["observacion"])>0){
 else{
 	echo "<script>alert('El estudiante, la evaluación, la nota y la observación son requeridos');
 	window.location.href='ListarEstudiantesHasEvaluacionDB.php'</script>";
+}
+}
+else{
+	echo "<script>alert('No tiene permisos');
+	window.location.href='index.php'</script>";
+
 }
 ?>

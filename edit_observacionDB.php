@@ -1,6 +1,9 @@
 <?php
 require "conexion.php";
 require "Persona.php";
+$sesion=$_GET['sesion'];
+$rol=$_GET['rol'];
+if(!($sesion==null) && !($sesion==null)){
 if(isset($_GET["id_observa"]) && strlen($_GET["id_observa"])){
 	$id_observa=$_GET["id_observa"];
 	$registro_matricula_id=$_GET["registro_matricula_id"];
@@ -70,5 +73,10 @@ if(isset($_GET["id_observa"]) && strlen($_GET["id_observa"])){
 else{
 	echo "<script>alert('El id observación no es valido');
 	window.location.href='ListarObservacionesDB.php'</script>";
+}
+}
+else{
+	echo "<script>alert('No tiene permisos');
+	window.location.href='index.php'</script>";
 }
 ?>

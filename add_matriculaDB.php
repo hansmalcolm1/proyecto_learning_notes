@@ -1,3 +1,8 @@
+<?php
+$sesion=$_GET['sesion'];
+$rol=$_GET['rol'];
+if(!($sesion==null) && !($sesion==null)){
+?>
 <!DOCTYPE html>
 	<html>
 	<head>
@@ -38,3 +43,10 @@
 		</form>
 	</body>
 	</html>
+<?php
+}
+else{
+	echo "<script>alert('No tiene permisos');
+	window.location.href='index.php'</script>";
+}
+?>

@@ -1,5 +1,8 @@
 <?php
 include("conexion.php");
+$sesion=$_GET['sesion'];
+$rol=$_GET['rol'];
+if(!($sesion==null) && !($sesion==null)){
 if(isset($_POST["documento"]) && strlen($_POST["documento"])>0 &&
 isset($_POST["nombre"]) && strlen($_POST["nombre"])>0 &&
 isset($_POST["parentesco"]) && strlen($_POST["parentesco"])>0 &&
@@ -29,5 +32,11 @@ isset($_POST["estudiante_id_alumno"]) && strlen($_POST["estudiante_id_alumno"])>
 else{
 	echo "<script>alert('El documento, el nombre, el parentesco, la dirección, el teléfono y el estudiante son requeridos');
 	window.location.href='ListarAcudientesDB.php'</script>";
+}
+}
+else{
+	echo "<script>alert('No tiene permisos');
+	window.location.href='index.php'</script>";
+
 }
 ?>

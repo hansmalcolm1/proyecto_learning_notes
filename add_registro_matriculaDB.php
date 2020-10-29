@@ -16,7 +16,9 @@ $sql3 = "select * from curso";
 $result3 = $con->prepare($sql3);
 $result3->execute();
 $personas3 = $result3->fetchAll(PDO::FETCH_CLASS, "Persona");
-
+$sesion=$_GET['sesion'];
+$rol=$_GET['rol'];
+if(!($sesion==null) && !($sesion==null)){
 ?>
 <!DOCTYPE html>
 	<html>
@@ -80,3 +82,10 @@ $personas3 = $result3->fetchAll(PDO::FETCH_CLASS, "Persona");
 		</form>
 	</body>
 	</html>
+<?php
+}
+else{
+	echo "<script>alert('No tiene permisos');
+	window.location.href='index.php'</script>";
+}
+?>

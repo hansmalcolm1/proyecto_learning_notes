@@ -1,5 +1,8 @@
 <?php
 include("conexion.php");
+$sesion=$_GET['sesion'];
+$rol=$_GET['rol'];
+if(!($sesion==null) && !($sesion==null)){
 if(isset($_POST["actividad"]) && strlen($_POST["actividad"])>0 &&
 isset($_POST["responsable"]) && strlen($_POST["responsable"])>0 &&
 isset($_POST["fecha_actividad"]) && strlen($_POST["fecha_actividad"])>0 &&
@@ -22,5 +25,11 @@ isset($_POST["docente_id_docente"]) && strlen($_POST["docente_id_docente"])>0){
 else{
 	echo "<script>alert('La actividad, el responsable, la fecha de la actividad y el docente son requeridos');
 	window.location.href='ListarCronogramasDB.php'</script>";
+}
+}
+else{
+	echo "<script>alert('No tiene permisos');
+	window.location.href='index.php'</script>";
+
 }
 ?>

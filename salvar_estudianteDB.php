@@ -1,5 +1,8 @@
 <?php
 include("conexion.php");
+$sesion=$_GET['sesion'];
+$rol=$_GET['rol'];
+if(!($sesion==null) && !($sesion==null)){
 if(isset($_POST["id_alumno"]) && strlen($_POST["id_alumno"])>0 &&
 isset($_POST["nom_alumno"]) && strlen($_POST["nom_alumno"])>0 &&
 isset($_POST["documento"]) && strlen($_POST["documento"])>0 &&
@@ -34,5 +37,11 @@ isset($_POST["telefono_fijo"]) && strlen($_POST["telefono_fijo"])>0){
 else{
 	echo "<script>alert('El id alumno, el nombre del alumno, el documento, el celular, el email, la fecha de nacimiento, la dirección y el teléfono fijo son requeridos');
 	window.location.href='ListarEstudiantesDB.php'</script>";
+}
+}
+else{
+	echo "<script>alert('No tiene permisos');
+	window.location.href='index.php'</script>";
+
 }
 ?>

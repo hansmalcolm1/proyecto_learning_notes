@@ -1,5 +1,8 @@
 <?php
 include("conexion.php");
+$sesion=$_GET['sesion'];
+$rol=$_GET['rol'];
+if(!($sesion==null) && !($sesion==null)){
 if(isset($_POST["nota_periodo_1"]) && strlen($_POST["nota_periodo_1"])>0 &&
 isset($_POST["nota2"]) && strlen($_POST["nota2"])>0 &&
 isset($_POST["nota3"]) && strlen($_POST["nota3"])>0 &&
@@ -31,5 +34,11 @@ isset($_POST["estudiante_id_alumno"]) && strlen($_POST["estudiante_id_alumno"])>
 else{
 	echo "<script>alert('La nota del periodo 1, la nota 2, la nota 3, la nota 4, la definitiva del periodo, la materia y el estudiante son requeridos');
 	window.location.href='ListarDefinitivasPeriodosMateriasDB.php'</script>";
+}
+}
+else{
+	echo "<script>alert('No tiene permisos');
+	window.location.href='index.php'</script>";
+
 }
 ?>

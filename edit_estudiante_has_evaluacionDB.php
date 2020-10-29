@@ -1,6 +1,9 @@
 <?php
 require "conexion.php";
 require "Persona.php";
+$sesion=$_GET['sesion'];
+$rol=$_GET['rol'];
+if(!($sesion==null) && !($sesion==null)){
 if(isset($_GET["id_est_evalua"]) && strlen($_GET["id_est_evalua"])){
 	$id_est_evalua=$_GET["id_est_evalua"];
 	$estudiante_id_alumno=$_GET["estudiante_id_alumno"];
@@ -97,5 +100,10 @@ if(isset($_GET["id_est_evalua"]) && strlen($_GET["id_est_evalua"])){
 else{
 	echo "<script>alert('El id estudiante tiene Evaluación no es valido');
 	window.location.href='ListarEstudiantesHasEvaluacionDB.php'</script>";
+}
+}
+else{
+	echo "<script>alert('No tiene permisos');
+	window.location.href='index.php'</script>";
 }
 ?>

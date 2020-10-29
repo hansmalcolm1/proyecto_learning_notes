@@ -1,5 +1,8 @@
 <?php
 include("conexion.php");
+$sesion=$_GET['sesion'];
+$rol=$_GET['rol'];
+if(!($sesion==null) && !($sesion==null)){
 if(isset($_POST["idMatricula"]) && strlen($_POST["idMatricula"])>0 &&
 isset($_POST["Condicion"]) && strlen($_POST["Condicion"])>0 &&
 isset($_POST["ano_lectivo"]) && strlen($_POST["ano_lectivo"])>0 &&
@@ -25,5 +28,11 @@ isset($_POST["estado"]) && strlen($_POST["estado"])>0){
 else{
 	echo "<script>alert('El id matrícula, la condición, el año lectivo, el calendario y el estado son requeridos');
 	window.location.href='ListarMatriculasDB.php'</script>";
+}
+}
+else{
+	echo "<script>alert('No tiene permisos');
+	window.location.href='index.php'</script>";
+
 }
 ?>

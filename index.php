@@ -4,12 +4,6 @@
 
 	session_start();
 
-	if(isset($_GET['cerrar_session'])){
-		session_unset();
-
-		session_destroy();
-	}
-
 	if(isset($_SESSION['rol'])){
 		switch($_SESSION['rol']){
 			case 1:
@@ -36,6 +30,7 @@
 		
 		if($row == true){
 			$rol = $row[3];
+			$_SESSION['username'] = $username;
 			$_SESSION['rol'] = $rol;
 			
 			switch ($_SESSION['rol']) {

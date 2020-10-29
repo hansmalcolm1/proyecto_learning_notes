@@ -1,5 +1,8 @@
 <?php
 include("conexion.php");
+$sesion=$_GET['sesion'];
+$rol=$_GET['rol'];
+if(!($sesion==null) && !($sesion==null)){
 if(isset($_POST["descripcion_evaluacion"]) && strlen($_POST["descripcion_evaluacion"])>0 &&
 isset($_POST["titulo_evaluacion"]) && strlen($_POST["titulo_evaluacion"])>0 &&
 isset($_POST["fecha_evaluacion"]) && strlen($_POST["fecha_evaluacion"])>0 &&
@@ -25,5 +28,11 @@ isset($_POST["periodo"]) && strlen($_POST["periodo"])>0){
 else{
 	echo "<script>alert('La descripción de la evaluación, el título de la evaluación, la fecha de la evaluación, la materia y el periodo son requeridos');
 	window.location.href='ListarEvaluacionesDB.php'</script>";
+}
+}
+else{
+	echo "<script>alert('No tiene permisos');
+	window.location.href='index.php'</script>";
+
 }
 ?>

@@ -1,6 +1,9 @@
 <?php
 require "conexion.php";
 require "Persona.php";
+$sesion=$_GET['sesion'];
+$rol=$_GET['rol'];
+if(!($sesion==null) && !($sesion==null)){
 if(isset($_GET["idcronograma"]) && strlen($_GET["idcronograma"])>0){
 	$idcronograma=$_GET["idcronograma"];
 	$sql = "delete from cronograma where idcronograma=:idcronograma";
@@ -14,5 +17,11 @@ if(isset($_GET["idcronograma"]) && strlen($_GET["idcronograma"])>0){
 else{
 	echo "<script>alert('El id cronograma no es valido');
 	window.location.href='ListarCronogramasDB.php'</script>";
+}
+}
+else{
+	echo "<script>alert('No tiene permisos');
+	window.location.href='index.php'</script>";
+
 }
 ?>

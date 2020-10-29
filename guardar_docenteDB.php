@@ -1,5 +1,8 @@
 <?php
 include("conexion.php");
+$sesion=$_GET['sesion'];
+$rol=$_GET['rol'];
+if(!($sesion==null) && !($sesion==null)){
 if(isset($_POST["nom_docente"]) && strlen($_POST["nom_docente"])>0 &&
 isset($_POST["direccion"]) && strlen($_POST["direccion"])>0 &&
 isset($_POST["telefono"]) && strlen($_POST["telefono"])>0 &&
@@ -22,5 +25,11 @@ isset($_POST["correo"]) && strlen($_POST["correo"])>0){
 else{
 	echo "<script>alert('El nombre del docente, la dirección, el teléfono y el correo son requeridos');
 	window.location.href='ListarDocentesDB.php'</script>";
+}
+}
+else{
+	echo "<script>alert('No tiene permisos');
+	window.location.href='index.php'</script>";
+
 }
 ?>

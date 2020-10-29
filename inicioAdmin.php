@@ -1,8 +1,10 @@
 <?php
 include("conexion.php");
 include("Usuario.php");
-
+session_start();
+$sesion=$_SESSION['username'];
 echo "Bienvenido admin<br>";
+if(isset($_SESSION['username']) && $_SESSION['rol']==1){
 ?>
 
 <DOCTYPE html>
@@ -15,7 +17,7 @@ echo "Bienvenido admin<br>";
 
 </head>
 <body>
-	<button><a href="index.php?cerrar_session=1">Cerrar Sesión</a></button><br>
+	<button><a href="index.php?cerrar_session=1" onclick="cerrar()">Cerrar Sesión</a></button><br>
 	<button><a href="ListarAcudientesDB.php">Acudientes</a></button><br>
 	<button><a href="ListarCronogramasDB.php">Cronogramas</a></button><br>
 	<button><a href="ListarCursosDB.php">Cursos</a></button><br>
@@ -32,3 +34,22 @@ echo "Bienvenido admin<br>";
 	<button><a href="ListarTareasDB.php">Tareas</a></button><br>
 </body>
 </html>
+<script>
+function cerrar() {
+  <?php
+  	session_unset();
+
+	session_destroy();
+  ?>
+}
+</script>
+<?php
+}
+else{
+	session_unset();
+
+	session_destroy();
+	echo "<script>alert('No tiene permisos');
+	window.location.href='index.php'</script>";
+}
+?>

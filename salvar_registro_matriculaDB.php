@@ -1,5 +1,8 @@
 <?php
 include("conexion.php");
+$sesion=$_GET['sesion'];
+$rol=$_GET['rol'];
+if(!($sesion==null) && !($sesion==null)){
 if(isset($_POST["id"]) && strlen($_POST["id"])>0 &&
 isset($_POST["Matricula_idMatricula"]) && strlen($_POST["Matricula_idMatricula"])>0 &&
 isset($_POST["estudiante_id_alumno"]) && strlen($_POST["estudiante_id_alumno"])>0 &&
@@ -25,5 +28,11 @@ isset($_POST["promedio"]) && strlen($_POST["promedio"])>0){
 else{
 	echo "<script>alert('El id registro matrícula, la matrícula, el estudiante, el curso y el promedio son requeridos');
 	window.location.href='ListarRegistrosMatriculasDB.php'</script>";
+}
+}
+else{
+	echo "<script>alert('No tiene permisos');
+	window.location.href='index.php'</script>";
+
 }
 ?>

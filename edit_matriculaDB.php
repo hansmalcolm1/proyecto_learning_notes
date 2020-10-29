@@ -1,6 +1,9 @@
 <?php
 require "conexion.php";
 require "Persona.php";
+$sesion=$_GET['sesion'];
+$rol=$_GET['rol'];
+if(!($sesion==null) && !($sesion==null)){
 if(isset($_GET["idMatricula"]) && strlen($_GET["idMatricula"])){
 	$idMatricula=$_GET["idMatricula"];
 	$sql = "select * from matricula where idMatricula=:idMatricula";
@@ -54,5 +57,10 @@ if(isset($_GET["idMatricula"]) && strlen($_GET["idMatricula"])){
 else{
 	echo "<script>alert('El id matrícula no es valido');
 	window.location.href='ListarMatriculasDB.php'</script>";
+}
+}
+else{
+	echo "<script>alert('No tiene permisos');
+	window.location.href='index.php'</script>";
 }
 ?>

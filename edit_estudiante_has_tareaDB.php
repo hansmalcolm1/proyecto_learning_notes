@@ -1,6 +1,9 @@
 <?php
 require "conexion.php";
 require "Persona.php";
+$sesion=$_GET['sesion'];
+$rol=$_GET['rol'];
+if(!($sesion==null) && !($sesion==null)){
 if(isset($_GET["id_est_tarea"]) && strlen($_GET["id_est_tarea"])){
 	$id_est_tarea=$_GET["id_est_tarea"];
 	$estudiante_id_alumno=$_GET["estudiante_id_alumno"];
@@ -97,5 +100,10 @@ if(isset($_GET["id_est_tarea"]) && strlen($_GET["id_est_tarea"])){
 else{
 	echo "<script>alert('El id estudiante tiene tarea no es valido');
 	window.location.href='ListarEstudiantesHasTareaDB.php'</script>";
+}
+}
+else{
+	echo "<script>alert('No tiene permisos');
+	window.location.href='index.php'</script>";
 }
 ?>

@@ -1,11 +1,14 @@
 <?php
 require "conexion.php";
 require "Persona.php";
-
+session_start();
 $sql = "select * from cronograma";
 $result = $con->prepare($sql);
 $result->execute();
 $personas = $result->fetchAll(PDO::FETCH_CLASS, "Persona");
+$sesion=$_GET['sesion'];
+$rol=$_GET['rol'];
+if(!($sesion==null) && !($sesion==null)){
 ?>
 <DOCTYPE html>
 <html>
@@ -20,8 +23,8 @@ $personas = $result->fetchAll(PDO::FETCH_CLASS, "Persona");
 </head>
 <body>
 	<div>
-	<button><a href="inicioAdmin.php">Volver</a></button>
-	<button><a href="add_cronogramaDB.php">Agregar cronograma</a></button>
+	<button><a href="inicioAdmin.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Volver</a></button>
+	<button><a href="add_cronogramaDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Agregar cronograma</a></button>
 	<table>
 		<tr>
 			<th>Id cronograma</th>
@@ -40,7 +43,7 @@ $personas = $result->fetchAll(PDO::FETCH_CLASS, "Persona");
 				<td><?=$p->responsable;?></td>
 				<td><?=$p->fecha_actividad;?></td>
 				<td><?=$p->docente_id_docente;?></td>
-				<td><button><a href="edit_cronogramaDB.php?idcronograma=<?=$p->idcronograma;?>&docente_id_docente=<?=$p->docente_id_docente;?>">Editar cronograma</a></button><br><button><a href="eliminar_cronogramaDB.php?idcronograma=<?=$p->idcronograma;?>">Eliminar</a></button></td>
+				<td><button><a href="edit_cronogramaDB.php?idcronograma=<?=$p->idcronograma;?>&docente_id_docente=<?=$p->docente_id_docente;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Editar cronograma</a></button><br><button><a href="eliminar_cronogramaDB.php?idcronograma=<?=$p->idcronograma;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Eliminar</a></button></td>
 			</tr>
 			<?php
 		}
@@ -49,3 +52,14 @@ $personas = $result->fetchAll(PDO::FETCH_CLASS, "Persona");
 	</div>
 </body>
 </html>
+<?php
+}
+else{
+	session_unset();
+
+	session_destroy();
+	echo "<script>alert('No tiene permisos');
+	window.location.href='index.php'</script>";
+
+}
+?>

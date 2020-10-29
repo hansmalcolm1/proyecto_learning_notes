@@ -1,6 +1,9 @@
 <?php
 require "conexion.php";
 require "Persona.php";
+$sesion=$_GET['sesion'];
+$rol=$_GET['rol'];
+if(!($sesion==null) && !($sesion==null)){
 if(isset($_GET["idcurso"]) && strlen($_GET["idcurso"])){
 	$idcurso=$_GET["idcurso"];
 	$docente_id_docente=$_GET["docente_id_docente"];
@@ -69,5 +72,10 @@ if(isset($_GET["idcurso"]) && strlen($_GET["idcurso"])){
 else{
 	echo "<script>alert('El id curso no es valido');
 	window.location.href='ListarCursosDB.php'</script>";
+}
+}
+else{
+	echo "<script>alert('No tiene permisos');
+	window.location.href='index.php'</script>";
 }
 ?>

@@ -1,11 +1,14 @@
 <?php
 require "conexion.php";
 require "Persona.php";
-
+session_start();
 $sql = "select * from docente";
 $result = $con->prepare($sql);
 $result->execute();
 $personas = $result->fetchAll(PDO::FETCH_CLASS, "Persona");
+$sesion=$_GET['sesion'];
+$rol=$_GET['rol'];
+if(!($sesion==null) && !($sesion==null)){
 ?>
 <DOCTYPE html>
 <html>
@@ -20,8 +23,8 @@ $personas = $result->fetchAll(PDO::FETCH_CLASS, "Persona");
 </head>
 <body>
 	<div>
-	<button><a href="inicioAdmin.php">Volver</a></button>
-	<button><a href="add_docenteDB.php">Agregar docente</a></button>
+	<button><a href="inicioAdmin.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Volver</a></button>
+	<button><a href="add_docenteDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Agregar docente</a></button>
 	<table>
 		<tr>
 			<th>Id docente</th>
@@ -40,7 +43,7 @@ $personas = $result->fetchAll(PDO::FETCH_CLASS, "Persona");
 				<td><?=$p->direccion;?></td>
 				<td><?=$p->telefono;?></td>
 				<td><?=$p->correo;?></td>
-				<td><button><a href="edit_docenteDB.php?id_docente=<?=$p->id_docente;?>">Editar docente</a></button><br><button><a href="eliminar_docenteDB.php?id_docente=<?=$p->id_docente;?>">Eliminar</a></button></td>
+				<td><button><a href="edit_docenteDB.php?id_docente=<?=$p->id_docente;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Editar docente</a></button><br><button><a href="eliminar_docenteDB.php?id_docente=<?=$p->id_docente;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Eliminar</a></button></td>
 			</tr>
 			<?php
 		}
@@ -49,3 +52,14 @@ $personas = $result->fetchAll(PDO::FETCH_CLASS, "Persona");
 	</div>
 </body>
 </html>
+<?php
+}
+else{
+	session_unset();
+
+	session_destroy();
+	echo "<script>alert('No tiene permisos');
+	window.location.href='index.php'</script>";
+
+}
+?>

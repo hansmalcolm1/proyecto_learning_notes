@@ -1,5 +1,8 @@
 <?php
 include("conexion.php");
+$sesion=$_GET['sesion'];
+$rol=$_GET['rol'];
+if(!($sesion==null) && !($sesion==null)){
 if(isset($_POST["idmateria"]) && strlen($_POST["idmateria"])>0 &&
 isset($_POST["nom_materia"]) && strlen($_POST["nom_materia"])>0 &&
 isset($_POST["curso_idcurso"]) && strlen($_POST["curso_idcurso"])>0 &&
@@ -22,5 +25,11 @@ isset($_POST["docente_id_docente"]) && strlen($_POST["docente_id_docente"])>0){
 else{
 	echo "<script>alert('El id materia, el nombre de la materia, el curso y el docente son requeridos');
 	window.location.href='ListarMateriasDB.php'</script>";
+}
+}
+else{
+	echo "<script>alert('No tiene permisos');
+	window.location.href='index.php'</script>";
+
 }
 ?>
