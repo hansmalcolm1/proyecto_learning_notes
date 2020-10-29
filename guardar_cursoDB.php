@@ -1,7 +1,7 @@
 <?php
 include("conexion.php");
-$sesion=$_GET['sesion'];
-$rol=$_GET['rol'];
+$sesion=$_POST['sesion'];
+$rol=$_POST['rol'];
 if(!($sesion==null) && !($sesion==null)){
 if(isset($_POST["nom_curso"]) && strlen($_POST["nom_curso"])>0 &&
 isset($_POST["docente_id_docente"]) && strlen($_POST["docente_id_docente"])>0){
@@ -14,11 +14,11 @@ isset($_POST["docente_id_docente"]) && strlen($_POST["docente_id_docente"])>0){
 	$result->execute();
 	$con=NULL;
 	echo "<script>alert('Curso creado exitosamente');
-	window.location.href='ListarCursosDB.php'</script>";
+	window.location.href='ListarCursosDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>'</script>";
 }
 else{
 	echo "<script>alert('El nombre del curso y el docente son requeridos');
-	window.location.href='ListarCursosDB.php'</script>";
+	window.location.href='ListarCursosDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>'</script>";
 }
 }
 else{

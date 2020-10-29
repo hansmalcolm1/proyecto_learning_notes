@@ -1,7 +1,7 @@
 <?php
 include("conexion.php");
-$sesion=$_GET['sesion'];
-$rol=$_GET['rol'];
+$sesion=$_POST['sesion'];
+$rol=$_POST['rol'];
 if(!($sesion==null) && !($sesion==null)){
 if(isset($_POST["documento"]) && strlen($_POST["documento"])>0 &&
 isset($_POST["nombre"]) && strlen($_POST["nombre"])>0 &&
@@ -26,12 +26,12 @@ isset($_POST["estudiante_id_alumno"]) && strlen($_POST["estudiante_id_alumno"])>
 	$result->execute();
 	$con=NULL;
 	echo "<script>alert('Acudiente creado exitosamente');
-	window.location.href='ListarAcudientesDB.php'</script>";
+	window.location.href='ListarAcudientesDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>'</script>";
 
 }
 else{
 	echo "<script>alert('El documento, el nombre, el parentesco, la dirección, el teléfono y el estudiante son requeridos');
-	window.location.href='ListarAcudientesDB.php'</script>";
+	window.location.href='ListarAcudientesDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>'</script>";
 }
 }
 else{

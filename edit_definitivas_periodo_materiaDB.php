@@ -35,6 +35,8 @@ if(isset($_GET["idcalificacion"]) && strlen($_GET["idcalificacion"])){
 		</head>
 		<body>
 			<form action="salvar_definitivas_periodo_materiaDB.php" method="POST">
+				<input type="hidden" name="sesion" value="<?=$sesion?>"/>
+			<input type="hidden" name="rol" value="<?=$rol?>"/>
 				<table>
 					<tr>
 						<td>Id calificación</td>

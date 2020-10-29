@@ -12,11 +12,11 @@ if(isset($_GET["idevaluacion"]) && strlen($_GET["idevaluacion"])>0){
 	$result->execute();
 	$con=NULL;
 	echo "<script>alert('Evaluación eliminada exitosamente');
-	window.location.href='ListarEvaluacionesDB.php'</script>";
+	window.location.href='ListarEvaluacionesDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>'</script>";
 }
 else{
 	echo "<script>alert('El id evaluación no es valido');
-	window.location.href='ListarEvaluacionesDB.php'</script>";
+	window.location.href='ListarEvaluacionesDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>'</script>";
 }
 }
 else{

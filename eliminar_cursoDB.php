@@ -12,11 +12,11 @@ if(isset($_GET["idcurso"]) && strlen($_GET["idcurso"])>0){
 	$result->execute();
 	$con=NULL;
 	echo "<script>alert('Curso eliminado exitosamente');
-	window.location.href='ListarCursosDB.php'</script>";
+	window.location.href='ListarCursosDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>'</script>";
 }
 else{
 	echo "<script>alert('El id curso no es valido');
-	window.location.href='ListarCursosDB.php'</script>";
+	window.location.href='ListarCursosDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>'</script>";
 }
 }
 else{

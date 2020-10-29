@@ -1,7 +1,7 @@
 <?php
 include("conexion.php");
-$sesion=$_GET['sesion'];
-$rol=$_GET['rol'];
+$sesion=$_POST['sesion'];
+$rol=$_POST['rol'];
 if(!($sesion==null) && !($sesion==null)){
 if(isset($_POST["idMatricula"]) && strlen($_POST["idMatricula"])>0 &&
 isset($_POST["Condicion"]) && strlen($_POST["Condicion"])>0 &&
@@ -23,11 +23,11 @@ isset($_POST["estado"]) && strlen($_POST["estado"])>0){
 	$result->execute();
 	$con=NULL;
 	echo "<script>alert('Matrícula actualizada exitosamente');
-	window.location.href='ListarMatriculasDB.php'</script>";
+	window.location.href='ListarMatriculasDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>'</script>";
 }
 else{
 	echo "<script>alert('El id matrícula, la condición, el año lectivo, el calendario y el estado son requeridos');
-	window.location.href='ListarMatriculasDB.php'</script>";
+	window.location.href='ListarMatriculasDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>'</script>";
 }
 }
 else{

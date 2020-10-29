@@ -1,7 +1,7 @@
 <?php
 include("conexion.php");
-$sesion=$_GET['sesion'];
-$rol=$_GET['rol'];
+$sesion=$_POST['sesion'];
+$rol=$_POST['rol'];
 if(!($sesion==null) && !($sesion==null)){
 if(isset($_POST["id_est_evalua"]) && strlen($_POST["id_est_evalua"])>0 &&
 isset($_POST["estudiante_id_alumno"]) && strlen($_POST["estudiante_id_alumno"])>0 &&
@@ -23,11 +23,11 @@ isset($_POST["observacion"]) && strlen($_POST["observacion"])>0){
 	$result->execute();
 	$con=NULL;
 	echo "<script>alert('Estudiante tiene evaluacion actualizado exitosamente');
-	window.location.href='ListarEstudiantesHasEvaluacionDB.php'</script>";
+	window.location.href='ListarEstudiantesHasEvaluacionDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>'</script>";
 }
 else{
 	echo "<script>alert('El id estudiante tiene evaluación, el estudiante, la evaluación, la nota y la observación son requeridos');
-	window.location.href='ListarEstudiantesHasEvaluaciónDB.php'</script>";
+	window.location.href='ListarEstudiantesHasEvaluaciónDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>'</script>";
 }
 }
 else{

@@ -22,6 +22,8 @@ if(isset($_GET["id_alumno"]) && strlen($_GET["id_alumno"])){
 		</head>
 		<body>
 			<form action="salvar_estudianteDB.php" method="POST">
+				<input type="hidden" name="sesion" value="<?=$sesion?>"/>
+			<input type="hidden" name="rol" value="<?=$rol?>"/>
 				<table>
 					<tr>
 						<td>Id alumno</td>

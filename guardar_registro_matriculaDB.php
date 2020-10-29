@@ -1,7 +1,7 @@
 <?php
 include("conexion.php");
-$sesion=$_GET['sesion'];
-$rol=$_GET['rol'];
+$sesion=$_POST['sesion'];
+$rol=$_POST['rol'];
 if(!($sesion==null) && !($sesion==null)){
 if(isset($_POST["Matricula_idMatricula"]) && strlen($_POST["Matricula_idMatricula"])>0 &&
 isset($_POST["estudiante_id_alumno"]) && strlen($_POST["estudiante_id_alumno"])>0 &&
@@ -20,11 +20,11 @@ isset($_POST["promedio"]) && strlen($_POST["promedio"])>0){
 	$result->execute();
 	$con=NULL;
 	echo "<script>alert('Registro matrícula creado exitosamente');
-	window.location.href='ListarRegistrosMatriculasDB.php'</script>";
+	window.location.href='ListarRegistrosMatriculasDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>'</script>";
 }
 else{
 	echo "<script>alert('La matrícula, el estudiante, el curso y el promedio son requeridos');
-	window.location.href='ListarRegistrosMatriculasDB.php'</script>";
+	window.location.href='ListarRegistrosMatriculasDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>'</script>";
 }
 }
 else{

@@ -29,6 +29,8 @@ if(isset($_GET["id"]) && strlen($_GET["id"])){
 		</head>
 		<body>
 			<form action="salvar_acudienteDB.php" method="POST">
+				<input type="hidden" name="sesion" value="<?=$sesion?>"/>
+			<input type="hidden" name="rol" value="<?=$rol?>"/>
 				<table>
 					<tr>
 						<td>Id acudiente</td>

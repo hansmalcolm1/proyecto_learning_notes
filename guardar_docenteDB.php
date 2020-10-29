@@ -1,7 +1,7 @@
 <?php
 include("conexion.php");
-$sesion=$_GET['sesion'];
-$rol=$_GET['rol'];
+$sesion=$_POST['sesion'];
+$rol=$_POST['rol'];
 if(!($sesion==null) && !($sesion==null)){
 if(isset($_POST["nom_docente"]) && strlen($_POST["nom_docente"])>0 &&
 isset($_POST["direccion"]) && strlen($_POST["direccion"])>0 &&
@@ -20,11 +20,11 @@ isset($_POST["correo"]) && strlen($_POST["correo"])>0){
 	$result->execute();
 	$con=NULL;
 	echo "<script>alert('Docente creado exitosamente');
-	window.location.href='ListarDocentesDB.php'</script>";
+	window.location.href='ListarDocentesDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>'</script>";
 }
 else{
 	echo "<script>alert('El nombre del docente, la dirección, el teléfono y el correo son requeridos');
-	window.location.href='ListarDocentesDB.php'</script>";
+	window.location.href='ListarDocentesDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>'</script>";
 }
 }
 else{

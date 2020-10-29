@@ -34,6 +34,8 @@ if(isset($_GET["id_est_evalua"]) && strlen($_GET["id_est_evalua"])){
 		</head>
 		<body>
 			<form action="salvar_estudiante_has_evaluacionDB.php" method="POST">
+				<input type="hidden" name="sesion" value="<?=$sesion?>"/>
+			<input type="hidden" name="rol" value="<?=$rol?>"/>
 				<table>
 					<tr>
 						<td>Id estudiante tiene tarea</td>

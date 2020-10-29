@@ -12,11 +12,11 @@ if(isset($_GET["idtarea"]) && strlen($_GET["idtarea"])>0){
 	$result->execute();
 	$con=NULL;
 	echo "<script>alert('Tarea eliminada exitosamente');
-	window.location.href='ListarTareasDB.php'</script>";
+	window.location.href='ListarTareasDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>'</script>";
 }
 else{
 	echo "<script>alert('El id tarea no es valido');
-	window.location.href='ListarTareasDB.php'</script>";
+	window.location.href='ListarTareasDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>'</script>";
 }
 }
 else{

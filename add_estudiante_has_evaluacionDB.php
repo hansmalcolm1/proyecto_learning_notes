@@ -27,7 +27,8 @@ if(!($sesion==null) && !($sesion==null)){
 	<body>
 	<br><br>
 		<form action="guardar_estudiante_has_evaluacionDB.php" method="POST">
-
+			<input type="hidden" name="sesion" value="<?=$sesion?>"/>
+			<input type="hidden" name="rol" value="<?=$rol?>"/>
 		<div class="container">
     <div class="row justify-content-center">
         <div class="col-md-4">

@@ -28,6 +28,8 @@ if(isset($_GET["idcronograma"]) && strlen($_GET["idcronograma"])){
 		</head>
 		<body>
 			<form action="salvar_cronogramaDB.php" method="POST">
+				<input type="hidden" name="sesion" value="<?=$sesion?>"/>
+			<input type="hidden" name="rol" value="<?=$rol?>"/>
 				<table>
 					<tr>
 						<td>Id cronograma</td>

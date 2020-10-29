@@ -29,6 +29,8 @@ if(isset($_GET["idtarea"]) && strlen($_GET["idtarea"])){
 		</head>
 		<body>
 			<form action="salvar_tareaDB.php" method="POST">
+				<input type="hidden" name="sesion" value="<?=$sesion?>"/>
+			<input type="hidden" name="rol" value="<?=$rol?>"/>
 				<table>
 					<tr>
 						<td>Id tarea</td>

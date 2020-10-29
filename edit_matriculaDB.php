@@ -23,6 +23,8 @@ if(isset($_GET["idMatricula"]) && strlen($_GET["idMatricula"])){
 		</head>
 		<body>
 			<form action="salvar_matriculaDB.php" method="POST">
+				<input type="hidden" name="sesion" value="<?=$sesion?>"/>
+			<input type="hidden" name="rol" value="<?=$rol?>"/>
 				<table>
 					<tr>
 						<td>Id matrícula</td>

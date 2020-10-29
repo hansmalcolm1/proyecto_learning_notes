@@ -28,6 +28,8 @@ if(isset($_GET["idevaluacion"]) && strlen($_GET["idevaluacion"])){
 		</head>
 		<body>
 			<form action="salvar_evaluacionDB.php" method="POST">
+				<input type="hidden" name="sesion" value="<?=$sesion?>"/>
+			<input type="hidden" name="rol" value="<?=$rol?>"/>
 				<table>
 					<tr>
 						<td>Id evaluación</td>

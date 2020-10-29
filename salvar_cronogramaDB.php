@@ -1,7 +1,7 @@
 <?php
 include("conexion.php");
-$sesion=$_GET['sesion'];
-$rol=$_GET['rol'];
+$sesion=$_POST['sesion'];
+$rol=$_POST['rol'];
 if(!($sesion==null) && !($sesion==null)){
 if(isset($_POST["idcronograma"]) && strlen($_POST["idcronograma"])>0 &&
 isset($_POST["actividad"]) && strlen($_POST["actividad"])>0 &&
@@ -23,11 +23,11 @@ isset($_POST["docente_id_docente"]) && strlen($_POST["docente_id_docente"])>0){
 	$result->execute();
 	$con=NULL;
 	echo "<script>alert('Cronograma actualizado exitosamente');
-	window.location.href='ListarCronogramasDB.php'</script>";
+	window.location.href='ListarCronogramasDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>'</script>";
 }
 else{
 	echo "<script>alert('El id cronograma, la actividad, el responsable, la fecha de la actividad y el docente son requeridos');
-	window.location.href='ListarCronogramasDB.php'</script>";
+	window.location.href='ListarCronogramasDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>'</script>";
 }
 }
 else{

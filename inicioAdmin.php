@@ -2,9 +2,17 @@
 include("conexion.php");
 include("Usuario.php");
 session_start();
-$sesion=$_SESSION['username'];
 echo "Bienvenido admin<br>";
-if(isset($_SESSION['username']) && $_SESSION['rol']==1){
+error_reporting(0);
+if(isset($_SESSION['username'])&&isset($_SESSION['rol'])){
+$sesion=$_SESSION['username'];
+$rol=$_SESSION['rol'];
+}
+if($sesion==null && $rol==null){
+	$sesion=$_GET['sesion'];
+	$rol=$_GET['rol'];
+}
+if(!($sesion==null) && !($rol==null)){
 ?>
 
 <DOCTYPE html>
@@ -18,20 +26,20 @@ if(isset($_SESSION['username']) && $_SESSION['rol']==1){
 </head>
 <body>
 	<button><a href="index.php?cerrar_session=1" onclick="cerrar()">Cerrar Sesión</a></button><br>
-	<button><a href="ListarAcudientesDB.php">Acudientes</a></button><br>
-	<button><a href="ListarCronogramasDB.php">Cronogramas</a></button><br>
-	<button><a href="ListarCursosDB.php">Cursos</a></button><br>
-	<button><a href="ListarDefinitivasPeriodosMateriasDB.php">Definitivas periodos materias</a></button><br>
-	<button><a href="ListarDocentesDB.php">Docentes</a></button><br>
-	<button><a href="ListarEstudiantesDB.php">Estudiantes</a></button><br>
-	<button><a href="ListarEstudiantesHasEvaluacionDB.php">Estudiante tiene evaluación</a></button><br>
-	<button><a href="ListarEstudiantesHasTareaDB.php">Estudiante tiene tarea</a></button><br>
-	<button><a href="ListarEvaluacionesDB.php">Evaluaciones</a></button><br>
-	<button><a href="ListarMateriasDB.php">Materias</a></button><br>
-	<button><a href="ListarMatriculasDB.php">Matrículas</a></button><br>
-	<button><a href="ListarObservacionesDB.php">Observaciones</a></button><br>
-	<button><a href="ListarRegistrosMatriculasDB.php">Registros matrículas</a></button><br>
-	<button><a href="ListarTareasDB.php">Tareas</a></button><br>
+	<button><a href="ListarAcudientesDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Acudientes</a></button><br>
+	<button><a href="ListarCronogramasDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Cronogramas</a></button><br>
+	<button><a href="ListarCursosDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Cursos</a></button><br>
+	<button><a href="ListarDefinitivasPeriodosMateriasDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Definitivas periodos materias</a></button><br>
+	<button><a href="ListarDocentesDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Docentes</a></button><br>
+	<button><a href="ListarEstudiantesDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Estudiantes</a></button><br>
+	<button><a href="ListarEstudiantesHasEvaluacionDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Estudiante tiene evaluación</a></button><br>
+	<button><a href="ListarEstudiantesHasTareaDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Estudiante tiene tarea</a></button><br>
+	<button><a href="ListarEvaluacionesDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Evaluaciones</a></button><br>
+	<button><a href="ListarMateriasDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Materias</a></button><br>
+	<button><a href="ListarMatriculasDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Matrículas</a></button><br>
+	<button><a href="ListarObservacionesDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Observaciones</a></button><br>
+	<button><a href="ListarRegistrosMatriculasDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Registros matrículas</a></button><br>
+	<button><a href="ListarTareasDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Tareas</a></button><br>
 </body>
 </html>
 <script>

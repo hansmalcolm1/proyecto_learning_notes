@@ -12,11 +12,11 @@ if(isset($_GET["idmateria"]) && strlen($_GET["idmateria"])>0){
 	$result->execute();
 	$con=NULL;
 	echo "<script>alert('Materia eliminada exitosamente');
-	window.location.href='ListarMateriasDB.php'</script>";
+	window.location.href='ListarMateriasDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>'</script>";
 }
 else{
 	echo "<script>alert('El id materia no es valido');
-	window.location.href='ListarMateriasDB.php'</script>";
+	window.location.href='ListarMateriasDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>'</script>";
 }
 }
 else{

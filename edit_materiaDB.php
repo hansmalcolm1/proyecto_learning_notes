@@ -34,6 +34,8 @@ if(isset($_GET["idmateria"]) && strlen($_GET["idmateria"])){
 		</head>
 		<body>
 			<form action="salvar_materiaDB.php" method="POST">
+				<input type="hidden" name="sesion" value="<?=$sesion?>"/>
+			<input type="hidden" name="rol" value="<?=$rol?>"/>
 				<table>
 					<tr>
 						<td>Id materia</td>

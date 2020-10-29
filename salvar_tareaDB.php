@@ -1,7 +1,7 @@
 <?php
 include("conexion.php");
-$sesion=$_GET['sesion'];
-$rol=$_GET['rol'];
+$sesion=$_POST['sesion'];
+$rol=$_POST['rol'];
 if(!($sesion==null) && !($sesion==null)){
 if(isset($_POST["idtarea"]) && strlen($_POST["idtarea"])>0 &&
 isset($_POST["descripcion_tarea"]) && strlen($_POST["descripcion_tarea"])>0 &&
@@ -26,11 +26,11 @@ isset($_POST["periodo"]) && strlen($_POST["periodo"])>0){
 	$result->execute();
 	$con=NULL;
 	echo "<script>alert('Tarea actualizada exitosamente');
-	window.location.href='ListarTareasDB.php'</script>";
+	window.location.href='ListarTareasDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>'</script>";
 }
 else{
 	echo "<script>alert('El id tarea, la descripción de la tarea, el título de la tarea, la fecha de entrega, la materia y el periodo son requeridos');
-	window.location.href='ListarTareasDB.php'</script>";
+	window.location.href='ListarTareasDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>'</script>";
 }
 }
 else{

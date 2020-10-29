@@ -1,7 +1,7 @@
 <?php
 include("conexion.php");
-$sesion=$_GET['sesion'];
-$rol=$_GET['rol'];
+$sesion=$_POST['sesion'];
+$rol=$_POST['rol'];
 if(!($sesion==null) && !($sesion==null)){
 if(isset($_POST["idcalificacion"]) && strlen($_POST["idcalificacion"])>0 &&
 isset($_POST["nota_periodo_1"]) && strlen($_POST["nota_periodo_1"])>0 &&
@@ -32,11 +32,11 @@ isset($_POST["estudiante_id_alumno"]) && strlen($_POST["estudiante_id_alumno"])>
 	$result->execute();
 	$con=NULL;
 	echo "<script>alert('Definitivas periodo materia actualizadas exitosamente');
-	window.location.href='ListarDefinitivasPeriodosMateriasDB.php'</script>";
+	window.location.href='ListarDefinitivasPeriodosMateriasDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>'</script>";
 }
 else{
 	echo "<script>alert('El id calificación, la nota del periodo 1, la nota 2, la nota 3, la nota 4, la definitiva del periodo, la materia y el estudiante son requeridos');
-	window.location.href='ListarDefinitivasPeriodosMateriasDB.php'</script>";
+	window.location.href='ListarDefinitivasPeriodosMateriasDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>'</script>";
 }
 }
 else{

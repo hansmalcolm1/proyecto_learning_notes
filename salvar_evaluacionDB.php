@@ -1,7 +1,7 @@
 <?php
 include("conexion.php");
-$sesion=$_GET['sesion'];
-$rol=$_GET['rol'];
+$sesion=$_POST['sesion'];
+$rol=$_POST['rol'];
 if(!($sesion==null) && !($sesion==null)){
 if(isset($_POST["idevaluacion"]) && strlen($_POST["idevaluacion"])>0 &&
 isset($_POST["descripcion_evaluacion"]) && strlen($_POST["descripcion_evaluacion"])>0 &&
@@ -26,11 +26,11 @@ isset($_POST["periodo"]) && strlen($_POST["periodo"])>0){
 	$result->execute();
 	$con=NULL;
 	echo "<script>alert('Evaluación actualizada exitosamente');
-	window.location.href='ListarEvaluacionesDB.php'</script>";
+	window.location.href='ListarEvaluacionesDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>'</script>";
 }
 else{
 	echo "<script>alert('El id evaluación, la descripción de la evaluación, el título de la evaluación, la fecha de la evaluación, la materia y el periodo son requeridos');
-	window.location.href='ListarEvaluacionesDB.php'</script>";
+	window.location.href='ListarEvaluacionesDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>'</script>";
 }
 }
 else{

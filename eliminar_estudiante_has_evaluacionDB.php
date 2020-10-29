@@ -12,11 +12,11 @@ if(isset($_GET["id_est_evalua"]) && strlen($_GET["id_est_evalua"])>0){
 	$result->execute();
 	$con=NULL;
 	echo "<script>alert('Estudiante tiene evaluación eliminado exitosamente');
-	window.location.href='ListarEstudiantesHasEvaluacionDB.php'</script>";
+	window.location.href='ListarEstudiantesHasEvaluacionDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>'</script>";
 }
 else{
 	echo "<script>alert('El id estudiante tiene evaluación no es valido');
-	window.location.href='ListarEstudiantesHasEvaluacionDB.php'</script>";
+	window.location.href='ListarEstudiantesHasEvaluacionDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>'</script>";
 }
 }
 else{
