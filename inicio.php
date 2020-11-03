@@ -36,20 +36,20 @@ if(!($sesion==null) && !($rol==null)){
 	<br><br>
 	<center>
 	<button><a href="index.php?cerrar_session=1" onclick="cerrar()">Cerrar Sesión</a></button><br><br>
-	<button><a href="ListarAcudientesUsuarioDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Acudientes</a></button><br><br>
-	<button><a href="ListarCronogramasUsuarioDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Cronogramas</a></button><br><br>
-	<button><a href="ListarCursosUsuarioDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Cursos</a></button><br><br>
-	<button><a href="ListarDefinitivasPeriodosMateriasUsuarioDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Definitivas períodos materias</a></button><br><br>
-	<button><a href="ListarDocentesUsuarioDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Docentes</a></button><br><br>
-	<button><a href="ListarEstudiantesUsuarioDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Estudiantes</a></button><br><br>
-	<button><a href="ListarEstudiantesHasEvaluacionUsuarioDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Estudiante tiene evaluación</a></button><br><br>
-	<button><a href="ListarEstudiantesHasTareaUsuarioDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Estudiante tiene tarea</a></button><br><br>
-	<button><a href="ListarEvaluacionesUsuarioDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Evaluaciones</a></button><br><br>
-	<button><a href="ListarMateriasUsuarioDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Materias</a></button><br><br>
-	<button><a href="ListarMatriculasUsuarioDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Matrículas</a></button><br><br>
-	<button><a href="ListarObservacionesUsuarioDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Observaciones</a></button><br><br>
-	<button><a href="ListarRegistrosMatriculasUsuarioDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Registros matrículas</a></button><br><br>
-	<button><a href="ListarTareasUsuarioDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Tareas</a></button><br>
+	<button><a href="ListarAcudientesDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Acudientes</a></button><br><br>
+	<button><a href="ListarCronogramasDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Cronogramas</a></button><br><br>
+	<button><a href="ListarCursosDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Cursos</a></button><br><br>
+	<button><a href="ListarDefinitivasPeriodosMateriasDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Definitivas períodos materias</a></button><br><br>
+	<button><a href="ListarDocentesDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Docentes</a></button><br><br>
+	<button><a href="ListarEstudiantesDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Estudiantes</a></button><br><br>
+	<button><a href="ListarEstudiantesHasEvaluacionDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Estudiante tiene evaluación</a></button><br><br>
+	<button><a href="ListarEstudiantesHasTareaDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Estudiante tiene tarea</a></button><br><br>
+	<button><a href="ListarEvaluacionesDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Evaluaciones</a></button><br><br>
+	<button><a href="ListarMateriasDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Materias</a></button><br><br>
+	<button><a href="ListarMatriculasDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Matrículas</a></button><br><br>
+	<button><a href="ListarObservacionesDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Observaciones</a></button><br><br>
+	<button><a href="ListarRegistrosMatriculasDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Registros matrículas</a></button><br><br>
+	<button><a href="ListarTareasDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Tareas</a></button><br>
 </center>
 </body>
 </html>

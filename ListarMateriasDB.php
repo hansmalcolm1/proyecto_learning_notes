@@ -23,15 +23,43 @@ if(!($sesion==null) && !($sesion==null)){
 </head>
 <body>
 	<div>
+			<?php
+	if($rol==1){
+	?>
 	<button><a href="inicioAdmin.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Volver</a></button>
+	<?php
+	}
+	?>
+		<?php
+	else{
+	?>
+	<button><a href="inicio.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Volver</a></button>
+	<?php
+	}
+	?>
+	
+		<?php
+	if($rol==1){
+	?>
 	<button><a href="add_materiaDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Agregar materia</a></button>
+	<?php
+	}
+	?>
+	
 	<table>
 		<tr>
 			<th>Id materia</th>
 			<th>Nombre de la materia</th>
 			<th>Id curso</th>
 			<th>Id docente</th>
-			<th>Opciones</th>
+				<?php
+	if($rol==1){
+	?>
+	<th>Opciones</th>
+	<?php
+	}
+	?>
+			
 		</tr>
 		<?php
 		foreach($personas as $p){
@@ -41,7 +69,14 @@ if(!($sesion==null) && !($sesion==null)){
 				<td><?=$p->nom_materia;?></td>
 				<td><?=$p->curso_idcurso;?></td>
 				<td><?=$p->docente_id_docente;?></td>
-				<td><button><a href="edit_materiaDB.php?idmateria=<?=$p->idmateria;?>&curso_idcurso=<?=$p->curso_idcurso;?>&docente_id_docente=<?=$p->docente_id_docente;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Editar materia</a></button><br><button><a href="eliminar_materiaDB.php?idmateria=<?=$p->idmateria;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Eliminar</a></button></td>
+					<?php
+	if($rol==1){
+	?>
+	<td><button><a href="edit_materiaDB.php?idmateria=<?=$p->idmateria;?>&curso_idcurso=<?=$p->curso_idcurso;?>&docente_id_docente=<?=$p->docente_id_docente;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Editar materia</a></button><br><button><a href="eliminar_materiaDB.php?idmateria=<?=$p->idmateria;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Eliminar</a></button></td>
+	<?php
+	}
+	?>
+				
 			</tr>
 			<?php
 		}

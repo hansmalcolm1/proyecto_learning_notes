@@ -23,8 +23,29 @@ if(!($sesion==null) && !($sesion==null)){
 </head>
 <body>
 	<div>
+			<?php
+	if($rol==1){
+	?>
 	<button><a href="inicioAdmin.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Volver</a></button>
+	<?php
+	}
+	?>
+		<?php
+	else{
+	?>
+	<button><a href="inicio.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Volver</a></button>
+	<?php
+	}
+	?>
+	
+		<?php
+	if($rol==1){
+	?>
 	<button><a href="add_docenteDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Agregar docente</a></button>
+	<?php
+	}
+	?>
+	
 	<table>
 		<tr>
 			<th>Id docente</th>
@@ -32,7 +53,14 @@ if(!($sesion==null) && !($sesion==null)){
 			<th>Dirección</th>
 			<th>Teléfono</th>
 			<th>Correo</th>
-			<th>Opciones</th>
+				<?php
+	if($rol==1){
+	?>
+	<th>Opciones</th>
+	<?php
+	}
+	?>
+			
 		</tr>
 		<?php
 		foreach($personas as $p){
@@ -43,7 +71,14 @@ if(!($sesion==null) && !($sesion==null)){
 				<td><?=$p->direccion;?></td>
 				<td><?=$p->telefono;?></td>
 				<td><?=$p->correo;?></td>
-				<td><button><a href="edit_docenteDB.php?id_docente=<?=$p->id_docente;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Editar docente</a></button><br><button><a href="eliminar_docenteDB.php?id_docente=<?=$p->id_docente;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Eliminar</a></button></td>
+					<?php
+	if($rol==1){
+	?>
+	<td><button><a href="edit_docenteDB.php?id_docente=<?=$p->id_docente;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Editar docente</a></button><br><button><a href="eliminar_docenteDB.php?id_docente=<?=$p->id_docente;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Eliminar</a></button></td>
+	<?php
+	}
+	?>
+				
 			</tr>
 			<?php
 		}
