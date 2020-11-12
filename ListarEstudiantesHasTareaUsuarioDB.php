@@ -15,10 +15,6 @@ if(!($sesion==null) && !($sesion==null)){
 <head>
 	
 	<meta charset="UTF-8">
-
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-
 </head>
 <body>
 <style type="text/css">
@@ -38,19 +34,7 @@ if(!($sesion==null) && !($sesion==null)){
 
 <div class="container-fluid">
 	<center>
-		<?php
-	if($rol==1){
-		?>
-		<button><a href="inicioAdmin.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Volver</a></button>
-		<?php
-	}
-	if($rol==2){
-		?>
-		<button><a href="inicio.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Volver</a></button>
-		<?php
-	}
-	?>
-	<button><a href="add_estudiante_has_tareaDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Agregar estudiante tiene tarea</a></button>
+	<button><a href="inicio.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Volver</a></button>
 </center>
 	<table  border="2" align="center" class="table table-striped">
 		<tr>
@@ -59,7 +43,6 @@ if(!($sesion==null) && !($sesion==null)){
 			<th>Id tarea</th>
 			<th>Nota</th>
 			<th>Obsevación</th>
-			<th>Opciones</th>
 		</tr>
 		<?php
 		foreach($personas as $p){
@@ -70,7 +53,6 @@ if(!($sesion==null) && !($sesion==null)){
 				<td><?=$p->tarea_idtarea;?></td>
 				<td><?=$p->nota;?></td>
 				<td><?=$p->observacion;?></td>
-				<td><button><a href="edit_estudiante_has_tareaDB.php?id_est_tarea=<?=$p->id_est_tarea;?>&estudiante_id_alumno=<?=$p->estudiante_id_alumno;?>&tarea_idtarea=<?=$p->tarea_idtarea;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Editar estudiante tiene tarea</a></button><br><button><a href="eliminar_estudiante_has_tareaDB.php?id_est_tarea=<?=$p->id_est_tarea;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Eliminar</a></button></td>
 			</tr>
 			<?php
 		}

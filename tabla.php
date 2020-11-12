@@ -1,23 +1,3 @@
-<?php
-include("conexion.php");
-include("Usuario.php");
-session_start();
-echo "<center><h1>Bienvenido admin</h1></center><br>";
-error_reporting(0);
-if(isset($_SESSION['username'])&&isset($_SESSION['rol'])){
-$sesion=$_SESSION['username'];
-$rol=$_SESSION['rol'];
-}
-if($sesion==null && $rol==null){
-	$sesion=$_GET['sesion'];
-	$rol=$_GET['rol'];
-}
-if(!($sesion==null) && !($rol==null)){
-  if($rol==2){
-  header('Location: inicio.php?sesion=$sesion&rol=2');
-  }
-?>
-
 <DOCTYPE html>
 <html>
 <head>
@@ -25,14 +5,17 @@ if(!($sesion==null) && !($rol==null)){
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-
+ 
+<style>
+    body { background-color: #98F0FC; }
+  </style>
 </head>
-<body>
 
-
+<body >
+	<br>
 
 	<div class="container">
-     <table class="table table-striped"  border="10" align="center">
+     <table class="table table-striped"  border="2" align="center">
   <thead>
     <tr>
       <th>Módulo Docente</th>
@@ -70,7 +53,7 @@ if(!($sesion==null) && !($rol==null)){
 </table>
  <br><br>
 
- <table class="table table-striped"  border="10" align="center">
+ <table class="table table-striped"  border="2" align="center">
   <thead>
     <tr>
       <th>Módulo Estudiante</th>
@@ -116,24 +99,3 @@ if(!($sesion==null) && !($rol==null)){
 </div>
 </body>
 </html>
-
-
-<script>
-function cerrar() {
-  <?php
-  	session_unset();
-
-	session_destroy();
-  ?>
-}
-</script>
-<?php
-}
-else{
-	session_unset();
-
-	session_destroy();
-	echo "<script>alert('No tiene permisos');
-	window.location.href='index.php'</script>";
-}
-?>

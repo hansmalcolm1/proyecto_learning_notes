@@ -307,8 +307,10 @@ CREATE TABLE IF NOT EXISTS `proyecto_adsi`.`usuarios` (
   `password` VARCHAR(60) NOT NULL,
   `rol_id` VARCHAR(45) NOT NULL,
   `nombre` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`id`)
-  )
+  PRIMARY KEY (`id`),
+  
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 

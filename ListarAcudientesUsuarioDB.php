@@ -2,7 +2,7 @@
 require "conexion.php";
 require "Persona.php";
 session_start();
-$sql = "select * from estudiante";
+$sql = "select * from acudientes";
 $result = $con->prepare($sql);
 $result->execute();
 $personas = $result->fetchAll(PDO::FETCH_CLASS, "Persona");
@@ -38,56 +38,41 @@ if(!($sesion==null) && !($sesion==null)){
 		background-size: cover;
     }
  </style>
+
+<div class="container-fluid">
+	<center>
 	
-	<div class="container-fluid">
-		<center>
-		<?php
-	if($rol==1){
-		?>
-		<button><a href="inicioAdmin.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Volver</a></button>
-		<?php
-	}
-	if($rol==2){
-		?>
-		<button><a href="inicio.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Volver</a></button>
-		<?php
-	}
-	?>
-	<button><a href="add_estudianteDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Agregar estudiante</a></button>
+	<button><a href="inicio.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Volver</a></button>
 </center>
-<br>
-	<table   border="2"  class="table table-striped">
+	<table  border="2" align="center" class="table table-striped">
 		<tr>
-			<th>Id alumno</th>
-			<th>Nombre del alumno</th>
+			<th>Id acudiente</th>
 			<th>Documento</th>
-			<th>Celular</th>
-			<th>Email</th>
-			<th>Fecha de nacimiento</th>
+			<th>Nombre del acudiente</th>
+			<th>Parentesco</th>
 			<th>Dirección</th>
-			<th>Teléfono fijo</th>
-			<th>Opciones</th>
+			<th>Teléfono</th>
+			<th>Id alumno</th>
 		</tr>
 		<?php
 		foreach($personas as $p){
 			?>
 			<tr>
-				<td><?=$p->id_alumno;?></td>
-				<td><?=$p->nom_alumno;?></td>
+				<td><?=$p->id;?></td>
 				<td><?=$p->documento;?></td>
-				<td><?=$p->celular;?></td>
-				<td><?=$p->email;?></td>
-				<td><?=$p->fecha_nacimiento;?></td>
+				<td><?=$p->nombre;?></td>
+				<td><?=$p->parentesco;?></td>
 				<td><?=$p->direccion;?></td>
-				<td><?=$p->telefono_fijo;?></td>
-				<td><button><a href="edit_estudianteDB.php?id_alumno=<?=$p->id_alumno;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Editar estudiante</a></button><br><button><a href="eliminar_estudianteDB.php?id_alumno=<?=$p->id_alumno;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Eliminar</a></button></td>
+				<td><?=$p->telefono;?></td>
+				<td><?=$p->estudiante_id_alumno;?></td>
 			</tr>
 			<?php
 		}
 		?>
 	</table>
-	
-	</div>
+	</div><br>
+    
+    
 </body>
 </html>
 <?php
@@ -98,6 +83,5 @@ else{
 	session_destroy();
 	echo "<script>alert('No tiene permisos');
 	window.location.href='index.php'</script>";
-
 }
 ?>
