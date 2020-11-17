@@ -4,10 +4,10 @@ require "Persona.php";
 $sesion=$_GET['sesion'];
 $rol=$_GET['rol'];
 if(!($sesion==null) && !($sesion==null)){
-if(isset($_GET["idevaluacion"]) && strlen($_GET["idevaluacion"])){
-	$idevaluacion=$_GET["idevaluacion"];
+if(isset($_GET["idtarea"]) && strlen($_GET["idtarea"])){
+	$idevaluacion=$_GET["idtarea"];
 	$materia_idmateria1=$_GET["materia_idmateria1"];
-	$sql = "select * from evaluacion where idevaluacion=:idevaluacion";
+	$sql = "select * from evaluacion where idtarea=:idevaluacion";
 	$result = $con->prepare($sql);
 	$result->bindParam(":idevaluacion", $idevaluacion);
 	$result->execute();
@@ -33,19 +33,19 @@ if(isset($_GET["idevaluacion"]) && strlen($_GET["idevaluacion"])){
 				<table>
 					<tr>
 						<td>Id evaluación</td>
-						<td><input type="number" name="idevaluacion" value="<?=$p->idevaluacion;?>" readonly/></td>
+						<td><input type="number" name="idevaluacion" value="<?=$p->idtarea;?>" readonly/></td>
 					</tr>
 					<tr>
 						<td>Descripción de la evaluación</td>
-						<td><input type="text" name="descripcion_evaluacion" value="<?=$p->descripcion_evaluacion;?>"/></td>
+						<td><input type="text" name="descripcion_evaluacion" value="<?=$p->descripcion_tarea;?>"/></td>
 					</tr>
 					<tr>
 						<td>Título de la evaluación</td>
-						<td><input type="text" name="titulo_evaluacion" value="<?=$p->titulo_evaluacion;?>"/></td>
+						<td><input type="text" name="titulo_evaluacion" value="<?=$p->titulo_tarea;?>"/></td>
 					</tr>
 					<tr>
 						<td>Fecha de la evaluación</td>
-						<td><input type="date" name="fecha_evaluacion" value="<?=$p->fecha_evaluacion;?>"/></td>
+						<td><input type="date" name="fecha_evaluacion" value="<?=$p->fecha_entrega;?>"/></td>
 					</tr>
 					<tr>
 						<td>Materia</td>
@@ -83,7 +83,7 @@ if(isset($_GET["idevaluacion"]) && strlen($_GET["idevaluacion"])){
 }
 else{
 	echo "<script>alert('El id evaluación no es valido');
-	window.location.href='ListarEvaluacionesDB.php'</script>";
+	window.location.href='ListarEvaluacionesDB.php?session=$session&rol=$rol'</script>";
 }
 }
 else{

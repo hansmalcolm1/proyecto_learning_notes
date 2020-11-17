@@ -20,11 +20,11 @@ isset($_POST["correo"]) && strlen($_POST["correo"])>0){
 	$result->execute();
 	$con=NULL;
 	echo "<script>alert('Docente creado exitosamente');
-	window.location.href='ListarDocentesDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>'</script>";
+	window.location.href='ListarDocentesDB.php?sesion=$sesion&rol=$rol'</script>";
 }
 else{
 	echo "<script>alert('El nombre del docente, la dirección, el teléfono y el correo son requeridos');
-	window.location.href='ListarDocentesDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>'</script>";
+	window.location.href='ListarDocentesDB.php?sesion=$sesion&rol=$rol'</script>";
 }
 }
 else{

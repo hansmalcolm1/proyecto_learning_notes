@@ -17,11 +17,11 @@ isset($_POST["registro_matricula_id"]) && strlen($_POST["registro_matricula_id"]
 	$result->execute();
 	$con=NULL;
 	echo "<script>alert('Observación creada exitosamente');
-	window.location.href='ListarObservacionesDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>'</script>";
+	window.location.href='ListarObservacionesDB.php?sesion=$sesion?>&rol=$rol'</script>";
 }
 else{
 	echo "<script>alert('La observación, la fecha de la observación y la matrícula son requeridos');
-	window.location.href='ListarObservacionesDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>'</script>";
+	window.location.href='ListarObservacionesDB.php?sesion=$sesion&rol=$rol'</script>";
 }
 }
 else{

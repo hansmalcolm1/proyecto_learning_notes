@@ -12,11 +12,11 @@ if(isset($_GET["id"]) && strlen($_GET["id"])>0){
 	$result->execute();
 	$con=NULL;
 	echo "<script>alert('Registro matrícula eliminado exitosamente');
-	window.location.href='ListarRegistrosMatriculasDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>'</script>";
+	window.location.href='ListarRegistrosMatriculasDB.php?sesion=$sesion&rol=$rol'</script>";
 }
 else{
 	echo "<script>alert('El id registro matrícula no es valido');
-	window.location.href='ListarRegistrosMatriculasDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>'</script>";
+	window.location.href='ListarRegistrosMatriculasDB.php?sesion=$sesion&rol=$rol'</script>";
 }
 }
 else{

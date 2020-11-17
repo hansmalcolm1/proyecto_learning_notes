@@ -6,17 +6,17 @@ $rol=$_GET['rol'];
 if(!($sesion==null) && !($sesion==null)){
 if(isset($_GET["idevaluacion"]) && strlen($_GET["idevaluacion"])>0){
 	$idevaluacion=$_GET["idevaluacion"];
-	$sql = "delete from evaluacion where idevaluacion=:idevaluacion";
+	$sql = "delete from evaluacion where idtarea=:idevaluacion";
 	$result = $con->prepare($sql);
 	$result->bindParam(":idevaluacion", $idevaluacion);
 	$result->execute();
 	$con=NULL;
 	echo "<script>alert('Evaluación eliminada exitosamente');
-	window.location.href='ListarEvaluacionesDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>'</script>";
+	window.location.href='ListarEvaluacionesDB.php?sesion=$sesion&rol=$rol'</script>";
 }
 else{
 	echo "<script>alert('El id evaluación no es valido');
-	window.location.href='ListarEvaluacionesDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>'</script>";
+	window.location.href='ListarEvaluacionesDB.php?sesion=$sesion&rol=$rol'</script>";
 }
 }
 else{

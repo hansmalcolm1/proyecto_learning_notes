@@ -62,9 +62,7 @@ if(!($sesion==null) && !($rol==null)){
         <td><button><a href="ListarDefinitivasPeriodosMateriasDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Definitivas periodos materias</a></button></td>
 </tr>
 
-<tr>
-    <td><button><a href="ListarEvaluacionesDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Evaluaciones</a></button></td>
-</tr>
+
 
   </tbody>
 </table>
@@ -90,6 +88,10 @@ if(!($sesion==null) && !($rol==null)){
     
     <tr>
     <td><button><a href="ListarEvaluacionesDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Evaluaciones</a></button></td>
+</tr>
+
+<tr>
+    <td><button><a href="ListarTareasDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Tareas</a></button></td>
 </tr>
 
 <tr>

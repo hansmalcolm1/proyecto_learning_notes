@@ -2,7 +2,7 @@
 require "conexion.php";
 require "Persona.php";
 session_start();
-$sql = "select * from evaluacion";
+$sql = "select * from evaluacion, materia";
 $result = $con->prepare($sql);
 $result->execute();
 $personas = $result->fetchAll(PDO::FETCH_CLASS, "Persona");
@@ -58,7 +58,7 @@ if(!($sesion==null) && !($sesion==null)){
 			<th>Descripción de la evaluación</th>
 			<th>Título de la evaluación</th>
 			<th>Fecha de la evaluación</th>
-			<th>Id materia</th>
+			<th>Materia</th>
 			<th>Período</th>
 			<th>Opciones</th>
 		</tr>
@@ -66,13 +66,13 @@ if(!($sesion==null) && !($sesion==null)){
 		foreach($personas as $p){
 			?>
 			<tr>
-				<td><?=$p->idevaluacion;?></td>
-				<td><?=$p->descripcion_evaluacion;?></td>
-				<td><?=$p->titulo_evaluacion;?></td>
-				<td><?=$p->fecha_evaluacion;?></td>
-				<td><?=$p->materia_idmateria1;?></td>
+				<td><?=$p->idtarea;?></td>
+				<td><?=$p->descripcion_tarea;?></td>
+				<td><?=$p->titulo_tarea;?></td>
+				<td><?=$p->fecha_entrega;?></td>
+				<td><?=$p->nom_materia;?></td>
 				<td><?=$p->periodo;?></td>
-				<td><button><a href="edit_evaluacionDB.php?idevaluacion=<?=$p->idevaluacion;?>&materia_idmateria1=<?=$p->materia_idmateria1;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Editar evaluación</a></button><br><button><a href="eliminar_evaluacionDB.php?idevaluacion=<?=$p->idevaluacion;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Eliminar</a></button></td>
+				<td><button><a href="edit_evaluacionDB.php?idtarea=<?=$p->idtarea;?>&materia_idmateria1=<?=$p->materia_idmateria1;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Editar evaluación</a></button><br><button><a href="eliminar_evaluacionDB.php?idtarea=<?=$p->idtarea;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Eliminar</a></button></td>
 			</tr>
 			<?php
 		}

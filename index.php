@@ -21,7 +21,7 @@
 	if(isset($_POST['username']) && isset($_POST['password'])){
 		$username = $_POST['username'];
 		$password = $_POST['password'];
-		$password2 = hash('sha256', $password);
+		$password2 = md5($password);
 		$db = new Database();
 		$query = $db->connect()->prepare('SELECT * FROM usuarios WHERE usuario = :usuario AND password = :password');
 		$query->execute(['usuario' => $username, 'password' => $password2]);

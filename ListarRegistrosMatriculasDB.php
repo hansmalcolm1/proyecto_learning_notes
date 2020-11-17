@@ -2,7 +2,7 @@
 require "conexion.php";
 require "Persona.php";
 session_start();
-$sql = "select * from registro_matricula";
+$sql = "select * from registro_matricula, estudiante, curso where estudiante_id_alumno=id_alumno and curso_idcurso=idcurso";
 $result = $con->prepare($sql);
 $result->execute();
 $personas = $result->fetchAll(PDO::FETCH_CLASS, "Persona");
@@ -56,9 +56,8 @@ if(!($sesion==null) && !($sesion==null)){
 		<tr>
 			<th>Id registro matrícula</th>
 			<th>Id matrícula</th>
-			<th>Id alumno</th>
-			<th>Id curso</th>
-			<th>Promedio</th>
+			<th>Alumno</th>
+			<th>Curso</th>
 			<th>Opciones</th>
 		</tr>
 		<?php
@@ -67,9 +66,8 @@ if(!($sesion==null) && !($sesion==null)){
 			<tr>
 				<td><?=$p->id;?></td>
 				<td><?=$p->Matricula_idMatricula;?></td>
-				<td><?=$p->estudiante_id_alumno;?></td>
-				<td><?=$p->curso_idcurso;?></td>
-				<td><?=$p->promedio;?></td>
+				<td><?=$p->nom_alumno;?></td>
+				<td><?=$p->nom_curso;?></td>
 				<td><button><a href="edit_registro_matriculaDB.php?id=<?=$p->id;?>&Matricula_idMatricula=<?=$p->Matricula_idMatricula;?>&estudiante_id_alumno=<?=$p->estudiante_id_alumno;?>&curso_idcurso=<?=$p->curso_idcurso;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Editar registro matrícula</a></button><br><button><a href="eliminar_registro_matriculaDB.php?id=<?=$p->id;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Eliminar</a></button></td>
 			</tr>
 			<?php

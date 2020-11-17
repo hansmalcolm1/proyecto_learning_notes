@@ -12,11 +12,11 @@ if(isset($_GET["id_observa"]) && strlen($_GET["id_observa"])>0){
 	$result->execute();
 	$con=NULL;
 	echo "<script>alert('Observación eliminada exitosamente');
-	window.location.href='ListarObservacionesDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>'</script>";
+	window.location.href='ListarObservacionesDB.php?sesion=$sesion&rol=$rol'</script>";
 }
 else{
 	echo "<script>alert('El id observación no es valido');
-	window.location.href='ListarObservacionesDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>'</script>";
+	window.location.href='ListarObservacionesDB.php?sesion=$sesion&rol=$rol'</script>";
 }
 }
 else{

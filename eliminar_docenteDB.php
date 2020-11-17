@@ -12,11 +12,11 @@ if(isset($_GET["id_docente"]) && strlen($_GET["id_docente"])>0){
 	$result->execute();
 	$con=NULL;
 	echo "<script>alert('Docente eliminado exitosamente');
-	window.location.href='ListarDocentesDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>'</script>";
+	window.location.href='ListarDocentesDB.php?sesion=$sesion&rol=$rol'</script>";
 }
 else{
 	echo "<script>alert('El id docente no es valido');
-	window.location.href='ListarDocentesDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>'</script>";
+	window.location.href='ListarDocentesDB.php?sesion=$sesion&rol=$rol'</script>";
 }
 }
 else{

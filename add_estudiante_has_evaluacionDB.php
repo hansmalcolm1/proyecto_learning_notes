@@ -51,7 +51,7 @@ if(!($sesion==null) && !($sesion==null)){
 						<?php
 					foreach($personas2 as $p2){
 						?>
-						<option value="<?=$p2->idevaluacion;?>"><?=$p2->titulo_evaluacion;?></option>
+						<option value="<?=$p2->idtarea;?>"><?=$p2->titulo_tarea;?></option>
 						<?php
 					}
 					?></select></td>

@@ -4,13 +4,12 @@ require "Persona.php";
 $sesion=$_GET['sesion'];
 $rol=$_GET['rol'];
 if(!($sesion==null) && !($sesion==null)){
-if(isset($_GET["id_est_evalua"]) && strlen($_GET["id_est_evalua"])){
-	$id_est_evalua=$_GET["id_est_evalua"];
+if(isset($_GET["estudiante_id_alumno"]) && strlen($_GET["estudiante_id_alumno"])){
 	$estudiante_id_alumno=$_GET["estudiante_id_alumno"];
 	$evaluacion_idevaluacion=$_GET["evaluacion_idevaluacion"];
-	$sql = "select * from estudiante_has_evaluacion where id_est_evalua=:id_est_evalua";
+	$sql = "select * from estudiante_has_evaluacion where estudiante_id_alumno=:estudiante_id_alumno";
 	$result = $con->prepare($sql);
-	$result->bindParam(":id_est_evalua", $id_est_evalua);
+	$result->bindParam(":estudiante_id_alumno", $estudiante_id_alumno);
 	$result->execute();
 	$p = $result->fetchObject("Persona");
 
@@ -38,10 +37,6 @@ if(isset($_GET["id_est_evalua"]) && strlen($_GET["id_est_evalua"])){
 			<input type="hidden" name="rol" value="<?=$rol?>"/>
 				<table>
 					<tr>
-						<td>Id estudiante tiene tarea</td>
-						<td><input type="number" name="id_est_evalua" value="<?=$p->id_est_evalua;?>" readonly/></td>
-					</tr>
-					<tr>
 						<td>Estudiante</td>
 						<td><select name="estudiante_id_alumno">
 							<?php
@@ -68,13 +63,13 @@ if(isset($_GET["id_est_evalua"]) && strlen($_GET["id_est_evalua"])){
 						foreach($personas2 as $p3){
 							if($evaluacion_idevaluacion==$p3->idevaluacion){
 								?>
-								<option value="<?=$p3->idevaluacion;?>" selected><?=$p3->titulo_evaluacion;?></option>
+								<option value="<?=$p3->idtarea;?>" selected><?=$p3->titulo_tarea;?></option>
 								<?php
 							}
 							
 							else{
 								?>
-								<option value="<?=$p3->idevaluacion;?>"><?=$p3->titulo_evaluacion;?></option>
+								<option value="<?=$p3->idtarea;?>"><?=$p3->titulo_tarea;?></option>
 								<?php
 							}
 

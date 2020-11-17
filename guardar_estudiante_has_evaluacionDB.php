@@ -11,7 +11,7 @@ isset($_POST["observacion"]) && strlen($_POST["observacion"])>0){
 	$evaluacion_idevaluacion=$_POST["evaluacion_idevaluacion"];
 	$nota=$_POST["nota"];
 	$observacion=$_POST["observacion"];
-	$sql = "insert into estudiante_has_evaluacion (estudiante_id_alumno, evaluacion_idevaluacion, nota, observacion) values (:estudiante_id_alumno, :evaluacion_idevaluacion, :nota, :observacion)";
+	$sql = "insert into estudiante_has_evaluacion (estudiante_id_alumno, evaluacion_idtarea, nota, observacion) values (:estudiante_id_alumno, :evaluacion_idevaluacion, :nota, :observacion)";
 	$result = $con->prepare($sql);
 	$result->bindParam(":estudiante_id_alumno", $estudiante_id_alumno);
 	$result->bindParam(":evaluacion_idevaluacion", $evaluacion_idevaluacion);
@@ -20,11 +20,11 @@ isset($_POST["observacion"]) && strlen($_POST["observacion"])>0){
 	$result->execute();
 	$con=NULL;
 	echo "<script>alert('Estudiante tiene evaluación creado exitosamente');
-	window.location.href='ListarEstudiantesHasEvaluacionDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>'</script>";
+	window.location.href='ListarEstudiantesHasEvaluacionDB.php?sesion=$sesion&rol=$rol'</script>";
 }
 else{
 	echo "<script>alert('El estudiante, la evaluación, la nota y la observación son requeridos');
-	window.location.href='ListarEstudiantesHasEvaluacionDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>'</script>";
+	window.location.href='ListarEstudiantesHasEvaluacionDB.php?sesion=$sesion&rol=$rol'</script>";
 }
 }
 else{

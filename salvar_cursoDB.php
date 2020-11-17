@@ -17,11 +17,11 @@ isset($_POST["docente_id_docente"]) && strlen($_POST["docente_id_docente"])>0){
 	$result->execute();
 	$con=NULL;
 	echo "<script>alert('Curso actualizado exitosamente');
-	window.location.href='ListarCursosDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>'</script>";
+	window.location.href='ListarCursosDB.php?sesion=$sesion&rol=$rol'</script>";
 }
 else{
 	echo "<script>alert('El id curso, el nombre del curso y el docente son requeridos');
-	window.location.href='ListarCursosDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>'</script>";
+	window.location.href='ListarCursosDB.php?sesion=$sesion&rol=$rol'</script>";
 }
 }
 else{

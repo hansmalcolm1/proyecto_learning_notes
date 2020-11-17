@@ -12,11 +12,11 @@ if(isset($_GET["idcalificacion"]) && strlen($_GET["idcalificacion"])>0){
 	$result->execute();
 	$con=NULL;
 	echo "<script>alert('Definitivas periodo materia eliminadas exitosamente');
-	window.location.href='ListarDefinitivasPeriodosMateriasDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>'</script>";
+	window.location.href='ListarDefinitivasPeriodosMateriasDB.php?sesion=$sesion&rol=$rol'</script>";
 }
 else{
 	echo "<script>alert('El id calificación no es valido');
-	window.location.href='ListarDefinitivasPeriodosMateriasDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>'</script>";
+	window.location.href='ListarDefinitivasPeriodosMateriasDB.php?sesion=$sesion&rol=$rol'</script>";
 }
 }
 else{

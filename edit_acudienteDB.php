@@ -51,7 +51,13 @@ if(isset($_GET["id"]) && strlen($_GET["id"])){
 					</tr>
 					<tr>
 						<td>Parentesco</td>
-						<td><input type="text" name="parentesco" value="<?=$p->parentesco;?>"/></td>
+						<td>
+							<input type="radio" name="parentesco" value="Padre">Padre<br>
+    						<input type="radio" name="parentesco" value="Madre">Madre<br>
+    						<input type="radio" name="parentesco" value="Abuelo">Abuelo<br>
+    						<input type="radio" name="parentesco" value="Abuela">Abuela<br>
+    						<input type="radio" name="parentesco" value="Otro">Otro<br>
+						</td>
 					</tr>
 					<tr>
 						<td>Dirección</td>

@@ -20,11 +20,11 @@ isset($_POST["docente_id_docente"]) && strlen($_POST["docente_id_docente"])>0){
 	$result->execute();
 	$con=NULL;
 	echo "<script>alert('Materia actualizada exitosamente');
-	window.location.href='ListarMateriasDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>'</script>";
+	window.location.href='ListarMateriasDB.php?sesion=$sesion&rol=$rol'</script>";
 }
 else{
 	echo "<script>alert('El id materia, el nombre de la materia, el curso y el docente son requeridos');
-	window.location.href='ListarMateriasDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>'</script>";
+	window.location.href='ListarMateriasDB.php?sesion=$sesion&rol=$rol'</script>";
 }
 }
 else{

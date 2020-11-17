@@ -2,7 +2,7 @@
 require "conexion.php";
 require "Persona.php";
 session_start();
-$sql = "select * from acudientes";
+$sql = "select * from acudientes, estudiante where estudiante_id_alumno=id_alumno";
 $result = $con->prepare($sql);
 $result->execute();
 $personas = $result->fetchAll(PDO::FETCH_CLASS, "Persona");
@@ -69,7 +69,7 @@ if(!($sesion==null) && !($sesion==null)){
 			<th>Parentesco</th>
 			<th>Dirección</th>
 			<th>Teléfono</th>
-			<th>Id alumno</th>
+			<th>Alumno</th>
 			<th>Opciones</th>
 		</tr>
 		<?php
@@ -82,7 +82,7 @@ if(!($sesion==null) && !($sesion==null)){
 				<td><?=$p->parentesco;?></td>
 				<td><?=$p->direccion;?></td>
 				<td><?=$p->telefono;?></td>
-				<td><?=$p->estudiante_id_alumno;?></td>
+				<td><?=$p->nom_alumno;?></td>
 				<td><button><a href="edit_acudienteDB.php?id=<?=$p->id;?>&estudiante_id_alumno=<?=$p->estudiante_id_alumno;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Editar acudiente</a></button><br><button><a href="eliminar_acudienteDB.php?id=<?=$p->id;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Eliminar</a></button></td>
 			</tr>
 			<?php

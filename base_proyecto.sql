@@ -262,13 +262,13 @@ ENGINE = InnoDB;
 -- Table `proyecto_adsi`.`evaluacion`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `proyecto_adsi`.`evaluacion` (
-  `idtarea` INT NOT NULL AUTO_INCREMENT,
-  `descripcion_tarea` LONGTEXT NOT NULL,
-  `titulo_tarea` VARCHAR(45) NOT NULL,
-  `fecha_entrega` DATETIME NOT NULL,
+  `idevaluacion` INT NOT NULL AUTO_INCREMENT,
+  `descripcion_evaluacion` LONGTEXT NOT NULL,
+  `titulo_evaluacion` VARCHAR(45) NOT NULL,
+  `fecha_evaluacion` DATETIME NOT NULL,
   `materia_idmateria1` INT NOT NULL,
   `periodo` VARCHAR(45) NULL,
-  PRIMARY KEY (`idtarea`),
+  PRIMARY KEY (`idevaluacion`),
   INDEX `fk_tarea_materia1_idx` (`materia_idmateria1` ASC) ,
   CONSTRAINT `fk_tarea_materia10`
     FOREIGN KEY (`materia_idmateria1`)
@@ -296,7 +296,7 @@ CREATE TABLE IF NOT EXISTS `proyecto_adsi`.`estudiante_has_evaluacion` (
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_estudiante_has_evaluacion_evaluacion1`
     FOREIGN KEY (`evaluacion_idtarea`)
-    REFERENCES `proyecto_adsi`.`evaluacion` (`idtarea`)
+    REFERENCES `proyecto_adsi`.`evaluacion` (`idevaluacion`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

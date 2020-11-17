@@ -2,7 +2,7 @@
 require "conexion.php";
 require "Persona.php";
 session_start();
-$sql = "select * from materia";
+$sql = "select * from materia, curso, docente";
 $result = $con->prepare($sql);
 $result->execute();
 $personas = $result->fetchAll(PDO::FETCH_CLASS, "Persona");
@@ -55,8 +55,8 @@ if(!($sesion==null) && !($sesion==null)){
 		<tr>
 			<th>Id materia</th>
 			<th>Nombre de la materia</th>
-			<th>Id curso</th>
-			<th>Id docente</th>
+			<th>Curso</th>
+			<th>Docente</th>
 			<th>Opciones</th>
 		</tr>
 		<?php
@@ -65,8 +65,8 @@ if(!($sesion==null) && !($sesion==null)){
 			<tr>
 				<td><?=$p->idmateria;?></td>
 				<td><?=$p->nom_materia;?></td>
-				<td><?=$p->curso_idcurso;?></td>
-				<td><?=$p->docente_id_docente;?></td>
+				<td><?=$p->nom_curso;?></td>
+				<td><?=$p->nom_docente;?></td>
 				<td><button><a href="edit_materiaDB.php?idmateria=<?=$p->idmateria;?>&curso_idcurso=<?=$p->curso_idcurso;?>&docente_id_docente=<?=$p->docente_id_docente;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Editar materia</a></button><br><button><a href="eliminar_materiaDB.php?idmateria=<?=$p->idmateria;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Eliminar</a></button></td>
 			</tr>
 			<?php

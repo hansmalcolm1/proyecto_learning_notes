@@ -20,11 +20,11 @@ isset($_POST["docente_id_docente"]) && strlen($_POST["docente_id_docente"])>0){
 	$result->execute();
 	$con=NULL;
 	echo "<script>alert('Cronograma creado exitosamente');
-	window.location.href='ListarCronogramasDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>'</script>";
+	window.location.href='ListarCronogramasDB.php?sesion=$sesion&rol=$rol'</script>";
 }
 else{
 	echo "<script>alert('La actividad, el responsable, la fecha de la actividad y el docente son requeridos');
-	window.location.href='ListarCronogramasDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>'</script>";
+	window.location.href='ListarCronogramasDB.php?sesion=$sesion&rol=$rol'</script>";
 }
 }
 else{

@@ -2,7 +2,7 @@
 require "conexion.php";
 require "Persona.php";
 session_start();
-$sql = "select * from cronograma";
+$sql = "select * from cronograma, docente where docente_id_docente=id_docente";
 $result = $con->prepare($sql);
 $result->execute();
 $personas = $result->fetchAll(PDO::FETCH_CLASS, "Persona");
@@ -61,7 +61,7 @@ if(!($sesion==null) && !($sesion==null)){
 			<th>Actividad</th>
 			<th>Responsable</th>
 			<th>Fecha de la actividad</th>
-			<th>Id docente</th>
+			<th>docente</th>
 			<th>Opciones</th>
 		</tr>
 		<?php
@@ -72,7 +72,7 @@ if(!($sesion==null) && !($sesion==null)){
 				<td><?=$p->actividad;?></td>
 				<td><?=$p->responsable;?></td>
 				<td><?=$p->fecha_actividad;?></td>
-				<td><?=$p->docente_id_docente;?></td>
+				<td><?=$p->nom_docente;?></td>
 				<td><button><a href="edit_cronogramaDB.php?idcronograma=<?=$p->idcronograma;?>&docente_id_docente=<?=$p->docente_id_docente;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Editar cronograma</a></button><br><button><a href="eliminar_cronogramaDB.php?idcronograma=<?=$p->idcronograma;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Eliminar</a></button></td>
 			</tr>
 			<?php

@@ -73,10 +73,6 @@ if(!($sesion==null) && !($sesion==null)){
 					?></select></td>
 				</tr>
 				<tr>
-					<td>Promedio</td>
-					<td><input type="number" step="any" name="promedio" /></td>
-				</tr>
-				<tr>
 					<td><input type="submit" value="Guardar" /></td>
 				</tr>
 			</table>

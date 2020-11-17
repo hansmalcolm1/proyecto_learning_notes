@@ -2,7 +2,7 @@
 require "conexion.php";
 require "Persona.php";
 session_start();
-$sql = "select * from definitivas_periodo_materia";
+$sql = "select * from definitivas_periodo_materia, materia, estudiante where materia_idmateria=idmateria and estudiante_id_alumno=id_alumno";
 $result = $con->prepare($sql);
 $result->execute();
 $personas = $result->fetchAll(PDO::FETCH_CLASS, "Persona");
@@ -65,8 +65,8 @@ if(!($sesion==null) && !($sesion==null)){
 			<th>Nota 3</th>
 			<th>Nota 4</th>
 			<th>Definitiva del periodo</th>
-			<th>Id materia</th>
-			<th>Id alumno</th>
+			<th>Materia</th>
+			<th>Alumno</th>
 			<th>Opciones</th>
 		</tr>
 		<?php
@@ -79,8 +79,8 @@ if(!($sesion==null) && !($sesion==null)){
 				<td><?=$p->nota3;?></td>
 				<td><?=$p->nota4;?></td>
 				<td><?=$p->def_periodo;?></td>
-				<td><?=$p->materia_idmateria;?></td>
-				<td><?=$p->estudiante_id_alumno;?></td>
+				<td><?=$p->nom_materia;?></td>
+				<td><?=$p->nom_alumno;?></td>
 				<td><button><a href="edit_definitivas_periodo_materiaDB.php?idcalificacion=<?=$p->idcalificacion;?>&materia_idmateria=<?=$p->materia_idmateria;?>&estudiante_id_alumno=<?=$p->estudiante_id_alumno;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Editar definitiva periodo materia</a></button><br><button><a href="eliminar_definitivas_periodo_materiaDB.php?idcalificacion=<?=$p->idcalificacion;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Eliminar</a></button></td>
 			</tr>
 			<?php

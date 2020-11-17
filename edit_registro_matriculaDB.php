@@ -107,10 +107,6 @@ if(isset($_GET["id"]) && strlen($_GET["id"])){
 						?></select></td>
 					</tr>
 					<tr>
-						<td>Promedio</td>
-						<td><input type="number" step="any" name="promedio" value="<?=$p->promedio;?>"/></td>
-					</tr>
-					<tr>
 						<td><input type="submit" value="Guardar" /></td>
 					</tr>
 				</table>

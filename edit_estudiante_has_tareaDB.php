@@ -4,13 +4,12 @@ require "Persona.php";
 $sesion=$_GET['sesion'];
 $rol=$_GET['rol'];
 if(!($sesion==null) && !($sesion==null)){
-if(isset($_GET["id_est_tarea"]) && strlen($_GET["id_est_tarea"])){
-	$id_est_tarea=$_GET["id_est_tarea"];
+if(isset($_GET["estudiante_id_alumno"]) && strlen($_GET["estudiante_id_alumno"])){
 	$estudiante_id_alumno=$_GET["estudiante_id_alumno"];
 	$tarea_idtarea=$_GET["tarea_idtarea"];
-	$sql = "select * from estudiante_has_tarea where id_est_tarea=:id_est_tarea";
+	$sql = "select * from estudiante_has_tarea where estudiante_id_alumno=:estudiante_id_alumno";
 	$result = $con->prepare($sql);
-	$result->bindParam(":id_est_tarea", $id_est_tarea);
+	$result->bindParam(":estudiante_id_alumno", $estudiante_id_alumno);
 	$result->execute();
 	$p = $result->fetchObject("Persona");
 
@@ -37,10 +36,6 @@ if(isset($_GET["id_est_tarea"]) && strlen($_GET["id_est_tarea"])){
 				<input type="hidden" name="sesion" value="<?=$sesion?>"/>
 			<input type="hidden" name="rol" value="<?=$rol?>"/>
 				<table>
-					<tr>
-						<td>Id estudiante tiene tarea</td>
-						<td><input type="number" name="id_est_tarea" value="<?=$p->id_est_tarea;?>" readonly/></td>
-					</tr>
 					<tr>
 						<td>Estudiante</td>
 						<td><select name="estudiante_id_alumno">

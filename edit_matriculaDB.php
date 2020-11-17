@@ -32,7 +32,12 @@ if(isset($_GET["idMatricula"]) && strlen($_GET["idMatricula"])){
 					</tr>
 					<tr>
 						<td>Condición</td>
-						<td><input type="text" name="Condicion" value="<?=$p->Condicion;?>"/></td>
+						<td>
+							<select name="Condicion">
+							<option value="Nuevo">Nuevo</option>
+							<option value="Antiguo">Antiguo</option>
+						    </select>
+					</td>
 					</tr>
 					<tr>
 						<td>Año lectivo</td>
@@ -40,11 +45,17 @@ if(isset($_GET["idMatricula"]) && strlen($_GET["idMatricula"])){
 					</tr>
 					<tr>
 						<td>Calendario</td>
-						<td><input type="text" name="calendario" value="<?=$p->calendario;?>"/></td>
+						<td><select name="calendario">
+							<option value="A">A</option>
+							<option value="B">B</option>
+						</select></td>
 					</tr>
 					<tr>
 						<td>Estado</td>
-						<td><input type="text" name="estado" value="<?=$p->estado;?>"/></td>
+						<td><select name="estado">
+							<option value="Matriculado">Matriculado</option>
+							<option value="Retirado">Retirado</option>
+						</select></td>
 					</tr>
 					<tr>
 						<td><input type="submit" value="Guardar" /></td>

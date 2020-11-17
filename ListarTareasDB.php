@@ -2,7 +2,7 @@
 require "conexion.php";
 require "Persona.php";
 session_start();
-$sql = "select * from tarea";
+$sql = "select * from tarea, materia where materia_idmateria1=idmateria";
 $result = $con->prepare($sql);
 $result->execute();
 $personas = $result->fetchAll(PDO::FETCH_CLASS, "Persona");
@@ -57,7 +57,7 @@ if(!($sesion==null) && !($sesion==null)){
 			<th>Descripción de la tarea</th>
 			<th>Título de la tarea</th>
 			<th>Fecha de entrega</th>
-			<th>Id materia</th>
+			<th>Materia</th>
 			<th>Periodo</th>
 			<th>Opciones</th>
 		</tr>
@@ -69,7 +69,7 @@ if(!($sesion==null) && !($sesion==null)){
 				<td><?=$p->descripcion_tarea;?></td>
 				<td><?=$p->titulo_tarea;?></td>
 				<td><?=$p->fecha_entrega;?></td>
-				<td><?=$p->materia_idmateria1;?></td>
+				<td><?=$p->nom_materia;?></td>
 				<td><?=$p->periodo;?></td>
 				<td><button><a href="edit_tareaDB.php?idtarea=<?=$p->idtarea;?>&materia_idmateria1=<?=$p->materia_idmateria1;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Editar tarea</a></button><br><button><a href="eliminar_tareaDB.php?idtarea=<?=$p->idtarea;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Eliminar</a></button></td>
 			</tr>

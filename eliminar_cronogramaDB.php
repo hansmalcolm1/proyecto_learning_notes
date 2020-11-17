@@ -12,11 +12,11 @@ if(isset($_GET["idcronograma"]) && strlen($_GET["idcronograma"])>0){
 	$result->execute();
 	$con=NULL;
 	echo "<script>alert('Cronograma eliminado exitosamente');
-	window.location.href='ListarCronogramasDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>'</script>";
+	window.location.href='ListarCronogramasDB.php?sesion=$sesion&rol=$rol'</script>";
 }
 else{
 	echo "<script>alert('El id cronograma no es valido');
-	window.location.href='ListarCronogramasDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>'</script>";
+	window.location.href='ListarCronogramasDB.php?sesion=$sesion&rol=$rol'</script>";
 }
 }
 else{
