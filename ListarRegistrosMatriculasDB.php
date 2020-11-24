@@ -50,7 +50,14 @@ if(!($sesion==null) && !($sesion==null)){
 		<?php
 	}
 	?>
-	<button><a href="add_registro_matriculaDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Agregar registro matrícula</a></button>
+	<?php
+	if($rol==1){
+		?>
+		<button><a href="add_registro_matriculaDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Agregar registro matrícula</a></button>
+		<?php
+	}
+	?>
+	
 </center>
 	<table  border="2" align="center" class="table table-striped">
 		<tr>
@@ -58,7 +65,14 @@ if(!($sesion==null) && !($sesion==null)){
 			<th>Id matrícula</th>
 			<th>Alumno</th>
 			<th>Curso</th>
-			<th>Opciones</th>
+			<?php
+	if($rol==1){
+		?>
+		<th>Opciones</th>
+		<?php
+	}
+	?>
+			
 		</tr>
 		<?php
 		foreach($personas as $p){
@@ -68,7 +82,14 @@ if(!($sesion==null) && !($sesion==null)){
 				<td><?=$p->Matricula_idMatricula;?></td>
 				<td><?=$p->nom_alumno;?></td>
 				<td><?=$p->nom_curso;?></td>
-				<td><button><a href="edit_registro_matriculaDB.php?id=<?=$p->id;?>&Matricula_idMatricula=<?=$p->Matricula_idMatricula;?>&estudiante_id_alumno=<?=$p->estudiante_id_alumno;?>&curso_idcurso=<?=$p->curso_idcurso;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Editar registro matrícula</a></button><br><button><a href="eliminar_registro_matriculaDB.php?id=<?=$p->id;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Eliminar</a></button></td>
+				<?php
+	if($rol==1){
+		?>
+		<td><button><a href="edit_registro_matriculaDB.php?id=<?=$p->id;?>&Matricula_idMatricula=<?=$p->Matricula_idMatricula;?>&estudiante_id_alumno=<?=$p->estudiante_id_alumno;?>&curso_idcurso=<?=$p->curso_idcurso;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Editar registro matrícula</a></button><br><button><a href="eliminar_registro_matriculaDB.php?id=<?=$p->id;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Eliminar</a></button></td>
+		<?php
+	}
+	?>
+				
 			</tr>
 			<?php
 		}

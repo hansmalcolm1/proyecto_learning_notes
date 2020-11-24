@@ -49,7 +49,14 @@ if(!($sesion==null) && !($sesion==null)){
 		<?php
 	}
 	?>
-	<button><a href="add_matriculaDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Agregar matrícula</a></button>
+	<?php
+	if($rol==1){
+		?>
+		<button><a href="add_matriculaDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Agregar matrícula</a></button>
+		<?php
+	}
+	?>
+	
 </center>
 	<table  border="2" align="center" class="table table-striped">
 		<tr>
@@ -58,7 +65,14 @@ if(!($sesion==null) && !($sesion==null)){
 			<th>Año lectivo</th>
 			<th>Calendario</th>
 			<th>Estado</th>
-			<th>Opciones</th>
+			<?php
+	if($rol==1){
+		?>
+		<th>Opciones</th>
+		<?php
+	}
+	?>
+			
 		</tr>
 		<?php
 		foreach($personas as $p){
@@ -69,7 +83,14 @@ if(!($sesion==null) && !($sesion==null)){
 				<td><?=$p->ano_lectivo;?></td>
 				<td><?=$p->calendario;?></td>
 				<td><?=$p->estado;?></td>
-				<td><button><a href="edit_matriculaDB.php?idMatricula=<?=$p->idMatricula;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Editar matrícula</a></button><br><button><a href="eliminar_matriculaDB.php?idMatricula=<?=$p->idMatricula;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Eliminar</a></button></td>
+				<?php
+	if($rol==1){
+		?>
+		<td><button><a href="edit_matriculaDB.php?idMatricula=<?=$p->idMatricula;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Editar matrícula</a></button><br><button><a href="eliminar_matriculaDB.php?idMatricula=<?=$p->idMatricula;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Eliminar</a></button></td>
+		<?php
+	}
+	?>
+				
 			</tr>
 			<?php
 		}

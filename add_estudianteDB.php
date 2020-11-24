@@ -1,7 +1,13 @@
 <?php
+require "conexion.php";
+require "Persona.php";
 $sesion=$_GET['sesion'];
 $rol=$_GET['rol'];
 if(!($sesion==null) && !($sesion==null)){
+	$sql = "select * from usuarios, estudiante where not id=id_usuario and rol_id=2";
+	$result = $con->prepare($sql);
+	$result->execute();
+	$personas = $result->fetchAll(PDO::FETCH_CLASS, "Persona");
 ?>
 <!DOCTYPE html>
 	<html>
@@ -48,6 +54,17 @@ if(!($sesion==null) && !($sesion==null)){
 				<tr>
 					<td>Teléfono fijo</td>
 					<td><input type="number" name="telefono_fijo" /></td>
+				</tr>
+				<tr>
+					<td>Usuario</td>
+					<td><select name="id_usuario">
+						<?php
+					foreach($personas as $p){
+						?>
+						<option value="<?=$p->id;?>"><?=$p->usuario;?></option>
+						<?php
+					}
+					?></select></td>
 				</tr>
 				<tr>
 					<td><input type="submit" value="Guardar" /></td>

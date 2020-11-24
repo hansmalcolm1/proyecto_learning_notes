@@ -49,7 +49,14 @@ if(!($sesion==null) && !($sesion==null)){
 		<?php
 	}
 	?>
-	<button><a href="add_tareaDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Agregar tarea</a></button>
+	<?php
+	if($rol==1){
+		?>
+		<button><a href="add_tareaDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Agregar tarea</a></button>
+		<?php
+	}
+	?>
+	
 </center>
 	<table   border="2" align="center" class="table table-striped">
 		<tr>
@@ -59,7 +66,14 @@ if(!($sesion==null) && !($sesion==null)){
 			<th>Fecha de entrega</th>
 			<th>Materia</th>
 			<th>Periodo</th>
-			<th>Opciones</th>
+			<?php
+	if($rol==1){
+		?>
+		<th>Opciones</th>
+		<?php
+	}
+	?>
+			
 		</tr>
 		<?php
 		foreach($personas as $p){
@@ -71,7 +85,14 @@ if(!($sesion==null) && !($sesion==null)){
 				<td><?=$p->fecha_entrega;?></td>
 				<td><?=$p->nom_materia;?></td>
 				<td><?=$p->periodo;?></td>
-				<td><button><a href="edit_tareaDB.php?idtarea=<?=$p->idtarea;?>&materia_idmateria1=<?=$p->materia_idmateria1;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Editar tarea</a></button><br><button><a href="eliminar_tareaDB.php?idtarea=<?=$p->idtarea;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Eliminar</a></button></td>
+				<?php
+	if($rol==1){
+		?>
+		<td><button><a href="edit_tareaDB.php?idtarea=<?=$p->idtarea;?>&materia_idmateria1=<?=$p->materia_idmateria1;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Editar tarea</a></button><br><button><a href="eliminar_tareaDB.php?idtarea=<?=$p->idtarea;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Eliminar</a></button></td>
+		<?php
+	}
+	?>
+				
 			</tr>
 			<?php
 		}

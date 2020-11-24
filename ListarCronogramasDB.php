@@ -53,7 +53,14 @@ if(!($sesion==null) && !($sesion==null)){
 		<?php
 	}
 	?>
-	<button><a href="add_cronogramaDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Agregar cronograma</a></button>
+	<?php
+	if($rol==1){
+		?>
+		<button><a href="add_cronogramaDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Agregar cronograma</a></button>
+		<?php
+	}
+	?>
+	
 </center>
 	<table border="2" align="center" class="table table-striped">
 		<tr>
@@ -62,7 +69,14 @@ if(!($sesion==null) && !($sesion==null)){
 			<th>Responsable</th>
 			<th>Fecha de la actividad</th>
 			<th>docente</th>
-			<th>Opciones</th>
+			<?php
+	if($rol==1){
+		?>
+		<th>Opciones</th>
+		<?php
+	}
+	?>
+			
 		</tr>
 		<?php
 		foreach($personas as $p){
@@ -73,7 +87,14 @@ if(!($sesion==null) && !($sesion==null)){
 				<td><?=$p->responsable;?></td>
 				<td><?=$p->fecha_actividad;?></td>
 				<td><?=$p->nom_docente;?></td>
-				<td><button><a href="edit_cronogramaDB.php?idcronograma=<?=$p->idcronograma;?>&docente_id_docente=<?=$p->docente_id_docente;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Editar cronograma</a></button><br><button><a href="eliminar_cronogramaDB.php?idcronograma=<?=$p->idcronograma;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Eliminar</a></button></td>
+				<?php
+	if($rol==1){
+		?>
+		<td><button><a href="edit_cronogramaDB.php?idcronograma=<?=$p->idcronograma;?>&docente_id_docente=<?=$p->docente_id_docente;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Editar cronograma</a></button><br><button><a href="eliminar_cronogramaDB.php?idcronograma=<?=$p->idcronograma;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Eliminar</a></button></td>
+		<?php
+	}
+	?>
+				
 			</tr>
 			<?php
 		}

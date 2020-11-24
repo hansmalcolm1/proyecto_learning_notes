@@ -2,7 +2,7 @@
 require "conexion.php";
 require "Persona.php";
 session_start();
-$sql = "select * from estudiante";
+$sql = "select * from estudiante, usuarios where id_usuario=id";
 $result = $con->prepare($sql);
 $result->execute();
 $personas = $result->fetchAll(PDO::FETCH_CLASS, "Persona");
@@ -53,7 +53,14 @@ if(!($sesion==null) && !($sesion==null)){
 		<?php
 	}
 	?>
-	<button><a href="add_estudianteDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Agregar estudiante</a></button>
+	<?php
+	if($rol==1){
+		?>
+		<button><a href="add_estudianteDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Agregar estudiante</a></button>
+		<?php
+	}
+	?>
+	
 </center>
 <br>
 	<table   border="2"  class="table table-striped">
@@ -66,7 +73,15 @@ if(!($sesion==null) && !($sesion==null)){
 			<th>Fecha de nacimiento</th>
 			<th>Dirección</th>
 			<th>Teléfono fijo</th>
-			<th>Opciones</th>
+			<th>Usuario</th>
+			<?php
+	if($rol==1){
+		?>
+		<th>Opciones</th>
+		<?php
+	}
+	?>
+			
 		</tr>
 		<?php
 		foreach($personas as $p){
@@ -80,7 +95,15 @@ if(!($sesion==null) && !($sesion==null)){
 				<td><?=$p->fecha_nacimiento;?></td>
 				<td><?=$p->direccion;?></td>
 				<td><?=$p->telefono_fijo;?></td>
-				<td><button><a href="edit_estudianteDB.php?id_alumno=<?=$p->id_alumno;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Editar estudiante</a></button><br><button><a href="eliminar_estudianteDB.php?id_alumno=<?=$p->id_alumno;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Eliminar</a></button></td>
+				<td><?=$p->usuario;?></td>
+				<?php
+	if($rol==1){
+		?>
+		<td><button><a href="edit_estudianteDB.php?id_alumno=<?=$p->id_alumno;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Editar estudiante</a></button><br><button><a href="eliminar_estudianteDB.php?id_alumno=<?=$p->id_alumno;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Eliminar</a></button></td>
+		<?php
+	}
+	?>
+				
 			</tr>
 			<?php
 		}

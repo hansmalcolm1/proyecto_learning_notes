@@ -6,11 +6,16 @@ $rol=$_GET['rol'];
 if(!($sesion==null) && !($sesion==null)){
 if(isset($_GET["id_alumno"]) && strlen($_GET["id_alumno"])){
 	$id_alumno=$_GET["id_alumno"];
-	$sql = "select * from estudiante where id_alumno=:id_alumno";
+	$sql = "select * from usuarios, estudiante where not id=id_usuario and rol_id=2";
 	$result = $con->prepare($sql);
 	$result->bindParam(":id_alumno", $id_alumno);
 	$result->execute();
 	$p = $result->fetchObject("Persona");
+
+	$sql2 = "select * from usuarios where rol_id=2";
+	$result2 = $con->prepare($sql2);
+	$result2->execute();
+	$personas = $result2->fetchAll(PDO::FETCH_CLASS, "Persona");
 	?>
 	<!DOCTYPE html>
 		<html>
@@ -56,6 +61,26 @@ if(isset($_GET["id_alumno"]) && strlen($_GET["id_alumno"])){
 					<tr>
 						<td>Teléfono fijo</td>
 						<td><input type="number" name="telefono_fijo" value="<?=$p->telefono_fijo;?>"/></td>
+					</tr>
+					<tr>
+						<td>Usuario</td>
+						<td><select name="id_usuario">
+							<?php
+						foreach($personas as $p2){
+							if($id_usuario==$p2->id){
+								?>
+								<option value="<?=$p2->id;?>" selected><?=$p2->usuario;?></option>
+								<?php
+							}
+							
+							else{
+								?>
+								<option value="<?=$p2->id;?>"><?=$p2->usuario;?></option>
+								<?php
+							}
+
+						}
+						?></select></td>
 					</tr>
 					<tr>
 						<td><input type="submit" value="Guardar" /></td>

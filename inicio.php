@@ -1,6 +1,6 @@
 <?php
-include("conexion.php");
-include("Usuario.php");
+require "conexion.php";
+require "Persona.php";
 echo "<br>";
 session_start();
 error_reporting(0);
@@ -12,13 +12,21 @@ if($sesion==null && $rol==null){
 	$sesion=$_GET['sesion'];
 	$rol=$_GET['rol'];
 }
+
+$sql = "select * from estudiante, usuarios where id_usuario=id and usuario=:usuario";
+  $result = $con->prepare($sql);
+  $result->bindParam(":usuario", $sesion);
+  $result->execute();
+  $p = $result->fetchObject("Persona");
 //echo "<center><font color='blue'><h3>Bienvenido Usuario</h3></font></center> <br>";
 //error_reporting(0);
 echo "<marquee bgcolor='blue' behavior='alternate' direction='right'><font color='white' size='8'>Bienvenido Usuario</font></marquee>";
+
 if(!($sesion==null) && !($rol==null)){
   if($rol==1){
     header('Location: inicioAdmin.php?sesion=$sesion&rol=1');
   }
+  if($p==true){
 ?>
 
 <DOCTYPE html>
@@ -141,7 +149,15 @@ else{
 	session_unset();
 
 	session_destroy();
-	echo "<script>alert('No tiene permisos');
+	echo "<script>alert('El usuario no tiene asignado un estudiante');
 	window.location.href='index.php?cerrar_session=1'</script>";
+}
+}
+else{
+  session_unset();
+
+  session_destroy();
+  echo "<script>alert('No tiene permisos');
+  window.location.href='index.php?cerrar_session=1'</script>";
 }
 ?>

@@ -25,11 +25,23 @@
 			default:
 		}
 	}
-
-	if(isset($_POST['username']) && isset($_POST['password'])){
+	$row = "";
+	if(isset($_POST['username']) && strlen($_POST["username"])>0 && isset($_POST['password']) && strlen($_POST["password"])>0){
 		$username = $_POST['username'];
 		$password = $_POST['password'];
 		$password2 = md5($password);
+		$db = new Database();
+		$query = $db->connect()->prepare('SELECT * FROM usuarios WHERE usuario = :usuario');
+		$query->execute(['usuario' => $username]);
+		$row = $query->fetch(PDO::FETCH_NUM);
+	}
+
+	if(isset($_POST['username']) && strlen($_POST["username"])>0 && isset($_POST['password']) && strlen($_POST["password"])>0){
+		if($row==false){
+		$username = $_POST['username'];
+		$password = $_POST['password'];
+		$password2 = md5($password);
+
 		$db = new Database();
 		$query = $db->connect()->prepare('INSERT INTO usuarios (usuario, password, rol_id) values (:usuario, :password, 2)');
 		$query->execute(['usuario' => $username, 'password' => $password2]);
@@ -49,6 +61,9 @@
 				
 			default:
 					
+		}
+		}else{
+			echo "el usuario ya existe";
 		}
 	}
 ?>

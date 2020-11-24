@@ -60,6 +60,9 @@ class Persona {
 	private $nota;
 	private $id_est_evalua;
 	private $evaluacion_idevaluacion;
+	private $usuario;
+	private $password;
+	private $rol_id;
 	public function __construct(){
 
 	}

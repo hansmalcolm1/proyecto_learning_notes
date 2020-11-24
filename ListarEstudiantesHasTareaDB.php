@@ -50,7 +50,14 @@ if(!($sesion==null) && !($sesion==null)){
 		<?php
 	}
 	?>
-	<button><a href="add_estudiante_has_tareaDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Agregar estudiante tiene tarea</a></button>
+	<?php
+	if($rol==1){
+		?>
+		<button><a href="add_estudiante_has_tareaDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Agregar estudiante tiene tarea</a></button>
+		<?php
+	}
+	?>
+	
 </center>
 	<table  border="2" align="center" class="table table-striped">
 		<tr>
@@ -58,7 +65,14 @@ if(!($sesion==null) && !($sesion==null)){
 			<th>Tarea</th>
 			<th>Nota</th>
 			<th>Obsevación</th>
-			<th>Opciones</th>
+			<?php
+	if($rol==1){
+		?>
+		<th>Opciones</th>
+		<?php
+	}
+	?>
+			
 		</tr>
 		<?php
 		foreach($personas as $p){
@@ -68,7 +82,14 @@ if(!($sesion==null) && !($sesion==null)){
 				<td><?=$p->titulo_tarea;?></td>
 				<td><?=$p->nota;?></td>
 				<td><?=$p->observacion;?></td>
-				<td><button><a href="edit_estudiante_has_tareaDB.php?estudiante_id_alumno=<?=$p->estudiante_id_alumno;?>&estudiante_id_alumno=<?=$p->estudiante_id_alumno;?>&tarea_idtarea=<?=$p->tarea_idtarea;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Editar estudiante tiene tarea</a></button><br><button><a href="eliminar_estudiante_has_tareaDB.php?estudiante_id_alumno=<?=$p->estudiante_id_alumno;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Eliminar</a></button></td>
+				<?php
+	if($rol==1){
+		?>
+		<td><button><a href="edit_estudiante_has_tareaDB.php?estudiante_id_alumno=<?=$p->estudiante_id_alumno;?>&estudiante_id_alumno=<?=$p->estudiante_id_alumno;?>&tarea_idtarea=<?=$p->tarea_idtarea;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Editar estudiante tiene tarea</a></button><br><button><a href="eliminar_estudiante_has_tareaDB.php?estudiante_id_alumno=<?=$p->estudiante_id_alumno;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Eliminar</a></button></td>
+		<?php
+	}
+	?>
+				
 			</tr>
 			<?php
 		}
