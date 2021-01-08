@@ -37,7 +37,7 @@ if(isset($_GET["id_observa"]) && strlen($_GET["id_observa"])){
 					</tr>
 					<tr>
 						<td>Observación</td>
-						<td><input type="text" name="observacion" value="<?=$p->observacion;?>"/></td>
+						<td><input type="text" name="observacion" value="<?=$p->observación;?>"/></td>
 					</tr>
 					<tr>
 						<td>Fecha de la observación</td>

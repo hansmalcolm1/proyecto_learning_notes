@@ -1,13 +1,12 @@
 <?php
 require "conexion.php";
 require "Persona.php";
-
 $sql = "select * from estudiante";
 $result = $con->prepare($sql);
 $result->execute();
 $personas = $result->fetchAll(PDO::FETCH_CLASS, "Persona");
 
-$sql2 = "select * from evaluacion";
+$sql2 = "select * from curso";
 $result2 = $con->prepare($sql2);
 $result2->execute();
 $personas2 = $result2->fetchAll(PDO::FETCH_CLASS, "Persona");
@@ -26,7 +25,7 @@ if(!($sesion==null) && !($sesion==null)){
 	</head>
 	<body>
 	<br><br>
-		<form action="guardar_estudiante_has_evaluacionDB.php" method="POST">
+		<form action="guardar_estudiante_has_cursoDB.php" method="POST">
 			<input type="hidden" name="sesion" value="<?=$sesion?>"/>
 			<input type="hidden" name="rol" value="<?=$rol?>"/>
 		<div class="container">
@@ -46,19 +45,19 @@ if(!($sesion==null) && !($sesion==null)){
 					?></select></td>
 				</tr>
 				<tr>
-					<td>Evaluación</td>
-					<td><select name="evaluacion_idevaluacion">
+					<td>Curso</td>
+					<td><select name="curso_idcurso">
 						<?php
 					foreach($personas2 as $p2){
 						?>
-						<option value="<?=$p2->idevaluacion;?>"><?=$p2->titulo_evaluacion;?></option>
+						<option value="<?=$p2->idcurso;?>"><?=$p2->nom_curso;?></option>
 						<?php
 					}
 					?></select></td>
 				</tr>
 				<tr>
 					<td>Nota</td>
-					<td><input type="number" step="any" name="nota" /></td>
+					<td><input type="number" name="nota" /></td>
 				</tr>
 				<tr>
 					<td>Observación</td>

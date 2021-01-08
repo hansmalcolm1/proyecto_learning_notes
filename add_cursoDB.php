@@ -6,6 +6,7 @@ $sql = "select * from docente";
 $result = $con->prepare($sql);
 $result->execute();
 $personas = $result->fetchAll(PDO::FETCH_CLASS, "Persona");
+
 $sesion=$_GET['sesion'];
 $rol=$_GET['rol'];
 if(!($sesion==null) && !($sesion==null)){

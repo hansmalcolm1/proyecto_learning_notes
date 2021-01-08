@@ -4,7 +4,7 @@ require "Persona.php";
 $sesion=$_GET['sesion'];
 $rol=$_GET['rol'];
 if(!($sesion==null) && !($sesion==null)){
-	$sql = "select * from usuarios, estudiante where not id=id_usuario and rol_id=2";
+	$sql = "select * from usuarios where not exists (select * from estudiante where id_us=id_usuario) and rol_id=2";
 	$result = $con->prepare($sql);
 	$result->execute();
 	$personas = $result->fetchAll(PDO::FETCH_CLASS, "Persona");
@@ -61,7 +61,7 @@ if(!($sesion==null) && !($sesion==null)){
 						<?php
 					foreach($personas as $p){
 						?>
-						<option value="<?=$p->id;?>"><?=$p->usuario;?></option>
+						<option value="<?=$p->id_us;?>"><?=$p->usuario;?></option>
 						<?php
 					}
 					?></select></td>

@@ -5,13 +5,13 @@ session_start();
 $sesion=$_GET['sesion'];
 $rol=$_GET['rol'];
 if($rol==1){
-$sql = "select * from acudientes, estudiante where estudiante_id_alumno=id_alumno";
+$sql = "select * from estudiante_has_curso, estudiante, curso where estudiante_id_alumno=id_alumno and curso_idcurso=idcurso";
 $result = $con->prepare($sql);
 $result->execute();
 $personas = $result->fetchAll(PDO::FETCH_CLASS, "Persona");
 }
 else{
-$sql = "select * from acudientes, estudiante, usuario where estudiante_id_alumno=id_alumno and usuario='".$_GET['sesion']."'";
+$sql = "select * from curso, docente, estudiante_has_curso, estudiante, usuario where docente_id_docente=id_docente and curso_idcurso=idcurso and estudiante_id_alumno=id_alumno and id_usuario=id and usuario='".$_GET['sesion']."'";
 $result = $con->prepare($sql);
 $result->execute();
 $personas = $result->fetchAll(PDO::FETCH_CLASS, "Persona");
@@ -21,12 +21,7 @@ if(!($sesion==null) && !($sesion==null)){
 <DOCTYPE html>
 <html>
 <head>
-	<style>
-		table,th,td {border:black 1px solid;}
-		div {text-align:center;}
-		table{margin-left:auto;
-			margin-right:auto;}
-	</style>
+	
 	<meta charset="UTF-8">
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
@@ -34,7 +29,7 @@ if(!($sesion==null) && !($sesion==null)){
 
 </head>
 <body>
-
+	
 <br>
     
     <style type="text/css">
@@ -54,7 +49,7 @@ if(!($sesion==null) && !($sesion==null)){
 
 <div class="container-fluid">
 	<center>
-	<?php
+		<?php
 	if($rol==1){
 		?>
 		<button><a href="inicioAdmin.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Volver</a></button>
@@ -69,22 +64,18 @@ if(!($sesion==null) && !($sesion==null)){
 	<?php
 	if($rol==1){
 		?>
-		<button><a href="add_acudienteDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Agregar acudiente</a></button>
+		<button><a href="add_estudiante_has_cursoDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Agregar estudiante has curso</a></button>
 		<?php
 	}
 	?>
 	
 </center>
-	
-	<table   border="2" align="center" class="table table-striped">
+	<table  border="2" align="center" class="table table-striped">
 		<tr>
-			<th>Id acudiente</th>
-			<th>Documento</th>
-			<th>Nombre del acudiente</th>
-			<th>Parentesco</th>
-			<th>Dirección</th>
-			<th>Teléfono</th>
-			<th>Alumno</th>
+			<th>Estudiante</th>
+			<th>Curso</th>
+			<th>Nota</th>
+			<th>Observación</th>
 			<?php
 	if($rol==1){
 		?>
@@ -98,17 +89,14 @@ if(!($sesion==null) && !($sesion==null)){
 		foreach($personas as $p){
 			?>
 			<tr>
-				<td><?=$p->id;?></td>
-				<td><?=$p->documento;?></td>
-				<td><?=$p->nombre;?></td>
-				<td><?=$p->parentesco;?></td>
-				<td><?=$p->direccion;?></td>
-				<td><?=$p->telefono;?></td>
-				<td><?=$p->nom_alumno;?></td>
+				<td><?=$p->estudiante_id_alumno;?></td>
+				<td><?=$p->curso_idcurso;?></td>
+				<td><?=$p->nota;?></td>
+				<td><?=$p->observacion;?></td>
 				<?php
 	if($rol==1){
 		?>
-		<td><button><a href="edit_acudienteDB.php?id=<?=$p->id;?>&estudiante_id_alumno=<?=$p->estudiante_id_alumno;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Editar acudiente</a></button><br><button><a href="eliminar_acudienteDB.php?id=<?=$p->id;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Eliminar</a></button></td>
+		<td><button><a href="edit_estudiante_has_cursoDB.php?estudiante_id_alumno=<?=$p->estudiante_id_alumno;?>&docente_id_docente=<?=$p->docente_id_docente;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Editar estudiante has curso</a></button><br><button><a href="eliminar_estudiante_has_cursoDB.php?estudiante_id_alumno=<?=$p->estudiante_id_alumno;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Eliminar</a></button></td>
 		<?php
 	}
 	?>
@@ -129,5 +117,6 @@ else{
 	session_destroy();
 	echo "<script>alert('No tiene permisos');
 	window.location.href='index.php'</script>";
+
 }
 ?>

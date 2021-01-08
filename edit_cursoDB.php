@@ -17,6 +17,11 @@ if(isset($_GET["idcurso"]) && strlen($_GET["idcurso"])){
 	$result2 = $con->prepare($sql2);
 	$result2->execute();
 	$persona = $result2->fetchAll(PDO::FETCH_CLASS, "Persona");
+
+	$sql3 = "select * from estudiante";
+	$result3 = $con->prepare($sql3);
+	$result3->execute();
+	$persona2 = $result3->fetchAll(PDO::FETCH_CLASS, "Persona");
 	?>
 	<!DOCTYPE html>
 		<html>
@@ -56,6 +61,19 @@ if(isset($_GET["idcurso"]) && strlen($_GET["idcurso"])){
 									<option value="<?=$p2->id_docente;?>"><?=$p2->nom_docente;?></option>
 									<?php
 								}
+							}
+							?>
+						</select>							
+						</td>
+					</tr>
+					<tr>
+						<td>Estudiantes</td>
+						<td><select name="docente_id_docente">
+							<?php
+							foreach($persona2 as $p3){
+									?>
+									<input type="checkbox" name="estudiantes[]" value="<?=$p3->id_alumno;?>"><?=$p3->nom_alumno;?></option>
+									<?php
 							}
 							?>
 						</select>							

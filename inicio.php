@@ -20,7 +20,7 @@ $sql = "select * from estudiante, usuarios where id_usuario=id and usuario=:usua
   $p = $result->fetchObject("Persona");
 //echo "<center><font color='blue'><h3>Bienvenido Usuario</h3></font></center> <br>";
 //error_reporting(0);
-echo "<marquee bgcolor='blue' behavior='alternate' direction='right'><font color='white' size='8'>Bienvenido Usuario</font></marquee>";
+echo "<marquee bgcolor='blue' behavior='alternate' direction='right'><font color='white' size='8'>Bienvenido Estudiante</font></marquee>";
 
 if(!($sesion==null) && !($rol==null)){
   if($rol==1){
@@ -93,7 +93,9 @@ if(!($sesion==null) && !($rol==null)){
 <tr>
   <td><button><a href="ListarEstudiantesDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Estudiantes</a></button></td>
  </tr>
- 
+ <tr>
+  <td><button><a href="ListarEstudianteHasCursoDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Estudiante tiene curso</a></button></td>
+  </tr>
   <tr>
   <td><button><a href="ListarEstudiantesHasEvaluacionDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Estudiante tiene evaluación</a></button></td>
   </tr>

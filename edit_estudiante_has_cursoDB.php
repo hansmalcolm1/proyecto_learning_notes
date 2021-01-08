@@ -6,8 +6,8 @@ $rol=$_GET['rol'];
 if(!($sesion==null) && !($sesion==null)){
 if(isset($_GET["estudiante_id_alumno"]) && strlen($_GET["estudiante_id_alumno"])){
 	$estudiante_id_alumno=$_GET["estudiante_id_alumno"];
-	$evaluacion_idevaluacion=$_GET["evaluacion_idevaluacion"];
-	$sql = "select * from estudiante_has_evaluacion where estudiante_id_alumno=:estudiante_id_alumno";
+	$docente_id_docente=$_GET["docente_id_docente"];
+	$sql = "select * from estudiante_has_curso where estudiante_id_alumno=:estudiante_id_alumno";
 	$result = $con->prepare($sql);
 	$result->bindParam(":estudiante_id_alumno", $estudiante_id_alumno);
 	$result->execute();
@@ -18,7 +18,7 @@ if(isset($_GET["estudiante_id_alumno"]) && strlen($_GET["estudiante_id_alumno"])
 	$result2->execute();
 	$personas = $result2->fetchAll(PDO::FETCH_CLASS, "Persona");
 
-	$sql3 = "select * from evaluacion";
+	$sql3 = "select * from curso";
 	$result3 = $con->prepare($sql3);
 	$result3->execute();
 	$personas2 = $result3->fetchAll(PDO::FETCH_CLASS, "Persona");
@@ -27,12 +27,13 @@ if(isset($_GET["estudiante_id_alumno"]) && strlen($_GET["estudiante_id_alumno"])
 		<html>
 		<head>
 			<meta charset="UTF-8">
+
 			<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 
 		</head>
 		<body>
-			<form action="salvar_estudiante_has_evaluacionDB.php" method="POST">
+			<form action="salvar_estudiante_has_cursoDB.php" method="POST">
 				<input type="hidden" name="sesion" value="<?=$sesion?>"/>
 			<input type="hidden" name="rol" value="<?=$rol?>"/>
 				<table>
@@ -57,19 +58,19 @@ if(isset($_GET["estudiante_id_alumno"]) && strlen($_GET["estudiante_id_alumno"])
 						?></select></td>
 					</tr>
 					<tr>
-						<td>Evaluación</td>
-						<td><select name="evaluacion_idevaluacion">
+						<td>Curso</td>
+						<td><select name="curso_idcurso">
 							<?php
 						foreach($personas2 as $p3){
-							if($evaluacion_idevaluacion==$p3->idevaluacion){
+							if($curso_idcurso==$p3->idcurso){
 								?>
-								<option value="<?=$p3->idevaluacion;?>" selected><?=$p3->titulo_evaluacion;?></option>
+								<option value="<?=$p3->idcurso;?>" selected><?=$p3->nom_curso;?></option>
 								<?php
 							}
 							
 							else{
 								?>
-								<option value="<?=$p3->idevaluacion;?>"><?=$p3->titulo_evaluacion;?></option>
+								<option value="<?=$p3->idcurso;?>"><?=$p3->nom_curso;?></option>
 								<?php
 							}
 
@@ -78,10 +79,10 @@ if(isset($_GET["estudiante_id_alumno"]) && strlen($_GET["estudiante_id_alumno"])
 					</tr>
 					<tr>
 						<td>Nota</td>
-						<td><input type="number" step="any" name="nota" value="<?=$p->nota;?>"/></td>
+						<td><input type="text" name="nota" value="<?=$p->nota;?>"/></td>
 					</tr>
 					<tr>
-						<td>Obsevación</td>
+						<td>Observación</td>
 						<td><input type="text" name="observacion" value="<?=$p->observacion;?>"/></td>
 					</tr>
 					<tr>
@@ -95,8 +96,8 @@ if(isset($_GET["estudiante_id_alumno"]) && strlen($_GET["estudiante_id_alumno"])
 
 }
 else{
-	echo "<script>alert('El id estudiante tiene Evaluación no es valido');
-	window.location.href='ListarEstudiantesHasEvaluacionDB.php'</script>";
+	echo "<script>alert('El id curso no es valido');
+	window.location.href='ListarCursosDB.php'</script>";
 }
 }
 else{

@@ -9,6 +9,7 @@ class Persona {
 	private $fecha_nacimiento;
 	private $direccion;
 	private $telefono_fijo;
+	private $id_usuario;
 	private $id_docente;
 	private $nom_docente;
 	private $telefono;
@@ -60,6 +61,7 @@ class Persona {
 	private $nota;
 	private $id_est_evalua;
 	private $evaluacion_idevaluacion;
+	private $id_us;
 	private $usuario;
 	private $password;
 	private $rol_id;

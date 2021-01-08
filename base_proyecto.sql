@@ -35,18 +35,34 @@ CREATE TABLE IF NOT EXISTS `proyecto_adsi`.`Matricula` (
   `Condicion` VARCHAR(60) NOT NULL,
   `ano_lectivo` INT NULL,
   `calendario` CHAR NULL,
-  `estado` INT NULL,
+  `estado` VARCHAR(60) NULL,
   PRIMARY KEY (`idMatricula`))
 ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `proyecto_adsi`.`usuarios` (
-  `id` INT NOT NULL AUTO_INCREMENT,
+  `id_us` INT NOT NULL AUTO_INCREMENT,
   `usuario` VARCHAR(60) NOT NULL,
   `password` VARCHAR(60) NOT NULL,
   `rol_id` VARCHAR(45) NOT NULL,
   `nombre` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id_us`)
 )
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `proyecto_adsi`.`curso`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `proyecto_adsi`.`curso` (
+  `idcurso` INT NOT NULL AUTO_INCREMENT,
+  `nom_curso` VARCHAR(45) NOT NULL,
+  `docente_id_docente` INT NOT NULL,
+  PRIMARY KEY (`idcurso`),
+  INDEX `fk_curso_docente1_idx` (`docente_id_docente` ASC),
+  CONSTRAINT `fk_curso_docente1`
+    FOREIGN KEY (`docente_id_docente`)
+    REFERENCES `proyecto_adsi`.`docente` (`id_docente`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------
@@ -66,23 +82,9 @@ CREATE TABLE IF NOT EXISTS `proyecto_adsi`.`estudiante` (
   INDEX `fk_usuario_idx` (`id_usuario` ASC),
     CONSTRAINT `fk_usuario`
       FOREIGN KEY (`id_usuario`)
-      REFERENCES `proyecto_adsi`.`usuarios` (`id`))
+      REFERENCES `proyecto_adsi`.`usuarios` (`id_us`))
 ENGINE = InnoDB;
--- -----------------------------------------------------
--- Table `proyecto_adsi`.`curso`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `proyecto_adsi`.`curso` (
-  `idcurso` INT NOT NULL AUTO_INCREMENT,
-  `nom_curso` VARCHAR(45) NOT NULL,
-  `docente_id_docente` INT NOT NULL,
-  PRIMARY KEY (`idcurso`),
-  INDEX `fk_curso_docente1_idx` (`docente_id_docente` ASC),
-  CONSTRAINT `fk_curso_docente1`
-    FOREIGN KEY (`docente_id_docente`)
-    REFERENCES `proyecto_adsi`.`docente` (`id_docente`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+
 
 
 -- -----------------------------------------------------
@@ -121,7 +123,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `proyecto_adsi`.`observacion` (
   `id_observa` INT NOT NULL AUTO_INCREMENT,
-  `observación` LONGTEXT NULL,
+  `observacion` LONGTEXT NULL,
   `Fecha_observa` DATETIME NOT NULL,
   `registro_matricula_id` INT NOT NULL,
   PRIMARY KEY (`id_observa`),
@@ -248,6 +250,25 @@ CREATE TABLE IF NOT EXISTS `proyecto_adsi`.`estudiante_has_tarea` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+CREATE TABLE IF NOT EXISTS `proyecto_adsi`.`estudiante_has_curso` (
+  `estudiante_id_alumno` INT NOT NULL AUTO_INCREMENT,
+  `curso_idcurso` INT NOT NULL,
+  `nota` DECIMAL NOT NULL,
+  `observacion` VARCHAR(45) NOT NULL,
+  INDEX `fk_estudiante_has_tarea_tarea1_idx` (`curso_idcurso` ASC) ,
+  INDEX `fk_estudiante_has_tarea_estudiante1_idx` (`estudiante_id_alumno` ASC) ,
+  PRIMARY KEY (`estudiante_id_alumno`, `curso_idcurso`),
+  CONSTRAINT `fk_estudiante_has_curso_estudiante1`
+    FOREIGN KEY (`estudiante_id_alumno`)
+    REFERENCES `proyecto_adsi`.`estudiante` (`id_alumno`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_estudiante_has_curso_curso1`
+    FOREIGN KEY (`curso_idcurso`)
+    REFERENCES `proyecto_adsi`.`curso` (`idcurso`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- Table `proyecto_adsi`.`acudientes`

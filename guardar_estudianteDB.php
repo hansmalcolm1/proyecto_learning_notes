@@ -35,7 +35,7 @@ isset($_POST["id_usuario"]) && strlen($_POST["id_usuario"])>0){
 	window.location.href='ListarEstudiantesDB.php?sesion=$sesion&rol=$rol'</script>";
 }
 else{
-	echo "<script>alert('El nombre del alumno, el documento, el celular, el email, la fecha de nacimiento, la dirección, el teléfono fijo y el usuario son requeridos');
+	echo "<script>alert('El nombre del alumno, el documento, el celular, el email, la fecha de nacimiento, la dirección, el teléfono fijo, el usuario y el curso son requeridos');
 	window.location.href='ListarEstudiantesDB.php?sesion=$sesion&rol=$rol'</script>";
 }
 }

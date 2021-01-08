@@ -2,12 +2,20 @@
 require "conexion.php";
 require "Persona.php";
 session_start();
-$sql = "select * from evaluacion, materia";
+$sesion=$_GET['sesion'];
+$rol=$_GET['rol'];
+if($rol==1){
+$sql = "select * from evaluacion, materia, curso where materia_idmateria1=idmateria and curso_idcurso=idcurso";
 $result = $con->prepare($sql);
 $result->execute();
 $personas = $result->fetchAll(PDO::FETCH_CLASS, "Persona");
-$sesion=$_GET['sesion'];
-$rol=$_GET['rol'];
+}
+else{
+$sql = "select * from evaluacion, materia, curso, estudiante_has_curso, estudiante, usuario where materia_idmateria1=idmateria and curso_idcurso.evaluacion=idcurso and curso_idcurso.estudiante_has_curso=idcurso and estudiante_id_alumno=id_alumno and id_usuario=id and usuario='".$_GET['sesion']."'";
+$result = $con->prepare($sql);
+$result->execute();
+$personas = $result->fetchAll(PDO::FETCH_CLASS, "Persona");
+}
 if(!($sesion==null) && !($sesion==null)){
 ?>
 <DOCTYPE html>
@@ -80,10 +88,10 @@ if(!($sesion==null) && !($sesion==null)){
 		foreach($personas as $p){
 			?>
 			<tr>
-				<td><?=$p->idtarea;?></td>
-				<td><?=$p->descripcion_tarea;?></td>
-				<td><?=$p->titulo_tarea;?></td>
-				<td><?=$p->fecha_entrega;?></td>
+				<td><?=$p->idevaluacion;?></td>
+				<td><?=$p->descripcion_evaluacion;?></td>
+				<td><?=$p->titulo_evaluacion;?></td>
+				<td><?=$p->fecha_evaluacion;?></td>
 				<td><?=$p->nom_materia;?></td>
 				<td><?=$p->periodo;?></td>
 				<?php

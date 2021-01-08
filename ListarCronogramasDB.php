@@ -2,12 +2,20 @@
 require "conexion.php";
 require "Persona.php";
 session_start();
+$sesion=$_GET['sesion'];
+$rol=$_GET['rol'];
+if($rol==1){
 $sql = "select * from cronograma, docente where docente_id_docente=id_docente";
 $result = $con->prepare($sql);
 $result->execute();
 $personas = $result->fetchAll(PDO::FETCH_CLASS, "Persona");
-$sesion=$_GET['sesion'];
-$rol=$_GET['rol'];
+}
+else{
+$sql = "select * from cronograma, docente, curso, estudiante_has_curso, estudiante, usuario where docente_id_docente.cronograma=id_docente, docente_id_docente.curso=id_docente and curso_idcurso=idcurso and estudiante_id_alumno=id_alumno and id_usuario=id and usuario='".$_GET['sesion']."'";
+$result = $con->prepare($sql);
+$result->execute();
+$personas = $result->fetchAll(PDO::FETCH_CLASS, "Persona");
+}
 if(!($sesion==null) && !($sesion==null)){
 ?>
 <DOCTYPE html>

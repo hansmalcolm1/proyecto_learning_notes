@@ -1,8 +1,7 @@
 <?php
 	include ('database.php');
 	include ('Usuario.php');
-	require "conexion.php";
-	require "Persona.php";
+
 
 
 	session_start();
