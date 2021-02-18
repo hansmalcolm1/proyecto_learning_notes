@@ -5,19 +5,19 @@ session_start();
 $sesion=$_GET['sesion'];
 $rol=$_GET['rol'];
 if($rol==1){
-$sql = "select * from materia, curso, docente where curso_idcurso=idcurso and materia.docente_id_docente=id_docente";
+$sql = "select * from subir_tarea, tarea, usuarios, estudiante where tarea_idtarea=idtarea and usuario1=usuario and id_us=id_usuario";
 $result = $con->prepare($sql);
 $result->execute();
 $personas = $result->fetchAll(PDO::FETCH_CLASS, "Persona");
 }
 elseif($rol==2){
-$sql = "select * from materia, curso, docente, estudiante, estudiante_has_curso, usuarios where materia.curso_idcurso=idcurso and materia.docente_id_docente=id_docente and estudiante_has_curso.curso_idcurso=idcurso and estudiante_id_alumno=id_alumno and id_usuario=id_us and usuario='".$_GET['sesion']."'";
+$sql = "select * from subir_tarea, tarea, usuarios, estudiante where tarea_idtarea=idtarea and usuario1=usuario and id_us=id_usuario and usuario='".$_GET['sesion']."'";
 $result = $con->prepare($sql);
 $result->execute();
 $personas = $result->fetchAll(PDO::FETCH_CLASS, "Persona");
 }
 elseif($rol==3){
-$sql = "select * from materia, curso, docente, usuarios where curso_idcurso=idcurso and materia.docente_id_docente=id_docente and id_usuario1=id_us and usuario='".$_GET['sesion']."'";
+$sql = "select * from subir_tarea, tarea, materia, curso, docente, usuarios where tarea_idtarea=idtarea and materia_idmateria1=idmateria and curso_idcurso=idcurso and curso.docente_id_docente=id_docente and id_us=id_usuario1 and usuario='".$_GET['sesion']."'";
 $result = $con->prepare($sql);
 $result->execute();
 $personas = $result->fetchAll(PDO::FETCH_CLASS, "Persona");
@@ -186,63 +186,33 @@ if(!($sesion==null) && !($sesion==null)){
 		<button><a href="inicio.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Volver</a></button>
 		<?php
 	}
-	if($rol==3){
-		?>
-		<button><a href="inicioDocente.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Volver</a></button>
-		<?php
-	}
+  if($rol==3){
+    ?>
+    <button><a href="inicioDocente.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Volver</a></button>
+    <?php
+  }
 	?>
-	<?php
-	if($rol==1){
-		?>
-		<button><a style="color:green;" href="add_materiaDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Agregar materia</a></button>
-		<?php
-	}
-	?>
-	<?php
-	if($rol==3){
-		?>
-		<button><a style="color:green;" href="add_materia_docenteDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Agregar materia</a></button>
-		<?php
-	}
-	?>
+		<button><a style="color:green;" href="add_subir_tareaDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Agregar subir tarea</a></button>
 	
 </center>
-	<table  border="2" align="center" class="table table-striped" style="margin-left:250px; width:84.27%">
+	<table   border="2" align="center" class="table table-striped" style="margin-left:250px; width:84.27%">
 		<tr>
-			<th>Id materia</th>
-			<th>Nombre de la materia</th>
-			<th>Curso</th>
-			<th>Docente</th>
-			<?php
-	if($rol==1||$rol==3){
-		?>
-		<th>Opciones</th>
-		<?php
-	}
-	?>
+			<th>Id subir tarea</th>
+			<th>Tarea</th>
+			<th>Entrega tarea</th>
+			<th>Estudiante</th>
+			<th>Opciones</th>
 			
 		</tr>
 		<?php
 		foreach($personas as $p){
 			?>
 			<tr>
-				<td><?=$p->idmateria;?></td>
-				<td><?=$p->nom_materia;?></td>
-				<td><?=$p->nom_curso;?></td>
-				<td><?=$p->nom_docente;?></td>
-				<?php
-	if($rol==1){
-		?>
-		<td><button><a style="color:yellow; background-color:black" href="edit_materiaDB.php?idmateria=<?=$p->idmateria;?>&curso_idcurso=<?=$p->curso_idcurso;?>&docente_id_docente=<?=$p->docente_id_docente;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Editar materia</a></button><br><button><a style="color:red;" href="eliminar_materiaDB.php?idmateria=<?=$p->idmateria;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Eliminar</a></button></td>
-		<?php
-	}
-	if($rol==3){
-		?>
-		<td><button><a style="color:yellow; background-color:black" href="edit_materia_docenteDB.php?idmateria=<?=$p->idmateria;?>&curso_idcurso=<?=$p->curso_idcurso;?>&docente_id_docente=<?=$p->docente_id_docente;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Editar materia</a></button><br><button><a style="color:red;" href="eliminar_materiaDB.php?idmateria=<?=$p->idmateria;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Eliminar</a></button></td>
-		<?php
-	}
-	?>
+				<td><?=$p->idsubirtarea;?></td>
+				<td><?=$p->titulo_tarea;?></td>
+				<td><a href="<?=$p->entrega_tarea;?>"><?=$p->entrega_tarea;?></a></td>
+				<td><?=$p->nom_alumno;?></td>
+				<td><button><a style="color:yellow; background-color:black" href="edit_subir_tareaDB.php?idsubirtarea=<?=$p->idsubirtarea;?>&tarea_idtarea=<?=$p->tarea_idtarea;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Editar subir tarea</a></button><br><button><a style="color:red;" href="eliminar_subir_tareaDB.php?idsubirtarea=<?=$p->idsubirtarea;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Eliminar</a></button></td>
 				
 			</tr>
 			<?php
@@ -260,6 +230,5 @@ else{
 	session_destroy();
 	echo "<script>alert('No tiene permisos');
 	window.location.href='index.php'</script>";
-
 }
 ?>

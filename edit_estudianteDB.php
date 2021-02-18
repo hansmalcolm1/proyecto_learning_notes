@@ -31,6 +31,9 @@ if(isset($_GET["id_alumno"]) && strlen($_GET["id_alumno"])){
 			<input type="hidden" name="rol" value="<?=$rol?>"/>
 				<table>
 					<tr>
+						<td><a href="ListarEstudiantesDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Volver</a></td>
+					</tr>
+					<tr>
 						<td>Id alumno</td>
 						<td><input type="number" name="id_alumno" value="<?=$p->id_alumno;?>" readonly/></td>
 					</tr>

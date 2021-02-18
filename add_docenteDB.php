@@ -1,7 +1,13 @@
 <?php
+require "conexion.php";
+require "Persona.php";
 $sesion=$_GET['sesion'];
 $rol=$_GET['rol'];
 if(!($sesion==null) && !($sesion==null)){
+	$sql = "select * from usuarios where not exists (select * from docente where id_us=id_usuario1) and rol_id=3";
+	$result = $con->prepare($sql);
+	$result->execute();
+	$personas = $result->fetchAll(PDO::FETCH_CLASS, "Persona");
 ?>
 <!DOCTYPE html>
 	<html>
@@ -19,6 +25,7 @@ if(!($sesion==null) && !($sesion==null)){
 		<div class="container">
     <div class="row justify-content-center">
         <div class="col-md-4">
+        	<a href="ListarDocentesDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Volver</a>
             <div class="card">
 			<table>
 				<tr>
@@ -36,6 +43,10 @@ if(!($sesion==null) && !($sesion==null)){
 				<tr>
 					<td>Correo</td>
 					<td><input type="email" name="correo" /></td>
+				</tr>
+				<tr>
+					<td>Número del documento</td>
+					<td><input type="number" name="numero_documento" /></td>
 				</tr>
 				<tr>
 					<td><input type="submit" value="Guardar" /></td>

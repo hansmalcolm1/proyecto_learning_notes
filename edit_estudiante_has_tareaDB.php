@@ -37,6 +37,9 @@ if(isset($_GET["estudiante_id_alumno"]) && strlen($_GET["estudiante_id_alumno"])
 			<input type="hidden" name="rol" value="<?=$rol?>"/>
 				<table>
 					<tr>
+						<td><a href="ListarEstudiantesHasTareaDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Volver</a></td>
+					</tr>
+					<tr>
 						<td>Estudiante</td>
 						<td><select name="estudiante_id_alumno">
 							<?php

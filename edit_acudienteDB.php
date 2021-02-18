@@ -33,10 +33,14 @@ if(isset($_GET["id"]) && strlen($_GET["id"])){
 			<form action="salvar_acudienteDB.php" method="POST">
 				<input type="hidden" name="sesion" value="<?=$sesion?>"/>
 			<input type="hidden" name="rol" value="<?=$rol?>"/>
+			
 
 			
 			<center>
 				<table>
+					<tr>
+						<td><a href="ListarAcudientesDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Volver</a></td>
+					</tr>
 					<tr>
 						<td>Id acudiente</td>
 						<td><input type="number" name="id" value="<?=$p->id;?>" readonly/></td>

@@ -1,13 +1,20 @@
 <?php
 require "conexion.php";
 require "Persona.php";
-
+$sesion=$_GET['sesion'];
+$rol=$_GET['rol'];
+if($rol==1){
 $sql = "select * from docente";
 $result = $con->prepare($sql);
 $result->execute();
 $personas = $result->fetchAll(PDO::FETCH_CLASS, "Persona");
-$sesion=$_GET['sesion'];
-$rol=$_GET['rol'];
+}
+elseif($rol==3){
+$sql = "select * from docente, usuarios where id_usuario1=id_us and usuario='".$_GET['sesion']."'";
+$result = $con->prepare($sql);
+$result->execute();
+$personas = $result->fetchAll(PDO::FETCH_CLASS, "Persona");
+}
 if(!($sesion==null) && !($sesion==null)){
 ?>
 <!DOCTYPE html>
@@ -27,16 +34,13 @@ if(!($sesion==null) && !($sesion==null)){
 		<div class="container">
     <div class="row justify-content-center">
         <div class="col-md-4">
+        	<a href="ListarCronogramasDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Volver</a>
             <div class="card">
 
 			<table>
 				<tr>
 					<td>Actividad</td>
 					<td><input type="text" name="actividad" /></td>
-				</tr>
-				<tr>
-					<td>Responsable</td>
-					<td><input type="text" name="responsable" /></td>
 				</tr>
 				<tr>
 					<td>Fecha de la actividad</td>

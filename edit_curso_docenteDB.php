@@ -13,10 +13,10 @@ if(isset($_GET["idcurso"]) && strlen($_GET["idcurso"])){
 	$result->execute();
 	$p = $result->fetchObject("Persona");
 
-	$sql2 = "select * from docente";
+	$sql2 = "select * from docente, usuarios where id_usuario1=id_us and usuario='".$_GET['sesion']."'";
 	$result2 = $con->prepare($sql2);
 	$result2->execute();
-	$persona = $result2->fetchAll(PDO::FETCH_CLASS, "Persona");
+	$p2 = $result2->fetchObject("Persona");
 	?>
 	<!DOCTYPE html>
 		<html>
@@ -31,6 +31,8 @@ if(isset($_GET["idcurso"]) && strlen($_GET["idcurso"])){
 			<form action="salvar_cursoDB.php" method="POST">
 				<input type="hidden" name="sesion" value="<?=$sesion?>"/>
 			<input type="hidden" name="rol" value="<?=$rol?>"/>
+			<input type="hidden" name="docente_id_docente" value="<?=$p2->id_docente;?>"/>
+
 				<table>
 					<tr>
 						<td><a href="ListarCursosDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Volver</a></td>
@@ -45,24 +47,7 @@ if(isset($_GET["idcurso"]) && strlen($_GET["idcurso"])){
 					</tr>
 					<tr>
 						<td>Docente</td>
-						<td><select name="docente_id_docente">
-							<?php
-							foreach($persona as $p2){
-								if($docente_id_docente==$p2->id_docente){
-									?>
-									<option value="<?=$p2->id_docente;?>" selected><?=$p2->nom_docente;?></option>
-									<?php
-								}
-								
-								else{
-									?>
-									<option value="<?=$p2->id_docente;?>"><?=$p2->nom_docente;?></option>
-									<?php
-								}
-							}
-							?>
-						</select>							
-						</td>
+						<td><input type="text" name="docente_id_docente1" value="<?=$p2->nom_docente;?>" readonly/></td>
 					</tr>
 					<tr>
 						<td><input type="submit" value="Guardar" /></td>

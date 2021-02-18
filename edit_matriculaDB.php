@@ -27,6 +27,9 @@ if(isset($_GET["idMatricula"]) && strlen($_GET["idMatricula"])){
 			<input type="hidden" name="rol" value="<?=$rol?>"/>
 				<table>
 					<tr>
+						<td><a href="ListarMatriculasDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Volver</a></td>
+					</tr>
+					<tr>
 						<td>Id matrícula</td>
 						<td><input type="number" name="idMatricula" value="<?=$p->idMatricula;?>" readonly/></td>
 					</tr>

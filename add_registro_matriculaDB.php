@@ -37,6 +37,7 @@ if(!($sesion==null) && !($sesion==null)){
 		<div class="container">
     <div class="row justify-content-center">
         <div class="col-md-4">
+        	<a href="ListarRegistrosMatriculasDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Volver</a>
             <div class="card">
 			<table>
 				<tr>
@@ -45,7 +46,7 @@ if(!($sesion==null) && !($sesion==null)){
 						<?php
 					foreach($personas as $p){
 						?>
-						<option value="<?=$p->idMatricula;?>"><?=$p->Condicion;?></option>
+						<option value="<?=$p->idMatricula;?>"><?=$p->Condicion;?> <?=$p->ano_lectivo;?> <?=$p->calendario;?> <?=$p->estado;?></option>
 						<?php
 					}
 					?></select></td>

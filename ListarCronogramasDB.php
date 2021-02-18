@@ -10,8 +10,14 @@ $result = $con->prepare($sql);
 $result->execute();
 $personas = $result->fetchAll(PDO::FETCH_CLASS, "Persona");
 }
-else{
-$sql = "select * from cronograma, docente, curso, estudiante_has_curso, estudiante, usuario where docente_id_docente.cronograma=id_docente, docente_id_docente.curso=id_docente and curso_idcurso=idcurso and estudiante_id_alumno=id_alumno and id_usuario=id and usuario='".$_GET['sesion']."'";
+elseif($rol==2){
+$sql = "select * from cronograma, docente, curso, estudiante_has_curso, estudiante, usuarios where cronograma.docente_id_docente=id_docente and curso.docente_id_docente=id_docente and curso_idcurso=idcurso and estudiante_id_alumno=id_alumno and id_usuario=id_us and usuario='".$_GET['sesion']."'";
+$result = $con->prepare($sql);
+$result->execute();
+$personas = $result->fetchAll(PDO::FETCH_CLASS, "Persona");
+}
+elseif($rol==3){
+$sql = "select * from cronograma, docente, usuarios where docente_id_docente=id_docente and id_usuario1=id_us and usuario='".$_GET['sesion']."'";
 $result = $con->prepare($sql);
 $result->execute();
 $personas = $result->fetchAll(PDO::FETCH_CLASS, "Persona");
@@ -44,8 +50,132 @@ if(!($sesion==null) && !($sesion==null)){
         background-color:lightblue;
 		background-size: cover;
     }
- </style>
+    .sidenav {
+			float: left;
+  height: 100%;
+  width: 250px;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: black;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
 
+.sidenav a {
+  padding: 6px 6px 6px 6px;
+  text-decoration: none;
+  font-size: 18px;
+  color: #818181;
+  display: block;
+}
+.sidenav table{
+	background-color:black;
+}
+.sidenav h4, .sidenav th{
+  color: white;
+  background-color:black;
+}
+.sidenav a:hover {
+  text-decoration: underline;
+}
+
+.container {
+  margin-left: 300px; /* Same as the width of the sidenav */
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+ </style>
+<div class="sidenav">
+<h4><?=$sesion;?></h4>
+<button><a href="index.php?cerrar_session=1" style="color:red" onclick="cerrar()">Cerrar Sesión</a></button><br><br>
+
+  <table class="table table-striped"  border="2" align="center">
+<thead>
+<tr>
+  <th>Módulo Docente</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><button><a href="ListarDocentesDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Docentes</a></button></td>
+ </tr>
+ 
+  <tr>
+  <td><button><a href="ListarCursosDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Cursos</a></button></td>
+  </tr>
+ <tr>
+  <td><button><a href="ListarMateriasDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Materias</a></button></td>
+</tr>
+
+<tr>
+<td><button><a href="ListarCronogramasDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Cronogramas</a></button></td>
+</tr>
+
+<tr>
+  <td><button><a href="ListarObservacionesDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Observaciones</a></button></td>
+</tr>
+
+<tr>
+  <td><button><a href="ListarDefinitivasPeriodosMateriasDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Definitivas periodos materias</a></button></td>
+</tr>
+
+
+
+</tbody>
+</table>
+<br>
+
+<table class="table table-striped"  border="2" align="center">
+<thead>
+<tr>
+  <th>Módulo Estudiante</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><button><a href="ListarEstudiantesDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Estudiantes</a></button></td>
+ </tr>
+ <tr>
+  <td><button><a href="ListarEstudianteHasCursoDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Estudiante tiene curso</a></button></td>
+  </tr>
+  <tr>
+  <td><button><a href="ListarEstudiantesHasEvaluacionDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Estudiante tiene evaluación</a></button></td>
+  </tr>
+ <tr>
+  <td><button><a href="ListarEstudiantesHasTareaDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Estudiante tiene tarea</a></button></td>
+</tr>
+
+<tr>
+<td><button><a href="ListarEvaluacionesDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Evaluaciones</a></button></td>
+</tr>
+
+<tr>
+<td><button><a href="ListarTareasDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Tareas</a></button></td>
+</tr>
+
+<tr>
+<td><button><a href="ListarSubirTareasDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Subir tareas</a></button></td>
+</tr>
+
+<tr>
+  <td><button><a href="ListarMatriculasDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Matrículas</a></button></td>
+</tr>
+
+<tr>
+  <td><button><a href="ListarRegistrosMatriculasDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Registros matrículas</a></button></td>
+</tr>
+
+<tr>
+<td><button><a href="ListarAcudientesDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Acudientes</a></button></td>
+</tr>
+
+</tbody>
+</table>
+</div>
 <div class="container-fluid">
 	<center>
 
@@ -60,25 +190,29 @@ if(!($sesion==null) && !($sesion==null)){
 		<button><a href="inicio.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Volver</a></button>
 		<?php
 	}
+	if($rol==3){
+		?>
+		<button><a href="inicioDocente.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Volver</a></button>
+		<?php
+	}
 	?>
 	<?php
-	if($rol==1){
+	if($rol==1||$rol==3){
 		?>
-		<button><a href="add_cronogramaDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Agregar cronograma</a></button>
+		<button><a style="color:green;" href="add_cronogramaDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Agregar cronograma</a></button>
 		<?php
 	}
 	?>
 	
 </center>
-	<table border="2" align="center" class="table table-striped">
+	<table border="2" align="center" class="table table-striped" style="margin-left:250px; width:84.27%">
 		<tr>
 			<th>Id cronograma</th>
 			<th>Actividad</th>
-			<th>Responsable</th>
 			<th>Fecha de la actividad</th>
 			<th>docente</th>
 			<?php
-	if($rol==1){
+	if($rol==1||$rol==3){
 		?>
 		<th>Opciones</th>
 		<?php
@@ -92,13 +226,12 @@ if(!($sesion==null) && !($sesion==null)){
 			<tr>
 				<td><?=$p->idcronograma;?></td>
 				<td><?=$p->actividad;?></td>
-				<td><?=$p->responsable;?></td>
 				<td><?=$p->fecha_actividad;?></td>
 				<td><?=$p->nom_docente;?></td>
 				<?php
-	if($rol==1){
+	if($rol==1||$rol==3){
 		?>
-		<td><button><a href="edit_cronogramaDB.php?idcronograma=<?=$p->idcronograma;?>&docente_id_docente=<?=$p->docente_id_docente;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Editar cronograma</a></button><br><button><a href="eliminar_cronogramaDB.php?idcronograma=<?=$p->idcronograma;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Eliminar</a></button></td>
+		<td><button><a style="color:yellow; background-color:black" href="edit_cronogramaDB.php?idcronograma=<?=$p->idcronograma;?>&docente_id_docente=<?=$p->docente_id_docente;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Editar cronograma</a></button><br><button><a style="color:red;" href="eliminar_cronogramaDB.php?idcronograma=<?=$p->idcronograma;?>&sesion=<?=$sesion?>&rol=<?=$rol?>">Eliminar</a></button></td>
 		<?php
 	}
 	?>

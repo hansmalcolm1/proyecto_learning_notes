@@ -31,6 +31,7 @@ if(!($sesion==null) && !($sesion==null)){
 		<div class="container">
     <div class="row justify-content-center">
         <div class="col-md-4">
+        	<a href="ListarEstudianteHasCursoDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Volver</a>
             <div class="card">
 			<table>
 				<tr>
@@ -54,14 +55,6 @@ if(!($sesion==null) && !($sesion==null)){
 						<?php
 					}
 					?></select></td>
-				</tr>
-				<tr>
-					<td>Nota</td>
-					<td><input type="number" name="nota" /></td>
-				</tr>
-				<tr>
-					<td>Observación</td>
-					<td><input type="text" name="observacion" /></td>
 				</tr>
 				<tr>
 					<td><input type="submit" value="Guardar" /></td>

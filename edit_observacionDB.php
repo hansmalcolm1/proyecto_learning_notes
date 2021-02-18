@@ -32,6 +32,9 @@ if(isset($_GET["id_observa"]) && strlen($_GET["id_observa"])){
 			<input type="hidden" name="rol" value="<?=$rol?>"/>
 				<table>
 					<tr>
+						<td><a href="ListarObservacionesDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Volver</a></td>
+					</tr>
+					<tr>
 						<td>Id observación</td>
 						<td><input type="number" name="id_observa" value="<?=$p->id_observa;?>" readonly/></td>
 					</tr>

@@ -14,17 +14,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 CREATE SCHEMA IF NOT EXISTS `proyecto_adsi` DEFAULT CHARACTER SET utf8 ;
 USE `proyecto_adsi` ;
 
--- -----------------------------------------------------
--- Table `proyecto_adsi`.`docente`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `proyecto_adsi`.`docente` (
-  `id_docente` INT NOT NULL AUTO_INCREMENT,
-  `nom_docente` VARCHAR(80) NOT NULL,
-  `direccion` VARCHAR(45) NOT NULL,
-  `telefono` VARCHAR(45) NOT NULL,
-  `correo` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`id_docente`))
-ENGINE = InnoDB;
+
 
 
 -- -----------------------------------------------------
@@ -39,14 +29,50 @@ CREATE TABLE IF NOT EXISTS `proyecto_adsi`.`Matricula` (
   PRIMARY KEY (`idMatricula`))
 ENGINE = InnoDB;
 
+CREATE TABLE IF NOT EXISTS `proyecto_adsi`.`roles` (
+  `id_rol` INT NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(60) NOT NULL,
+  PRIMARY KEY (`id_rol`)
+
+)
+ENGINE = InnoDB;
+
 CREATE TABLE IF NOT EXISTS `proyecto_adsi`.`usuarios` (
   `id_us` INT NOT NULL AUTO_INCREMENT,
   `usuario` VARCHAR(60) NOT NULL,
   `password` VARCHAR(60) NOT NULL,
-  `rol_id` VARCHAR(45) NOT NULL,
-  `nombre` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`id_us`)
+  `rol_id` INT NOT NULL,
+  `nombre_us` VARCHAR(45) NOT NULL,
+  `contador` INT NOT NULL,
+  PRIMARY KEY (`id_us`),
+  INDEX `fk_rol_id_idx` (`rol_id` ASC),
+  CONSTRAINT `fk_rol_id`
+    FOREIGN KEY (`rol_id`)
+    REFERENCES `proyecto_adsi`.`roles` (`id_rol`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
 )
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `proyecto_adsi`.`docente`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `proyecto_adsi`.`docente` (
+  `id_docente` INT NOT NULL AUTO_INCREMENT,
+  `nom_docente` VARCHAR(80) NOT NULL,
+  `direccion` VARCHAR(45) NOT NULL,
+  `telefono` VARCHAR(45) NOT NULL,
+  `correo` VARCHAR(45) NOT NULL,
+  `numero_documento` INT NOT NULL,
+  `id_usuario1` INT NOT NULL,
+  PRIMARY KEY (`id_docente`),
+  INDEX `fk_id_usuario1_idx` (`id_usuario1` ASC),
+  CONSTRAINT `fk_id_usuario1`
+    FOREIGN KEY (`id_usuario1`)
+    REFERENCES `proyecto_adsi`.`usuarios` (`id_us`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------
@@ -179,6 +205,24 @@ CREATE TABLE IF NOT EXISTS `proyecto_adsi`.`tarea` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+-- -----------------------------------------------------
+-- Table `proyecto_adsi`.`subir_tarea`
+-- -----------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS `proyecto_adsi`.`subir_tarea` (
+  `idsubirtarea` INT NOT NULL AUTO_INCREMENT,
+  `tarea_idtarea` INT NOT NULL,
+  `entrega_tarea` VARCHAR(400) NOT NULL,
+  `usuario1` VARCHAR(60) NOT NULL,
+  PRIMARY KEY (`idsubirtarea`),
+  INDEX `fk_tarea_idtarea_idx` (`tarea_idtarea` ASC) ,
+  CONSTRAINT `fk_tarea_idtarea`
+    FOREIGN KEY (`tarea_idtarea`)
+    REFERENCES `proyecto_adsi`.`tarea` (`idtarea`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
+  )
+ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- Table `proyecto_adsi`.`cronograma`
@@ -186,7 +230,6 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `proyecto_adsi`.`cronograma` (
   `idcronograma` INT NOT NULL AUTO_INCREMENT,
   `actividad` LONGTEXT NOT NULL,
-  `responsable` VARCHAR(80) NOT NULL,
   `fecha_actividad` VARCHAR(80) NOT NULL,
   `docente_id_docente` INT NOT NULL,
   PRIMARY KEY (`idcronograma`),
@@ -253,8 +296,6 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `proyecto_adsi`.`estudiante_has_curso` (
   `estudiante_id_alumno` INT NOT NULL AUTO_INCREMENT,
   `curso_idcurso` INT NOT NULL,
-  `nota` DECIMAL NOT NULL,
-  `observacion` VARCHAR(45) NOT NULL,
   INDEX `fk_estudiante_has_tarea_tarea1_idx` (`curso_idcurso` ASC) ,
   INDEX `fk_estudiante_has_tarea_estudiante1_idx` (`estudiante_id_alumno` ASC) ,
   PRIMARY KEY (`estudiante_id_alumno`, `curso_idcurso`),
@@ -334,6 +375,9 @@ CREATE TABLE IF NOT EXISTS `proyecto_adsi`.`estudiante_has_evaluacion` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+INSERT INTO `roles`(`id_rol`, `nombre`) VALUES (NULL,'Admin');
+INSERT INTO `roles`(`id_rol`, `nombre`) VALUES (NULL,'Estudiante');
+INSERT INTO `roles`(`id_rol`, `nombre`) VALUES (NULL,'Docente');
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

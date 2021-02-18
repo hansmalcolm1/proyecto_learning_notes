@@ -39,6 +39,9 @@ if(isset($_GET["idcalificacion"]) && strlen($_GET["idcalificacion"])){
 			<input type="hidden" name="rol" value="<?=$rol?>"/>
 				<table>
 					<tr>
+						<td><a href="ListarDefinitivasPeriodoMateriaDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Volver</a></td>
+					</tr>
+					<tr>
 						<td>Id calificación</td>
 						<td><input type="number" name="idcalificacion" value="<?=$p->idcalificacion;?>" readonly/></td>
 					</tr>

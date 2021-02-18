@@ -6,7 +6,7 @@ $rol=$_GET['rol'];
 if(!($sesion==null) && !($sesion==null)){
 if(isset($_GET["idevaluacion"]) && strlen($_GET["idevaluacion"])>0){
 	$idevaluacion=$_GET["idevaluacion"];
-	$sql = "delete from evaluacion where idtarea=:idevaluacion";
+	$sql = "delete from evaluacion where idevaluacion=:idevaluacion";
 	$result = $con->prepare($sql);
 	$result->bindParam(":idevaluacion", $idevaluacion);
 	$result->execute();

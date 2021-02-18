@@ -1,7 +1,9 @@
 <?php
 require "conexion.php";
 require "Persona.php";
-
+$sesion=$_GET['sesion'];
+$rol=$_GET['rol'];
+if($rol==1){
 $sql = "select * from materia";
 $result = $con->prepare($sql);
 $result->execute();
@@ -11,8 +13,18 @@ $sql2 = "select * from estudiante";
 $result2 = $con->prepare($sql2);
 $result2->execute();
 $personas2 = $result2->fetchAll(PDO::FETCH_CLASS, "Persona");
-$sesion=$_GET['sesion'];
-$rol=$_GET['rol'];
+}
+elseif($rol==3){
+$sql = "select * from materia, curso, docente, usuarios where curso_idcurso=idcurso and materia.docente_id_docente=id_docente and id_usuario1=id_us and usuario='".$_GET['sesion']."'";
+$result = $con->prepare($sql);
+$result->execute();
+$personas = $result->fetchAll(PDO::FETCH_CLASS, "Persona");
+
+$sql2 = "select * from estudiante, estudiante_has_curso, curso, docente, usuarios where estudiante_id_alumno=id_alumno and curso_idcurso=idcurso and docente_id_docente=id_docente and id_usuario1=id_us and usuario='".$_GET['sesion']."'";
+$result2 = $con->prepare($sql2);
+$result2->execute();
+$personas2 = $result2->fetchAll(PDO::FETCH_CLASS, "Persona");
+}
 if(!($sesion==null) && !($sesion==null)){
 
 ?>
@@ -33,6 +45,7 @@ if(!($sesion==null) && !($sesion==null)){
 		<div class="container">
     <div class="row justify-content-center">
         <div class="col-md-4">
+        	<a href="ListarDefinitivasPeriodosMateriasDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Volver</a>
             <div class="card">
 			<table>
 				<tr>

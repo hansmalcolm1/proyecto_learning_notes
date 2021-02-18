@@ -25,6 +25,7 @@ if(!($sesion==null) && !($sesion==null)){
 		<div class="container">
     <div class="row justify-content-center">
         <div class="col-md-4">
+        	<a href="ListarEstudiantesDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Volver</a>
             <div class="card">
 			<table>
 				<tr>
@@ -54,17 +55,6 @@ if(!($sesion==null) && !($sesion==null)){
 				<tr>
 					<td>Teléfono fijo</td>
 					<td><input type="number" name="telefono_fijo" /></td>
-				</tr>
-				<tr>
-					<td>Usuario</td>
-					<td><select name="id_usuario">
-						<?php
-					foreach($personas as $p){
-						?>
-						<option value="<?=$p->id_us;?>"><?=$p->usuario;?></option>
-						<?php
-					}
-					?></select></td>
 				</tr>
 				<tr>
 					<td><input type="submit" value="Guardar" /></td>

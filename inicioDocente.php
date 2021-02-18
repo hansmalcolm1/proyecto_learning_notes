@@ -15,17 +15,17 @@ if($sesion==null && $rol==null){
 	$rol=$_GET['rol'];
 }
 
-$sql = "select * from estudiante, usuarios where id_us=id_usuario and usuario='$sesion'";
+$sql = "select * from docente, usuarios where id_us=id_usuario1 and usuario='$sesion'";
   $result = $con->prepare($sql);
   $result->execute();
   $p = $result->fetchObject("Persona");
 //echo "<center><font color='blue'><h3>Bienvenido Usuario</h3></font></center> <br>";
 //error_reporting(0);
-echo "<marquee style='margin-left:250px' bgcolor='blue' behavior='alternate' direction='right' style='margin-left=300px'><font color='white' size='8'><margin left='200px'>Bienvenido Estudiante</margin></font></marquee>";
+echo "<marquee style='margin-left:250px' bgcolor='blue' behavior='alternate' direction='right' style='margin-left=300px'><font color='white' size='8'><margin left='200px'>Bienvenido Docente</margin></font></marquee>";
 
 if(!($sesion==null) && !($rol==null)){
   if($rol==1){
-    header('Location: inicio.php?sesion=$sesion&rol=2');
+    header('Location: inicio.php?sesion=$sesion&rol=3');
   }
   if($p==true){
 ?>
@@ -84,7 +84,7 @@ if(!($sesion==null) && !($rol==null)){
 <body>
 <br>
 <div class="sidenav">
-<h4><?=$sesion;?></h4>
+<h4><?=$p->nom_docente;?></h4>
 
 
   <table class="table table-striped"  border="2" align="center">
@@ -170,12 +170,10 @@ if(!($sesion==null) && !($rol==null)){
 </tbody>
 </table>
 </div>
-
 <div class="container">
-
- <table class="table table-striped"  border="2" align="center">
-    <h1>Colegio 123</h1>
+  <h1>Colegio 123</h1>
   <button><a href="index.php?cerrar_session=1" style="color:red; text-align:right;" onclick="cerrar()">Cerrar Sesión</a></button>
+ <table class="table table-striped"  border="2" align="center">
 <thead>
 <tr>
   <th>Módulo Docente</th>
@@ -277,11 +275,11 @@ function cerrar() {
 <?php
 }
 else{
-	session_unset();
+  session_unset();
 
-	session_destroy();
-	echo "<script>alert('El usuario no tiene asignado un estudiante');
-	window.location.href='index.php?cerrar_session=1'</script>";
+  session_destroy();
+  echo "<script>alert('El usuario no tiene asignado un docente');
+  window.location.href='index.php?cerrar_session=1'</script>";
 }
 }
 else{

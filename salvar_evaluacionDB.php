@@ -15,7 +15,7 @@ isset($_POST["periodo"]) && strlen($_POST["periodo"])>0){
 	$fecha_evaluacion=$_POST["fecha_evaluacion"];
 	$materia_idmateria1=$_POST["materia_idmateria1"];
 	$periodo=$_POST["periodo"];
-	$sql = "update evaluacion set idevaluacion=:idevaluacion, descripcion_evaluacion=:descripcion_evaluacion, titulo_evaluacion=:titulo_evaluacion, fecha_evaluacion=:fecha_evaluacion, materia_idmateria1=:materia_idmateria1, periodo=:periodo where idtarea=:idevaluacion";
+	$sql = "update evaluacion set idevaluacion=:idevaluacion, descripcion_evaluacion=:descripcion_evaluacion, titulo_evaluacion=:titulo_evaluacion, fecha_evaluacion=:fecha_evaluacion, materia_idmateria1=:materia_idmateria1, periodo=:periodo where idevaluacion=:idevaluacion";
 	$result = $con->prepare($sql);
 	$result->bindParam(":idevaluacion", $idevaluacion);
 	$result->bindParam(":descripcion_evaluacion", $descripcion_evaluacion);

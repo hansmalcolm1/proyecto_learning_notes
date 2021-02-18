@@ -32,16 +32,15 @@ if(isset($_GET["idcronograma"]) && strlen($_GET["idcronograma"])){
 			<input type="hidden" name="rol" value="<?=$rol?>"/>
 				<table>
 					<tr>
+						<td><a href="ListarCronogramasDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Volver</a></td>
+					</tr>
+					<tr>
 						<td>Id cronograma</td>
 						<td><input type="number" name="idcronograma" value="<?=$p->idcronograma;?>" readonly/></td>
 					</tr>
 					<tr>
 						<td>Actividad</td>
 						<td><input type="text" name="actividad" value="<?=$p->actividad;?>"/></td>
-					</tr>
-					<tr>
-						<td>Responsable</td>
-						<td><input type="text" name="responsable" value="<?=$p->responsable;?>"/></td>
 					</tr>
 					<tr>
 						<td>Fecha de la actividad</td>

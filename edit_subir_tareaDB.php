@@ -4,16 +4,16 @@ require "Persona.php";
 $sesion=$_GET['sesion'];
 $rol=$_GET['rol'];
 if(!($sesion==null) && !($sesion==null)){
-if(isset($_GET["idtarea"]) && strlen($_GET["idtarea"])){
-	$idtarea=$_GET["idtarea"];
-	$materia_idmateria1=$_GET["materia_idmateria1"];
-	$sql = "select * from tarea where idtarea=:idtarea";
+if(isset($_GET["idsubirtarea"]) && strlen($_GET["idsubirtarea"])){
+	$idsubirtarea=$_GET["idsubirtarea"];
+	$tarea_idtarea=$_GET["tarea_idtarea"];
+	$sql = "select * from subir_tarea where idsubirtarea=:idsubirtarea";
 	$result = $con->prepare($sql);
-	$result->bindParam(":idtarea", $idtarea);
+	$result->bindParam(":idsubirtarea", $idsubirtarea);
 	$result->execute();
 	$p = $result->fetchObject("Persona");
 
-	$sql2 = "select * from materia";
+	$sql2 = "select * from tarea";
 	$result2 = $con->prepare($sql2);
 	$result2->execute();
 	$personas = $result2->fetchAll(PDO::FETCH_CLASS, "Persona");
@@ -28,51 +28,43 @@ if(isset($_GET["idtarea"]) && strlen($_GET["idtarea"])){
 
 		</head>
 		<body>
-			<form action="salvar_tareaDB.php" method="POST">
+			<form action="salvar_subir_tareaDB.php" method="POST" enctype="multipart/form-data">
 				<input type="hidden" name="sesion" value="<?=$sesion?>"/>
 			<input type="hidden" name="rol" value="<?=$rol?>"/>
 				<table>
 					<tr>
-						<td><a href="ListarTareasDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Volver</a></td>
+						<td><a href="ListarSubirTareasDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Volver</a></td>
 					</tr>
 					<tr>
-						<td>Id tarea</td>
-						<td><input type="number" name="idtarea" value="<?=$p->idtarea;?>" readonly/></td>
+						<td>Id subir tarea</td>
+						<td><input type="number" name="idsubirtarea" value="<?=$p->idsubirtarea;?>" readonly/></td>
 					</tr>
 					<tr>
-						<td>Descripción de la tarea</td>
-						<td><input type="text" name="descripcion_tarea" value="<?=$p->descripcion_tarea;?>"/></td>
-					</tr>
-					<tr>
-						<td>Título de la tarea</td>
-						<td><input type="text" name="titulo_tarea" value="<?=$p->titulo_tarea;?>"/></td>
-					</tr>
-					<tr>
-						<td>Fecha de entrega</td>
-						<td><input type="date" name="fecha_entrega" value="<?=$p->fecha_entrega;?>"/></td>
-					</tr>
-					<tr>
-						<td>Materia</td>
-						<td><select name="materia_idmateria1">
+						<td>Tarea</td>
+						<td><select name="tarea_idtarea">
 						<?php
 						foreach($personas as $p2){
-							if ($materia_idmateria1==$p2->idmateria){
+							if ($tarea_idtarea==$p2->idtarea){
 								?>
-								<option value="<?=$p2->idmateria;?>" selected><?=$p2->nom_materia;?></option>
+								<option value="<?=$p2->idtarea;?>" selected><?=$p2->titulo_tarea;?></option>
 								<?php
 							}
 
 							else{
 								?>
-								<option value="<?=$p2->idmateria;?>"><?=$p2->nom_materia;?></option>
+								<option value="<?=$p2->idtarea;?>"><?=$p2->titulo_tarea;?></option>
 								<?php
 							}
 						}
 						?></select></td>
 					</tr>
 					<tr>
-						<td>Periodo</td>
-						<td><input type="number" name="periodo" value="<?=$p->periodo;?>"/></td>
+						<td>Entrega de la tarea</td>
+						<td><input type="text" name="entrega_tarea" value="<?=$p->entrega_tarea;?>"/></td>
+					</tr>
+					<tr>
+						<td>Usuario</td>
+						<td><input type="text" name="usuario1" value="<?=$sesion;?>" readonly/></td>
 					</tr>
 					<tr>
 						<td><input type="submit" value="Guardar" /></td>

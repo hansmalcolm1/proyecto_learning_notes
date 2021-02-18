@@ -6,11 +6,17 @@ $rol=$_GET['rol'];
 if(!($sesion==null) && !($sesion==null)){
 if(isset($_GET["id_docente"]) && strlen($_GET["id_docente"])){
 	$id_docente=$_GET["id_docente"];
+	$usuario=$_GET["usuario"];
 	$sql = "select * from docente where id_docente=:id_docente";
 	$result = $con->prepare($sql);
 	$result->bindParam(":id_docente", $id_docente);
 	$result->execute();
 	$p = $result->fetchObject("Persona");
+
+	$sql2 = "select * from usuarios where not exists (select * from docente where id_us=id_usuario1) and rol_id=3";
+	$result2 = $con->prepare($sql2);
+	$result2->execute();
+	$personas = $result2->fetchAll(PDO::FETCH_CLASS, "Persona");
 	?>
 	<!DOCTYPE html>
 		<html>
@@ -29,6 +35,9 @@ if(isset($_GET["id_docente"]) && strlen($_GET["id_docente"])){
 
 			<center>
 				<table>
+					<tr>
+						<td><a href="ListarDocentesDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Volver</a></td>
+					</tr>
 					<tr>
 						<td>Id docente</td>
 						<td><input type="number" name="id_docente" value="<?=$p->id_docente;?>" readonly/></td>
@@ -49,6 +58,28 @@ if(isset($_GET["id_docente"]) && strlen($_GET["id_docente"])){
 						<td>Correo</td>
 						<td><input type="email" name="correo" value="<?=$p->correo;?>"/></td>
 					</tr>
+					<tr>
+						<td>Número del documento</td>
+						<td><input type="number" name="numero_documento" value="<?=$p->numero_documento;?>"/></td>
+					</tr>
+					<tr>
+					<td>Usuario</td>
+					<td><select name="id_usuario1">
+						<?php
+					foreach($personas as $p2){
+						if($usuario==$p2->id_us){
+						?>
+						<option value="<?=$p2->id_us;?>" selected><?=$p->usuario;?></option>
+						<?php
+						}
+						else{
+						?>
+						<option value="<?=$p2->id_us;?>"><?=$p->usuario;?></option>
+						<?php
+						}
+					}
+					?></select></td>
+				</tr>
 					<tr>
 						<td><input type="submit" value="Guardar" /></td>
 					</tr>

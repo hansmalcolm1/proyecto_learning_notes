@@ -14,15 +14,15 @@ if(isset($_GET["idmateria"]) && strlen($_GET["idmateria"])){
 	$result->execute();
 	$p = $result->fetchObject("Persona");
 
-	$sql2 = "select * from curso";
+	$sql2 = "select * from curso, docente, usuarios where docente_id_docente=id_docente and id_usuario1=id_us and usuario='".$_GET['sesion']."'";
 	$result2 = $con->prepare($sql2);
 	$result2->execute();
 	$personas = $result2->fetchAll(PDO::FETCH_CLASS, "Persona");
 
-	$sql3 = "select * from docente";
+	$sql3 = "select * from docente, usuarios where id_usuario1=id_us and usuario='".$_GET['sesion']."'";
 	$result3 = $con->prepare($sql3);
 	$result3->execute();
-	$personas2 = $result3->fetchAll(PDO::FETCH_CLASS, "Persona");
+	$p3 = $result3->fetchObject("Persona");
 	?>
 	<!DOCTYPE html>
 		<html>
@@ -36,6 +36,7 @@ if(isset($_GET["idmateria"]) && strlen($_GET["idmateria"])){
 			<form action="salvar_materiaDB.php" method="POST">
 				<input type="hidden" name="sesion" value="<?=$sesion?>"/>
 			<input type="hidden" name="rol" value="<?=$rol?>"/>
+			<input type="hidden" name="docente_id_docente" value="<?=$p3->id_docente;?>"/>
 				<table>
 					<tr>
 						<td><a href="ListarMateriasDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Volver</a></td>
@@ -69,22 +70,7 @@ if(isset($_GET["idmateria"]) && strlen($_GET["idmateria"])){
 					</tr>
 					<tr>
 						<td>Docente</td>
-						<td><select name="docente_id_docente">
-							<?php
-							foreach($personas2 as $p3){
-								if($docente_id_docente==$p3->id_docente){
-									?>
-									<option value="<?=$p3->id_docente;?>" selected><?=$p3->nom_docente;?></option>
-									<?php
-								}
-								
-								else{
-									?>
-									<option value="<?=$p3->id_docente;?>"><?=$p3->nom_docente;?></option>
-									<?php
-								}
-							}
-						?></select></td>
+						<td><input type="text" name="docente_id_docente1" value="<?=$p3->nom_docente;?>" readonly/></td>
 					</tr>
 					<tr>
 						<td><input type="submit" value="Guardar" /></td>

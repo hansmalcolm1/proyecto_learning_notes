@@ -26,8 +26,11 @@ if(!($sesion==null) && !($sesion==null)){
 			<input type="hidden" name="sesion" value="<?=$sesion?>"/>
 			<input type="hidden" name="rol" value="<?=$rol?>"/>
 		<div class="container">
+
     <div class="row justify-content-center">
+
         <div class="col-md-4">
+        	<a href="ListarAcudientesDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Volver</a>
             <div class="card">
 
 			<table>

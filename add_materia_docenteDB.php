@@ -1,18 +1,18 @@
 <?php
 require "conexion.php";
 require "Persona.php";
-
-$sql = "select * from curso";
+$sesion=$_GET['sesion'];
+$rol=$_GET['rol'];
+$sql = "select * from curso, docente, usuarios where docente_id_docente=id_docente and id_usuario1=id_us and usuario='".$_GET['sesion']."'";
 $result = $con->prepare($sql);
 $result->execute();
 $personas = $result->fetchAll(PDO::FETCH_CLASS, "Persona");
 
-$sql2 = "select * from docente";
+$sql2 = "select * from docente, usuarios where id_usuario1=id_us and usuario='".$_GET['sesion']."'";
 $result2 = $con->prepare($sql2);
 $result2->execute();
-$personas2 = $result2->fetchAll(PDO::FETCH_CLASS, "Persona");
-$sesion=$_GET['sesion'];
-$rol=$_GET['rol'];
+$p2 = $result2->fetchObject("Persona");
+
 if(!($sesion==null) && !($sesion==null)){
 ?>
 <!DOCTYPE html>
@@ -28,6 +28,7 @@ if(!($sesion==null) && !($sesion==null)){
 		<form action="guardar_materiaDB.php" method="POST">
 			<input type="hidden" name="sesion" value="<?=$sesion?>"/>
 			<input type="hidden" name="rol" value="<?=$rol?>"/>
+			<input type="hidden" name="docente_id_docente" value="<?=$p2->id_docente;?>"/>
 		<div class="container">
     <div class="row justify-content-center">
         <div class="col-md-4">
@@ -51,14 +52,7 @@ if(!($sesion==null) && !($sesion==null)){
 				</tr>
 				<tr>
 					<td>Docente</td>
-					<td><select name="docente_id_docente">
-						<?php
-					foreach($personas2 as $p2){
-						?>
-						<option value="<?=$p2->id_docente;?>"><?=$p2->nom_docente;?></option>
-						<?php
-					}
-					?></select></td>
+					<td><input type="text" name="docente_id_docente1" value="<?=$p2->nom_docente;?>" readonly/></td>
 				</tr>
 				<tr>
 					<td><input type="submit" value="Guardar" /></td>

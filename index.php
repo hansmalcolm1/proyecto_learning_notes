@@ -16,6 +16,9 @@
 				header('location: inicio.php');
 			break;
 
+			case 3:
+				header('location: inicioDocente.php');
+			break;
 			default:
 		}
 	}
@@ -27,25 +30,34 @@
 		$db = new Database();
 		$query = $db->connect()->prepare('SELECT * FROM usuarios WHERE usuario = :usuario AND password = :password');
 		$query->execute(['usuario' => $username, 'password' => $password2]);
-
-		$row = $query->fetch(PDO::FETCH_NUM);
-		
+		$row = $query->fetch(PDO::FETCH_OBJ);
+		if($row==true){
+		$contador = $row->contador;
+		}
 		if($row == true){
-			$rol = $row[3];
-			$_SESSION['username'] = $username;
+			if($contador==1){
+			$rol = $row->rol_id;
+			$_SESSION['sesion'] = $username;
 			$_SESSION['rol'] = $rol;
 			
 			switch ($_SESSION['rol']) {
 				case 1:
-					header('Location: inicioAdmin.php');
+					header("Location: inicioAdmin.php?sesion=$username&rol=$rol");
 					break;
 
 				case 2:
-					header('location: inicio.php');
+					header("location: inicio.php?sesion=$username&rol=$rol");
 					break;
-				
+				case 3:
+					header("location: inicioDocente.php?sesion=$username&rol=$rol");
+					break;
 				default:
 					
+			}
+			}
+			elseif($contador==0){
+				$_SESSION['username'] = $username;
+				header("Location: cambio_contraseña.php?username=$username");
 			}
 		}else{
 			echo "El usuario o contraseña son incorrectos";

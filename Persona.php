@@ -26,7 +26,6 @@ class Persona {
 	private $curso_idcurso;
 	private $idcronograma;
 	private $actividad;
-	private $responsable;
 	private $fecha_actividad;
 	private $idtarea;
 	private $descripcion_tarea;
@@ -65,6 +64,16 @@ class Persona {
 	private $usuario;
 	private $password;
 	private $rol_id;
+	private $idsubirtarea;
+	private $entrega_tarea;
+	private $idcontenidotarea;
+	private $tipo;
+	private $tamaño;
+	private $contenido;
+	private $identrega_tarea;
+	private $usuario1;
+	private $id_usuario1;
+	private $numero_documento;
 	public function __construct(){
 
 	}

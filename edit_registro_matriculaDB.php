@@ -45,6 +45,9 @@ if(isset($_GET["id"]) && strlen($_GET["id"])){
 			<input type="hidden" name="rol" value="<?=$rol?>"/>
 				<table>
 					<tr>
+						<td><a href="ListarRegistrosMatriculasDB.php?sesion=<?=$sesion?>&rol=<?=$rol?>">Volver</a></td>
+					</tr>
+					<tr>
 						<td>Id registro matrícula</td>
 						<td><input type="number" name="id" value="<?=$p->id;?>" readonly/></td>
 					</tr>
@@ -55,13 +58,13 @@ if(isset($_GET["id"]) && strlen($_GET["id"])){
 						foreach($personas as $p2){
 							if($Matricula_idMatricula==$p2->idMatricula){
 								?>
-								<option value="<?=$p2->idMatricula;?>" selected><?=$p2->Condicion;?></option>
+								<option value="<?=$p2->idMatricula;?>" selected><?=$p2->Condicion;?> <?=$p2->ano_lectivo;?> <?=$p2->calendario;?> <?=$p2->estado;?></option>
 								<?php
 							}
 
 							else{
 								?>
-								<option value="<?=$p2->idMatricula;?>"><?=$p2->Condicion;?></option>
+								<option value="<?=$p2->idMatricula;?>"><?=$p2->Condicion;?> <?=$p2->ano_lectivo;?> <?=$p2->calendario;?> <?=$p2->estado;?></option>
 								<?php
 							}
 
